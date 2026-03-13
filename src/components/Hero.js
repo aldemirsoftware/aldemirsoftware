@@ -201,6 +201,9 @@ const Hero = () => {
     <section className="hero">
       <canvas ref={canvasRef} className="particle-canvas" />
       
+      {/* Futuristic Scanline Effect */}
+      <div className="scanline"></div>
+      
       <div className="hero-container">
         <motion.div
           className="hero-content"
@@ -252,7 +255,7 @@ const Hero = () => {
           >
           </motion.p>
 
-          <motion.div 
+                    <motion.div 
             className="hero-buttons"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -260,8 +263,21 @@ const Hero = () => {
           >
             <button className="cta-button" onClick={() => {
               const isMobile = window.innerWidth <= 768;
-              const target = isMobile ? document.querySelector('#contact-form') : document.querySelector('.contact');
-              target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              const contactForm = document.querySelector('.contact-form-wrapper');
+              const contactSection = document.querySelector('.contact');
+              
+              if (isMobile && contactForm) {
+                // Mobilde formu ekranın tam ortasına getir
+                const formTop = contactForm.getBoundingClientRect().top + window.pageYOffset;
+                const formHeight = contactForm.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTo = formTop - (windowHeight / 2) + (formHeight / 2);
+                
+                window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+              } else if (contactSection) {
+                // Desktop'ta section'ı ortala
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
             }}>
               <span className="btn-text">Proje Başlat</span>
               <span className="btn-icon">→</span>
