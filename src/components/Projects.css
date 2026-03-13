@@ -1,0 +1,202 @@
+.projects {
+  min-height: 100vh;
+  padding: 120px 2rem 80px;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Data Stream Effect */
+.projects::before {
+  content: 'API REST GraphQL WebSocket JSON XML MongoDB PostgreSQL MySQL';
+  position: absolute;
+  bottom: 20%;
+  right: -50%;
+  width: 150%;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: rgba(192, 192, 192, 0.04);
+  word-spacing: 30px;
+  transform: rotate(-5deg);
+  animation: dataStream 25s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes dataStream {
+  0% {
+    transform: translateX(0) rotate(-5deg);
+  }
+  100% {
+    transform: translateX(-30%) rotate(-5deg);
+  }
+}
+
+.projects-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.projects-header h2 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.projects-subtitle {
+  font-size: 1.2rem;
+  color: #C0C0C0;
+  margin-top: 10px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.project-card {
+  background: linear-gradient(145deg, rgba(192, 192, 192, 0.5), rgba(10, 10, 31, 0.8));
+  border: 1px solid rgba(192, 192, 192, 0.15);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90px, transparent, #C0C0C0, #C0C0C0, transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.project-card:hover::before {
+  transform: translateX(100%);
+}
+
+.project-card:hover {
+  border-color: rgba(232, 232, 232, 0.3);
+  box-shadow: 0 20px 60px rgba(192, 192, 192, 0.3), 0 0 40px rgba(192, 192, 192, 0.2);
+  transform: translateY(-10px);
+}
+
+.project-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #C0C0C0;
+  animation: float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.4));
+}
+
+.project-card:hover .project-icon {
+  color: #E8E8E8;
+  transform: translateY(-5px) scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(211, 211, 211, 0.6));
+}
+
+.project-category {
+  display: inline-block;
+  padding: 6px 15px;
+  background: rgba(192, 192, 192, 0.15);
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #C0C0C0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.project-card p {
+  color: #c0c0c0;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-tag {
+  padding: 8px 15px;
+  background: rgba(192, 192, 192, 0.4);
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #C0C0C0;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .tech-tag {
+  background: rgba(192, 192, 192, 0.4);
+  border-color: rgba(232, 232, 232, 0.5);
+  color: #E8E8E8;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 100px 1.5rem 60px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-header h2 {
+    font-size: 2rem;
+  }
+
+  .project-card {
+    padding: 30px;
+  }
+}

@@ -1,0 +1,196 @@
+.tech-stack {
+  min-height: 100vh;
+  padding: 120px 2rem 80px;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Hex Pattern Background */
+.tech-stack::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(192, 192, 192, 0.03) 35px, rgba(192, 192, 192, 0.03) 70px);
+  animation: hexMove 15s linear infinite;
+  pointer-events: none;
+}
+
+/* Matrix Code Effect */
+.tech-stack::after {
+  content: 'npm install react node python javascript typescript docker kubernetes';
+  position: absolute;
+  top: 10%;
+  left: -100%;
+  width: 200%;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: rgba(192, 192, 192, 0.05);
+  word-spacing: 40px;
+  white-space: nowrap;
+  animation: matrixScroll 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes hexMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 70px;
+  }
+}
+
+@keyframes matrixScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+.tech-stack::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(160, 160, 160, 0.3), transparent);
+}
+
+.tech-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tech-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-subtitle {
+  color: rgba(192, 192, 192, 0.7);
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.tech-card {
+  position: relative;
+  perspective: 1000px;
+}
+
+.tech-card-inner {
+  position: relative;
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.4) 0%, rgba(15, 24, 40, 0.6) 100%);
+  border: 1px solid rgba(192, 192, 192, 0.2);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.tech-card-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(192, 192, 192, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tech-card:hover .tech-card-inner {
+  border-color: rgba(192, 192, 192, 0.5);
+  box-shadow: 
+    0 20px 60px rgba(192, 192, 192, 0.4),
+    0 0 40px rgba(192, 192, 192, 0.3);
+  transform: rotateX(5deg) rotateY(5deg);
+}
+
+.tech-card:hover .tech-card-inner::before {
+  opacity: 1;
+}
+
+.tech-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #C0C0C0;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.4));
+}
+
+.tech-card:hover .tech-icon {
+  color: #E8E8E8;
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 0 12px rgba(211, 211, 211, 0.6));
+}
+
+.tech-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #C0C0C0 0%, #E8E8E8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.tech-description {
+  color: rgba(192, 192, 192, 0.6);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.tech-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #C0C0C0, #C0C0C0, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tech-card:hover .tech-glow {
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(192, 192, 192, 0.8);
+}
+
+@media (max-width: 768px) {
+  .tech-stack {
+    padding: 4rem 5%;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tech-card-inner {
+    padding: 2rem 1.5rem;
+  }
+
+  .tech-icon {
+    font-size: 3rem;
+  }
+}

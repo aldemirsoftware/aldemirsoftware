@@ -1,0 +1,173 @@
+.stats {
+  padding: 100px 2rem;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Circuit Board Pattern */
+.stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(192, 192, 192, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(192, 192, 192, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  animation: circuitMove 20s linear infinite;
+  pointer-events: none;
+}
+
+/* Binary Numbers */
+.stats::after {
+  content: '1010 0110 1101 0011 1001 0101 1100 0111';
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: rgba(192, 192, 192, 0.04);
+  text-align: center;
+  letter-spacing: 20px;
+  animation: binaryScroll 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes circuitMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+@keyframes binaryScroll {
+  0% {
+    transform: translateX(0);
+    opacity: 0.04;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translateX(-50px);
+    opacity: 0.04;
+  }
+}
+
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.stat-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(26, 0, 51, 0.5) 0%, rgba(45, 27, 105, 0.7) 100%);
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(192, 192, 192, 0.15), rgba(211, 211, 211, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  border-color: #E8E8E8;
+  box-shadow: 
+    0 0 30px rgba(192, 192, 192, 0.5),
+    0 20px 60px rgba(192, 192, 192, 0.3);
+}
+
+.stat-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #C0C0C0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.4));
+}
+
+.stat-card:hover .stat-icon {
+  color: #E8E8E8;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 12px rgba(211, 211, 211, 0.6));
+}
+
+.stat-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A9A9A9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  font-family: 'Courier New', monospace;
+  filter: drop-shadow(0 0 10px rgba(192, 192, 192, 0.3));
+}
+
+.stat-text {
+  color: rgba(192, 192, 192, 0.8);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.stat-glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #C0C0C0, #C0C0C0, #C0C0C0, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover .stat-glow {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .stats {
+    padding: 4rem 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
