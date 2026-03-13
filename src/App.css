@@ -3,6 +3,7 @@
   background: linear-gradient(135deg, #0a0a1f 0%, #1a2a4e 50%, #0f1828 100%);
   position: relative;
   overflow-x: hidden;
+  background-attachment: fixed;
 }
 
 /* Animated Code Background */
@@ -18,6 +19,8 @@
     radial-gradient(ellipse at bottom, rgba(192, 192, 192, 0.08) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* Stars Background */
@@ -39,6 +42,8 @@
   animation: starsMove 20s linear infinite;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @keyframes starsMove {

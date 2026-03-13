@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="footer-brand">
             <div className="footer-logo">
               <img src="/logo-nonbck.png" alt="Aldemir Software Logo" width="40" height="40" />
-              <span>ALDEMİR <span className="text-neon">SOFTWARE</span></span>
+              <span><span className="glow-text">ALDEMİR</span> SOFTWARE</span>
             </div>
             <p className="footer-tagline">
               Geleceklere İz Bırakan Teknoloji Çözümleri
@@ -52,7 +52,7 @@ const Footer = () => {
                 <li><a href="mailto:ademaldemirx@icloud.com">ademaldemirx@icloud.com</a></li>
                 <li><a href="tel:+905050784635">+90 505 078 46 35</a></li>
                 <li><a href="https://www.linkedin.com/company/aldemi%CC%87rsoftware/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                <li><a href="https://instagram.com/aldemirsoft" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://instagram.com/aldemirsoftware" target="_blank" rel="noopener noreferrer">Instagram</a></li>
               </ul>
             </div>
           </div>

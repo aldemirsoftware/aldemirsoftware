@@ -28,7 +28,7 @@ const Navbar = () => {
           <div className="logo-icon">
             <img src="/logo-nonbck.png" alt="Aldemir Software Logo" width="32" height="32" />
           </div>
-          <span className="logo-text">ALDEMİR <span className="text-neon">SOFTWARE</span></span>
+          <span className="logo-text"><span className="glow-text">ALDEMİR</span> SOFTWARE</span>
         </motion.div>
         
         <div className="navbar-links">

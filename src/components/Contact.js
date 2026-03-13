@@ -160,7 +160,7 @@ const Contact = () => {
               </div>
               <div className="info-details">
                 <h4>Instagram</h4>
-                <a href="https://instagram.com/aldemirsoft" target="_blank" rel="noopener noreferrer">@aldemirsoft</a>
+                <a href="https://instagram.com/aldemirsoftware" target="_blank" rel="noopener noreferrer">@aldemirsoftware</a>
               </div>
             </div>
 

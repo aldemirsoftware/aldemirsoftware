@@ -4,6 +4,8 @@
   position: relative;
   z-index: 2;
   background: linear-gradient(135deg, #0a0a1f 0%, #1a2a4e 50%, #0f1828 100%);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .about::before {
@@ -231,5 +233,9 @@
 
   .company-name h3 {
     font-size: 1.5rem;
+  }
+
+  .logo-container {
+    max-width: 180px;
   }
 }

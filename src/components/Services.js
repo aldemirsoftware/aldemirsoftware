@@ -73,7 +73,7 @@ const Services = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="service-icon">
                 <service.icon />

@@ -66,6 +66,27 @@
   text-transform: uppercase;
 }
 
+.glow-text {
+  background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 4px rgba(232, 232, 232, 0.4)) 
+          drop-shadow(0 0 8px rgba(192, 192, 192, 0.3));
+  animation: softGlow 3s ease-in-out infinite;
+}
+
+@keyframes softGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(232, 232, 232, 0.3)) 
+            drop-shadow(0 0 6px rgba(192, 192, 192, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(232, 232, 232, 0.5)) 
+            drop-shadow(0 0 10px rgba(192, 192, 192, 0.4));
+  }
+}
+
 .navbar-links {
   display: flex;
   align-items: center;
