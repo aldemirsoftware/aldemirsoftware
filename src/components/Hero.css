@@ -39,25 +39,64 @@
 .scanline {
   position: absolute;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background: linear-gradient(90deg, 
     transparent, 
-    rgba(192, 192, 192, 0.3), 
-    rgba(232, 232, 232, 0.6),
-    rgba(192, 192, 192, 0.3), 
+    rgba(192, 192, 192, 0.4), 
+    rgba(232, 232, 232, 0.8),
+    rgba(192, 192, 192, 0.4), 
     transparent
   );
-  box-shadow: 0 0 10px rgba(232, 232, 232, 0.5);
-  animation: scanlineMove 4s linear infinite;
-  z-index: 5;
+  box-shadow: 
+    0 0 15px rgba(232, 232, 232, 0.7),
+    0 0 30px rgba(232, 232, 232, 0.4);
+  animation: scanlinePrint 3.5s ease-in-out forwards;
+  z-index: 10;
   pointer-events: none;
 }
 
-@keyframes scanlineMove {
-  0% { top: 0%; opacity: 0; }
-  5% { opacity: 1; }
-  95% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+@keyframes scanlinePrint {
+  0% { 
+    top: 0%; 
+    opacity: 0;
+  }
+  5% { 
+    opacity: 1;
+  }
+  95% { 
+    opacity: 1;
+  }
+  100% { 
+    top: 100%; 
+    opacity: 0;
+  }
+}
+
+/* Hero Content Reveal Animation - Printer Effect */
+.hero-content-reveal {
+  position: relative;
+  clip-path: inset(0 0 100% 0);
+  animation: printerReveal 3.5s ease-in-out forwards;
+}
+
+@keyframes printerReveal {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes elementReveal {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
 .particle-canvas {
@@ -144,8 +183,10 @@
     0 0 40px rgba(255, 255, 255, 0.2), 
     inset 0 1px 1px rgba(255, 255, 255, 0.3),
     0 8px 20px rgba(0, 0, 0, 0.3);
-  animation: badgeFloat 3s ease-in-out infinite;
+  animation: badgeFloat 3s ease-in-out infinite, elementReveal 1s ease-out forwards;
   backdrop-filter: blur(15px);
+  opacity: 0;
+  animation-delay: 0s, 0.5s;
 }
 
 .hero-badge::before {
@@ -216,6 +257,8 @@
     0 0 60px rgba(192, 192, 192, 0.2),
     0 5px 15px rgba(0, 0, 0, 0.5);
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  opacity: 0;
+  animation: elementReveal 1s ease-out 1.2s forwards;
 }
 
 .hero-subtitle-dynamic {
@@ -228,7 +271,8 @@
   justify-content: center;
   max-width: 100%;
   padding: 0 1rem;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  animation: elementReveal 1s ease-out 1.8s forwards;
 }
 
 .title-line {
@@ -468,6 +512,8 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: elementReveal 1s ease-out 2.4s forwards;
 }
 
 .cta-button {
@@ -608,17 +654,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
+  gap: 2rem;
   flex-wrap: nowrap;
   margin-top: 3rem;
-  padding-bottom: 8rem;
+  padding: 2rem 1.5rem 8rem 1.5rem;
+  opacity: 0;
+  animation: elementReveal 1s ease-out 3s forwards;
 }
 
 .indicator {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
+  gap: 1rem;
+  padding: 1rem 3rem;
   background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(169, 169, 169, 0.05));
   border: 1px solid rgba(192, 192, 192, 0.4);
   border-radius: 30px;
@@ -660,12 +708,13 @@
 }
 
 .indicator-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: linear-gradient(135deg, #E8E8E8, #C0C0C0);
   box-shadow: 0 0 15px rgba(232, 232, 232, 0.9);
   animation: indicatorPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 @keyframes indicatorPulse {

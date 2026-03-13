@@ -329,15 +329,9 @@ const Hero = () => {
       <div className="scanline"></div>
       
       <div className="hero-container">
-        <motion.div
-          className="hero-content"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
+        <div className="hero-content hero-content-reveal">
           <motion.div 
             className="hero-badge"
-            initial={{ opacity: 0, scale: 0.5 }}
             animate={{ 
               opacity: badgeVisible ? 1 : 0,
               scale: badgeVisible ? 1 : 0.8
@@ -385,42 +379,22 @@ const Hero = () => {
           )}
 
           <div className="hero-title-container">
-            <motion.h1 
-              className="hero-title"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-            >
+            <h1 className="hero-title">
               <span className="glitch" data-text="ALDEMİR SOFTWARE">
                 ALDEMİR SOFTWARE
               </span>
-            </motion.h1>
+            </h1>
             
-            <motion.div
-              className="hero-subtitle-dynamic"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-            >
+            <div className="hero-subtitle-dynamic">
               <span className="gradient-text">{displayText}</span>
               <span className="cursor-blink">|</span>
-            </motion.div>
+            </div>
           </div>
 
-          <motion.p 
-            className="hero-subtitle"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-          >
-          </motion.p>
+          <p className="hero-subtitle">
+          </p>
 
-                    <motion.div 
-            className="hero-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-          >
+          <div className="hero-buttons">
             <button className="cta-button" onClick={() => {
               const isMobile = window.innerWidth <= 768;
               const contactForm = document.querySelector('.contact-form-wrapper');
@@ -443,15 +417,10 @@ const Hero = () => {
               <span className="btn-icon">→</span>
               <div className="btn-glow"></div>
             </button>
-          </motion.div>
+          </div>
 
           {/* Tech Indicators */}
-          <motion.div 
-            className="tech-indicators"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 0.8 }}
-          >
+          <div className="tech-indicators">
             <div className="indicator">
               <div className="indicator-dot"></div>
               <span>Yazılım</span>
@@ -468,8 +437,8 @@ const Hero = () => {
               <div className="indicator-dot"></div>
               <span>Pazarlama</span>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Easter Egg Game Modal - Snake Game */}
