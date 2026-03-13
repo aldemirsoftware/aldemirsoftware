@@ -33,23 +33,18 @@ const Navbar = () => {
         
         <div className="navbar-links">
           <a href="#about" className="nav-link">
-            <span className="link-number">01</span>
             Hakkımızda
           </a>
           <a href="#tech" className="nav-link">
-            <span className="link-number">02</span>
             Teknoloji
           </a>
           <a href="#services" className="nav-link">
-            <span className="link-number">03</span>
             Hizmetler
           </a>
           <a href="#projects" className="nav-link">
-            <span className="link-number">04</span>
             Projeler
           </a>
           <a href="#contact" className="nav-link">
-            <span className="link-number">05</span>
             İletişim
           </a>
         </div>
