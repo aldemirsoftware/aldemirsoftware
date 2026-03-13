@@ -130,13 +130,13 @@
   margin-bottom: 0;
   letter-spacing: -0.02em;
   text-align: center;
+  white-space: nowrap;
 }
 
 .hero-subtitle-dynamic {
   font-size: clamp(1.5rem, 3.5vw, 3rem);
   font-weight: 600;
   text-align: center;
-  white-space: nowrap;
   min-height: 3rem;
   display: flex;
   align-items: center;
@@ -507,7 +507,7 @@
   justify-content: center;
   align-items: center;
   gap: 5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin-top: 12rem;
   padding-bottom: 8rem;
 }
@@ -549,12 +549,230 @@
   50% { opacity: 0.6; transform: scale(1.3); }
 }
 
+@media (max-width: 992px) {
+  .tech-indicators {
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .hero-title { font-size: 2.5rem; }
-  .hero-subtitle { font-size: 1rem; }
-  .hero-buttons { flex-direction: column; align-items: center; }
+  .hero {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .hero-content {
+    padding-top: 100px;
+    padding-bottom: 30px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-badge {
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    max-width: 90%;
+  }
+
+  .badge-text {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-pulse {
+    width: 8px;
+    height: 8px;
+  }
+
+  .hero-title-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+  }
+
+  .hero-title { 
+    font-size: 1.5rem;
+    line-height: 1.2;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    display: none;
+  }
+
+  .hero-subtitle-dynamic {
+    font-size: 0.95rem;
+    min-height: 1.5rem;
+    white-space: normal;
+    text-align: center;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+  }
+
+  .hero-subtitle { 
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    min-height: auto;
+    padding: 0 0.5rem;
+  }
+
+  .hero-subtitle::after {
+    font-size: 0.8rem;
+    white-space: normal;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+  }
+
+  .hero-buttons { 
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 0.75rem;
+  }
+
   .cta-button,
-  .btn-hero-secondary { width: 100%; max-width: 300px; justify-content: center; }
-  .tech-indicators { gap: 1rem; }
-  .indicator { font-size: 0.75rem; padding: 0.5rem 1rem; }
+  .btn-hero-secondary { 
+    width: 90%;
+    max-width: 280px;
+    justify-content: center;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .tech-indicators { 
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .indicator { 
+    font-size: 0.6rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  .indicator-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-content {
+    padding-top: 90px;
+    padding-bottom: 25px;
+  }
+
+  .hero-badge {
+    font-size: 0.65rem;
+    padding: 0.45rem 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .badge-text {
+    font-size: 0.65rem;
+  }
+
+  .badge-pulse {
+    width: 7px;
+    height: 7px;
+  }
+
+  .hero-title-container {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-title { 
+    font-size: 1.35rem;
+  }
+
+  .hero-subtitle-dynamic {
+    font-size: 0.85rem;
+    min-height: 1.3rem;
+  }
+
+  .hero-subtitle { 
+    font-size: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-subtitle::after {
+    font-size: 0.72rem;
+  }
+
+  .cta-button {
+    max-width: 240px;
+    padding: 0.85rem 1.3rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-text {
+    font-size: 0.9rem;
+  }
+
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+
+  .tech-indicators { 
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .indicator { 
+    font-size: 0.55rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-content {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+
+  .hero-badge {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .badge-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-title { 
+    font-size: 1.2rem;
+  }
+
+  .hero-subtitle-dynamic {
+    font-size: 0.8rem;
+  }
+
+  .hero-subtitle::after {
+    font-size: 0.68rem;
+  }
+
+  .cta-button {
+    max-width: 220px;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .indicator { 
+    font-size: 0.5rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .indicator-dot {
+    width: 5px;
+    height: 5px;
+  }
 }

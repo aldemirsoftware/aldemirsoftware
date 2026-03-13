@@ -258,7 +258,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.6 }}
           >
-            <button className="cta-button" onClick={() => document.querySelector('.contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            <button className="cta-button" onClick={() => {
+              const isMobile = window.innerWidth <= 768;
+              const target = isMobile ? document.querySelector('#contact-form') : document.querySelector('.contact');
+              target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}>
               <span className="btn-text">Proje Başlat</span>
               <span className="btn-icon">→</span>
               <div className="btn-glow"></div>
