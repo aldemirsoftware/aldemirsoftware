@@ -49,7 +49,7 @@ const Footer = () => {
             <div className="footer-column">
               <h4>İletişim</h4>
               <ul>
-                <li><a href="mailto:ademaldemirx@icloud.com">ademaldemirx@icloud.com</a></li>
+                <li><a href="mailto:info@aldemirsoftware.com">info@aldemirsoftware.com</a></li>
                 <li><a href="tel:+905050784635">+90 505 078 46 35</a></li>
                 <li><a href="https://www.linkedin.com/company/aldemi%CC%87rsoftware/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                 <li><a href="https://instagram.com/aldemirsoftware" target="_blank" rel="noopener noreferrer">Instagram</a></li>

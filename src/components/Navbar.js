@@ -14,13 +14,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav 
+    <motion.header 
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
+      role="banner"
     >
-      <div className="navbar-container">
+      <nav className="navbar-container" role="navigation" aria-label="Ana navigasyon">
         <motion.div 
           className="navbar-logo"
           whileHover={{ scale: 1.05 }}
@@ -32,24 +33,24 @@ const Navbar = () => {
         </motion.div>
         
         <div className="navbar-links">
-          <a href="#about" className="nav-link">
+          <a href="#about" className="nav-link" aria-label="Hakkımızda bölümüne git">
             Hakkımızda
           </a>
-          <a href="#tech" className="nav-link">
+          <a href="#tech" className="nav-link" aria-label="Teknoloji bölümüne git">
             Teknoloji
           </a>
-          <a href="#services" className="nav-link">
+          <a href="#services" className="nav-link" aria-label="Hizmetler bölümüne git">
             Hizmetler
           </a>
-          <a href="#projects" className="nav-link">
+          <a href="#projects" className="nav-link" aria-label="Projeler bölümüne git">
             Projeler
           </a>
-          <a href="#contact" className="nav-link">
+          <a href="#contact" className="nav-link" aria-label="İletişim bölümüne git">
             İletişim
           </a>
         </div>
-      </div>
-    </motion.nav>
+      </nav>
+    </motion.header>
   );
 };
 

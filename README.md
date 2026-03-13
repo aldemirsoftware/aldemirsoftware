@@ -11,7 +11,7 @@
 
 *Modern, Premium ve Profesyonel Yazılım Çözümleri*
 
-[🌐 Live Demo](https://aldemirsoftware.web.app) • [📧 İletişim](mailto:ademaldemirx@icloud.com)
+[🌐 Live Demo](https://aldemirsoftware.web.app) • [📧 İletişim](mailto:info@aldemirsoftware.com)
 
 </div>
 
@@ -254,6 +254,45 @@ Gmail kullanıyorsanız, EmailJS dashboard'da "Advanced" → "Go to EmailJS (uns
 
 ---
 
+## 🔍 SEO ve Google Görünürlüğü
+
+### SEO Özellikleri
+Bu proje Google aramalarında üst sıralarda görünmek için optimize edilmiştir:
+
+✅ **Meta Tags**: Kapsamlı SEO meta tags
+✅ **Open Graph**: Sosyal medya paylaşımları için optimize edilmiş
+✅ **Schema.org**: Google için yapılandırılmış veri işaretlemesi
+✅ **Sitemap**: Otomatik site haritası (`sitemap.xml`)
+✅ **robots.txt**: Arama motoru botları için yönlendirme
+✅ **Semantic HTML**: SEO dostu HTML5 yapısı
+✅ **React Helmet**: Dinamik meta tag yönetimi
+✅ **Mobile-First**: Mobil cihazlarda mükemmel performans
+
+### Google'da Üst Sıralara Çıkma Rehberi
+Detaylı SEO kurulum talimatları için `SEO_KURULUM_TALIMATLARI.md` dosyasına bakın.
+
+**Hızlı Başlangıç:**
+```bash
+# SEO optimizasyon scriptini çalıştırın
+./optimize.sh
+
+# Build oluşturun
+npm run build
+
+# Firebase'e deploy edin
+firebase deploy
+```
+
+**Yapılması Gerekenler:**
+1. Google Search Console'a kayıt olun
+2. Google Analytics kurulumu yapın
+3. Sitemap'i Google'a gönderin
+4. Google Business Profile oluşturun
+
+Daha fazla bilgi için: [SEO Kurulum Talimatları](./SEO_KURULUM_TALIMATLARI.md)
+
+---
+
 ## 🤝 Katkıda Bulunma
 
 1. Fork edin
@@ -275,7 +314,7 @@ Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosy
 **Aldemir Software**
 
 - 🌐 Website: [aldemirsoftware.web.app](https://aldemirsoftware.web.app)
-- 📧 Email: ademaldemirx@icloud.com
+- 📧 Email: info@aldemirsoftware.com
 - 💼 LinkedIn: [Aldemir Software](https://linkedin.com/company/aldemir-software)
 - 🐱 GitHub: [@ademaldemir](https://github.com/ademaldemir)
 

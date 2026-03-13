@@ -1,4 +1,6 @@
 import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
+import SEO from './components/SEO';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,17 +14,22 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <Projects />
-      <TechStack />
-      <Contact />
-      <Footer />
-      <ScrollToTop />
-    </div>
+    <HelmetProvider>
+      <div className="App">
+        <SEO />
+        <Navbar />
+        <main role="main">
+          <Hero />
+          <About />
+          <Services />
+          <Projects />
+          <TechStack />
+          <Contact />
+        </main>
+        <Footer />
+        <ScrollToTop />
+      </div>
+    </HelmetProvider>
   );
 }
 

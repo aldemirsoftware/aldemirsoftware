@@ -139,7 +139,7 @@ const Contact = () => {
               </div>
               <div className="info-details">
                 <h4>Email</h4>
-                <a href="mailto:ademaldemirx@icloud.com">ademaldemirx@icloud.com</a>
+                <a href="mailto:info@aldemirsoftware.com">info@aldemirsoftware.com</a>
               </div>
             </div>
 
