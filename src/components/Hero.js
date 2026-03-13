@@ -328,6 +328,60 @@ const Hero = () => {
       {/* Futuristic Scanline Effect */}
       <div className="scanline"></div>
       
+      {/* Modern Turkish Flag Animation */}
+      <motion.div 
+        className="turkish-flag-container"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+      >
+        <svg className="turkish-flag" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+          {/* Flag background with subtle gradient */}
+          <defs>
+            <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#E30A17" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#C70014" stopOpacity="0.95" />
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          
+          {/* Red background */}
+          <rect width="240" height="160" fill="url(#redGradient)" className="flag-background"/>
+          
+          {/* White crescent */}
+          <g className="flag-crescent">
+            <circle cx="85" cy="80" r="38" fill="#ffffff" filter="url(#glow)"/>
+            <circle cx="95" cy="80" r="30" fill="url(#redGradient)"/>
+          </g>
+          
+          {/* White star */}
+          <g className="flag-star" transform="translate(130, 80)">
+            <path 
+              d="M 0,-30 L 7,-10 L 28,-10 L 11,2 L 18,22 L 0,10 L -18,22 L -11,2 L -28,-10 L -7,-10 Z"
+              fill="#ffffff"
+              filter="url(#glow)"
+            />
+          </g>
+        </svg>
+        
+        {/* Made in Turkey Badge */}
+        <motion.div 
+          className="turkey-badge"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+        >
+          <span className="badge-flag">🇹🇷</span>
+          <span className="badge-label">Made in Turkey</span>
+        </motion.div>
+      </motion.div>
+      
       <div className="hero-container">
         <div className="hero-content hero-content-reveal">
           <motion.div 
