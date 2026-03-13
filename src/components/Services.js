@@ -71,9 +71,8 @@ const Services = () => {
               key={service.title}
               className="service-card"
               initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true, amount: 0.2, margin: "0px 0px -100px 0px" }}
             >
               <div className="service-icon">
                 <service.icon />

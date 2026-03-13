@@ -56,12 +56,20 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A9A9A9 100%);
+  background: linear-gradient(135deg, 
+    #FFFFFF 0%, 
+    #E8E8E8 25%, 
+    #C0C0C0 50%, 
+    #E8E8E8 75%, 
+    #FFFFFF 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-size: 200% auto;
-  animation: gradientShift 3s ease infinite;
+  animation: gradientShift 4s ease infinite;
+  filter: brightness(1.1);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes gradientShift {

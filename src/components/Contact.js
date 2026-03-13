@@ -73,7 +73,7 @@ const Contact = () => {
         };
       default:
         return {
-          text: 'Mesaj Gönder',
+          text: 'Hemen Başlayalım',
           bg: 'linear-gradient(135deg, rgba(192, 192, 192, 0.3), rgba(192, 192, 192, 0.3))',
           border: 'rgba(192, 192, 192, 0.6)',
           disabled: false
@@ -211,7 +211,7 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">E-posta</label>
                 <input
                   type="email"
                   id="email"
@@ -219,7 +219,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="email@example.com"
+                  placeholder="ornek@email.com"
                 />
               </div>
 
@@ -231,7 +231,7 @@ const Contact = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+90 505 078 46 35"
+                  placeholder="+90 5XX XXX XX XX"
                 />
               </div>
 
