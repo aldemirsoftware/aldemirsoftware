@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SEO = ({ 
@@ -8,10 +8,25 @@ const SEO = ({
   image = "https://www.aldemirsoftware.com/logo-nonbck.png",
   url = "https://www.aldemirsoftware.com"
 }) => {
+  useEffect(() => {
+    const fullTitle = title + " • ";
+    let position = 0;
+
+    const scrollInterval = setInterval(() => {
+      position = (position + 1) % fullTitle.length;
+      const newTitle = fullTitle.slice(position) + fullTitle.slice(0, position);
+      document.title = newTitle;
+    }, 300);
+
+    return () => {
+      clearInterval(scrollInterval);
+      document.title = title; // Cleanup
+    };
+  }, [title]);
+
   return (
     <Helmet>
       {/* Birincil Meta Etiketleri */}
-      <title>{title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />

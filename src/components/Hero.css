@@ -35,6 +35,333 @@
   100% { transform: translate(100px, 100px); }
 }
 
+/* Türk Bayrağı Stili */
+.turkish-flag {
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: 90px;
+  height: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 4px 16px rgba(227, 10, 23, 0.5)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  animation: flagFadeIn 1.2s ease-out forwards;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.turkish-flag:hover {
+  transform: translateX(-50%) scale(1.05);
+  filter: drop-shadow(0 6px 20px rgba(227, 10, 23, 0.7)) drop-shadow(0 3px 12px rgba(0, 0, 0, 0.5));
+}
+
+/* Flag Notification Balloon */
+.flag-notification {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 20px);
+  transform: translateY(-50%) translateX(-10px);
+  background: linear-gradient(135deg, rgba(26, 42, 78, 0.95) 0%, rgba(15, 24, 40, 0.98) 100%);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(192, 192, 192, 0.3);
+  border-radius: 16px;
+  padding: 15px 20px;
+  min-width: 280px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(192, 192, 192, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+.turkish-flag:hover .flag-notification {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+  animation: notificationPulse 2s ease-in-out infinite;
+}
+
+.flag-notification::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid rgba(192, 192, 192, 0.3);
+}
+
+.flag-notification::after {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid rgba(26, 42, 78, 0.95);
+}
+
+@keyframes notificationSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+@keyframes notificationPulse {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 0 40px rgba(192, 192, 192, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 0 50px rgba(192, 192, 192, 0.2),
+      inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  }
+}
+
+.flag-notification-icon {
+  font-size: 28px;
+  animation: iconBounce 1s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.flag-notification-text {
+  flex: 1;
+}
+
+.flag-notification-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e8e8e8;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #c0c0c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.flag-notification-text p {
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.turkish-flag img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes flagFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-40px) scale(0.9);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes flagFadeInDesktop {
+  from {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.9);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Çok küçük ekranlar (mobil dikey - iPhone SE, küçük androidler) */
+@media (max-width: 375px) {
+  .turkish-flag {
+    width: 65px;
+    top: 105px;
+  }
+  
+  .flag-notification {
+    display: none;
+  }
+}
+
+/* Küçük mobil ekranlar (iPhone 12/13 mini, standart androidler) */
+@media (min-width: 376px) and (max-width: 430px) {
+  .turkish-flag {
+    width: 70px;
+    top: 110px;
+  }
+  
+  .flag-notification {
+    display: none;
+  }
+}
+
+/* Orta mobil ekranlar (iPhone 12/13/14, büyük androidler) */
+@media (min-width: 431px) and (max-width: 480px) {
+  .turkish-flag {
+    width: 75px;
+    top: 115px;
+  }
+  
+  .flag-notification {
+    display: none;
+  }
+}
+
+/* Geniş mobil ekranlar (Plus/Pro Max modelleri) */
+@media (min-width: 481px) and (max-width: 600px) {
+  .turkish-flag {
+    width: 80px;
+    top: 120px;
+  }
+  
+  .flag-notification {
+    display: none;
+  }
+}
+
+/* Küçük tabletler (yatay mobil, küçük tabletler) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .turkish-flag {
+    width: 90px;
+    top: 120px;
+  }
+  
+  .flag-notification {
+    min-width: 240px;
+    padding: 12px 16px;
+  }
+  
+  .flag-notification-text strong {
+    font-size: 13px;
+  }
+  
+  .flag-notification-text p {
+    font-size: 11px;
+  }
+}
+
+/* Orta ekranlar (tabletler) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .turkish-flag {
+    width: 95px;
+    top: 110px;
+  }
+}
+
+/* Desktop ekranlarda da bayrağı ortada tut */
+@media (min-width: 1025px) {
+  .turkish-flag {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    animation: flagFadeIn 1.2s ease-out forwards;
+  }
+
+  .turkish-flag:hover {
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+/* 13" ekranlar ve küçük laptoplar - Özel optimizasyon */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .turkish-flag {
+    width: 85px;
+    top: 95px;
+  }
+  
+  .flag-notification {
+    min-width: 220px;
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+  
+  .flag-notification-icon {
+    font-size: 22px;
+  }
+  
+  .flag-notification-text strong {
+    font-size: 12px;
+  }
+  
+  .flag-notification-text p {
+    font-size: 10px;
+  }
+}
+
+/* Orta büyüklük laptoplar */
+@media (min-width: 1367px) and (max-width: 1440px) {
+  .turkish-flag {
+    width: 95px;
+    top: 100px;
+  }
+}
+
+/* Büyük ekranlar (desktop) */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .turkish-flag {
+    width: 110px;
+    top: 110px;
+  }
+}
+
+/* Ultra geniş ekranlar (4K+) */
+@media (min-width: 1921px) {
+  .turkish-flag {
+    width: 130px;
+    top: 125px;
+  }
+}
+
+/* Kısa ekranlar için özel ayar (mobil yatay, küçük ekranlar) */
+@media (max-height: 667px) and (max-width: 768px) {
+  .turkish-flag {
+    width: 60px;
+    top: 90px;
+  }
+}
+
+/* Çok kısa mobil ekranlar (yatay mod) */
+@media (max-height: 430px) and (max-width: 932px) {
+  .turkish-flag {
+    width: 55px;
+    top: 80px;
+    opacity: 0.9;
+  }
+}
+
 /* Futuristic Scanline Effect */
 .scanline {
   position: absolute;
@@ -96,194 +423,6 @@
   100% {
     opacity: 1;
     filter: blur(0);
-  }
-}
-
-/* Turkish Flag Animation Styles */
-.turkish-flag-container {
-  position: absolute;
-  top: 80px;
-  right: 40px;
-  z-index: 15;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  filter: drop-shadow(0 8px 32px rgba(227, 10, 23, 0.3));
-}
-
-.turkish-flag {
-  width: 120px;
-  height: 80px;
-  border-radius: 8px;
-  overflow: visible;
-  animation: flagWave 3s ease-in-out infinite;
-  transform-origin: left center;
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(227, 10, 23, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.flag-background {
-  animation: flagRipple 2s ease-in-out infinite;
-}
-
-.flag-crescent {
-  animation: flagFloat 3s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.flag-star {
-  animation: starTwinkle 2s ease-in-out infinite;
-  transform-origin: center;
-}
-
-@keyframes flagWave {
-  0%, 100% {
-    transform: perspective(400px) rotateY(0deg) rotateX(0deg);
-  }
-  25% {
-    transform: perspective(400px) rotateY(-3deg) rotateX(1deg);
-  }
-  50% {
-    transform: perspective(400px) rotateY(0deg) rotateX(-1deg);
-  }
-  75% {
-    transform: perspective(400px) rotateY(3deg) rotateX(1deg);
-  }
-}
-
-@keyframes flagRipple {
-  0%, 100% {
-    filter: brightness(1);
-  }
-  50% {
-    filter: brightness(1.05);
-  }
-}
-
-@keyframes flagFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-2px);
-  }
-}
-
-@keyframes starTwinkle {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.05);
-  }
-}
-
-/* Turkey Badge */
-.turkey-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.2),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  animation: badgePulse 2s ease-in-out infinite;
-}
-
-.badge-flag {
-  font-size: 18px;
-  animation: flagEmoji 3s ease-in-out infinite;
-}
-
-.badge-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  letter-spacing: 0.5px;
-}
-
-@keyframes badgePulse {
-  0%, 100% {
-    box-shadow: 
-      0 4px 12px rgba(0, 0, 0, 0.2),
-      0 0 20px rgba(227, 10, 23, 0.2),
-      inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  }
-  50% {
-    box-shadow: 
-      0 4px 12px rgba(0, 0, 0, 0.2),
-      0 0 30px rgba(227, 10, 23, 0.4),
-      inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  }
-}
-
-@keyframes flagEmoji {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* Responsive adjustments for flag */
-@media (max-width: 768px) {
-  .turkish-flag-container {
-    top: 60px;
-    right: 20px;
-    gap: 8px;
-  }
-  
-  .turkish-flag {
-    width: 80px;
-    height: 54px;
-  }
-  
-  .turkey-badge {
-    padding: 6px 12px;
-    border-radius: 16px;
-  }
-  
-  .badge-flag {
-    font-size: 14px;
-  }
-  
-  .badge-label {
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .turkish-flag-container {
-    top: 70px;
-    right: 15px;
-  }
-  
-  .turkish-flag {
-    width: 60px;
-    height: 40px;
-  }
-  
-  .turkey-badge {
-    padding: 4px 10px;
-  }
-  
-  .badge-flag {
-    font-size: 12px;
-  }
-  
-  .badge-label {
-    font-size: 9px;
   }
 }
 
@@ -1439,406 +1578,485 @@
   }
 }
 
-/* Game Icon Wrapper */
-.game-icon-wrapper {
-  display: none;
+/* Desktop düzeni - zoom hissini azalt ve spacing'i dengele */
+@media (min-width: 1025px) {
+  .hero-container {
+    max-width: 1320px;
+    padding: 0 2.5rem;
+  }
+
+  .hero-content {
+    max-width: 1040px;
+    padding-top: 220px;
+    padding-bottom: 48px;
+  }
+
+  .hero-badge {
+    margin-top: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.82rem;
+    padding: 0.65rem 1.4rem;
+  }
+
+  .badge-text {
+    letter-spacing: 0.08em;
+  }
+
+  .hero-title-container {
+    margin-top: 1.5rem;
+    margin-bottom: 1.25rem;
+    gap: 0.75rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 3.8vw, 3.8rem);
+    line-height: 1.15;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-subtitle-dynamic {
+    font-size: clamp(1.05rem, 1.9vw, 1.85rem);
+    min-height: 2.3rem;
+    padding: 0 0.75rem;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 2rem;
+    min-height: 3rem;
+    line-height: 1.6;
+  }
+
+  .hero-subtitle::after {
+    font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+    line-height: 1.5;
+  }
+
+  .hero-buttons {
+    margin-bottom: 1.75rem;
+  }
+
+  .cta-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .btn-text {
+    font-size: 1rem;
+  }
+
+  .btn-icon {
+    font-size: 1.3rem;
+  }
+
+  .tech-indicators {
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+    padding: 1rem 1rem 3rem;
+  }
+
+  .indicator {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-content {
+    max-width: 1100px;
+    padding-top: 205px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 3.2vw, 4rem);
+  }
+
+  .hero-subtitle-dynamic {
+    font-size: clamp(1.1rem, 1.6vw, 1.9rem);
+  }
+
+  .tech-indicators {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1921px) {
+  .hero-content {
+    padding-top: 190px;
+    padding-bottom: 44px;
+  }
+
+  .hero-title {
+    font-size: 3.6rem;
+  }
+
+  .hero-subtitle-dynamic {
+    font-size: 1.6rem;
+  }
+}
+
+/* Türk Bayrağı Modal Stilleri */
+.flag-modal-overlay {
   position: fixed;
-  bottom: 90px;
-  right: 30px;
-  z-index: 1000;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 31, 0.97);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  overflow: hidden;
 }
 
-/* Game Tooltip - Chat Message Style */
-.game-tooltip {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.9));
-  color: #1a1a1a;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.4;
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.15),
-    0 1px 3px rgba(0, 0, 0, 0.1);
-  max-width: 180px;
-  text-align: center;
+.flag-modal-content {
+  background: linear-gradient(135deg, #0f1828 0%, #1a2a4e 50%, #0a0a1f 100%);
+  border-radius: 32px;
+  padding: 0;
+  max-width: 900px;
+  width: 100%;
   position: relative;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.6),
+    0 0 100px rgba(192, 192, 192, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(192, 192, 192, 0.25);
+  overflow: hidden;
 }
 
-.game-tooltip::after {
+.flag-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: rgba(10, 10, 31, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(192, 192, 192, 0.4);
+  border-radius: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.flag-modal-close:hover {
+  background: rgba(192, 192, 192, 0.15);
+  transform: rotate(90deg) scale(1.05);
+  box-shadow: 0 0 25px rgba(192, 192, 192, 0.4);
+  border-color: rgba(192, 192, 192, 0.6);
+}
+
+.flag-modal-close svg {
+  width: 24px;
+  height: 24px;
+}
+
+.flag-modal-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 0;
+  padding: 50px 40px;
+  background: linear-gradient(135deg, rgba(26, 42, 78, 0.5) 0%, rgba(10, 10, 31, 0.8) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.flag-modal-logos::before {
   content: '';
   position: absolute;
-  bottom: -6px;
-  right: 18px;
-  width: 12px;
-  height: 12px;
-  background: linear-gradient(135deg, rgba(240, 240, 240, 0.9), rgba(255, 255, 255, 0.95));
-  transform: rotate(45deg);
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  inset: 0;
+  background: 
+    radial-gradient(circle at 30% 50%, rgba(192, 192, 192, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 70% 50%, rgba(227, 10, 23, 0.05) 0%, transparent 50%);
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 
-/* Game Icon Trigger - Professional Design (Mobile Only) */
-.game-icon-trigger {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(192, 192, 192, 0.1));
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 16px;
-  cursor: pointer;
-  backdrop-filter: blur(20px);
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.flag-modal-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.flag-modal-logo-wrapper {
+  position: relative;
+  padding: 0;
+  background: rgba(10, 10, 31, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 2px solid rgba(192, 192, 192, 0.2);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    0 2px 8px rgba(255, 255, 255, 0.1),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.flag-modal-logo-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(192, 192, 192, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  border-color: rgba(192, 192, 192, 0.4);
+}
+
+.flag-modal-logo {
+  width: 190px;
+  height: auto;
+  display: block;
+  padding: 35px;
+  filter: drop-shadow(0 4px 16px rgba(192, 192, 192, 0.4));
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+.flag-modal-divider {
+  width: 3px;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, rgba(192, 192, 192, 0.3), transparent);
   position: relative;
 }
 
-.game-icon {
-  width: 26px;
-  height: 26px;
-  color: rgba(255, 255, 255, 0.9);
+.flag-modal-divider::before {
+  content: '★';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-.game-icon-trigger:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(192, 192, 192, 0.15));
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.2),
-    0 4px 12px rgba(255, 255, 255, 0.15),
-    inset 0 1px 1px rgba(255, 255, 255, 0.3);
-}
-
-.game-icon-trigger:active {
-  transform: scale(0.95);
-}
-
-/* Game Modal */
-.game-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999999;
-  backdrop-filter: blur(10px);
-}
-
-.game-container {
-  background: linear-gradient(135deg, #1a2a4e 0%, #0a0a1f 100%);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  max-width: 90%;
-  width: 400px;
-  text-align: center;
-  position: relative;
-  z-index: 1000000;
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 100px rgba(192, 192, 192, 0.2);
-}
-
-.game-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.8);
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.game-close svg {
-  width: 16px;
-  height: 16px;
-}
-
-.game-close:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: #fff;
-  transform: scale(1.05);
-}
-
-.game-close:active {
-  transform: scale(0.95);
-}
-
-.game-container h3 {
-  color: #fff;
-  margin-bottom: 0.75rem;
-  margin-top: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.game-container p {
-  color: rgba(255, 255, 255, 0.65);
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 400;
-}
-
-.game-score {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #C0C0C0;
-  margin: 1.5rem 0;
-  text-shadow: 0 0 20px rgba(192, 192, 192, 0.8);
-}
-
-/* Snake Game Board */
-.snake-board {
-  display: grid;
-  grid-template-rows: repeat(20, 1fr);
-  gap: 0;
+  color: rgba(192, 192, 192, 0.6);
+  font-size: 20px;
   background: rgba(10, 10, 31, 0.8);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  padding: 4px;
-  margin: 1.5rem auto;
-  width: 320px;
-  height: 320px;
-  box-shadow: 
-    inset 0 0 20px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(192, 192, 192, 0.2);
-}
-
-.snake-row {
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  gap: 1px;
-}
-
-.snake-cell {
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 2px;
-  transition: all 0.1s ease;
-}
-
-.snake-head {
-  background: linear-gradient(135deg, #4ade80, #22c55e);
-  box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
-  border-radius: 3px;
-  animation: snakePulse 0.5s ease-in-out infinite;
-}
-
-.snake-body {
-  background: linear-gradient(135deg, #86efac, #4ade80);
-  box-shadow: 0 0 5px rgba(134, 239, 172, 0.4);
-  border-radius: 2px;
-}
-
-.snake-food {
-  background: radial-gradient(circle, #ef4444, #dc2626);
-  box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+  padding: 10px;
   border-radius: 50%;
-  animation: foodPulse 0.8s ease-in-out infinite;
+  border: 2px solid rgba(192, 192, 192, 0.3);
 }
 
-@keyframes snakePulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+.flag-modal-flag {
+  width: 190px;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: none;
+  filter: none;
 }
 
-@keyframes foodPulse {
-  0%, 100% { 
-    transform: scale(1);
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
-  }
-  50% { 
-    transform: scale(1.2);
-    box-shadow: 0 0 25px rgba(239, 68, 68, 1);
-  }
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-/* Snake Game Controls Wrapper */
-.snake-controls-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 1.5rem 0;
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
+.flag-modal-text {
+  margin-bottom: 0;
+  padding: 45px 50px;
+  background: rgba(10, 10, 31, 0.3);
+}
+
+.flag-modal-statement {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 2;
+  text-align: center;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.flag-modal-statement br:last-of-type {
+  display: none;
+}
+
+.flag-modal-motto {
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(192, 192, 192, 0.2);
+  text-align: center;
+}
+
+.flag-modal-motto strong {
+  font-size: 20px;
+  font-weight: 800;
+  color: #e8e8e8;
+  text-shadow: 0 0 25px rgba(192, 192, 192, 0.6);
+  background: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #c0c0c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1.5px;
+  display: inline-block;
+  animation: shimmerText 3s ease-in-out infinite;
+}
+
+.flag-modal-statement strong {
+  color: #e8e8e8;
+  font-weight: 700;
+  text-shadow: 0 0 25px rgba(192, 192, 192, 0.6);
+  background: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #c0c0c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.flag-modal-footer {
+  text-align: center;
+  padding: 35px 40px;
+  background: linear-gradient(135deg, rgba(26, 42, 78, 0.4) 0%, rgba(10, 10, 31, 0.6) 100%);
+  border-top: 2px solid rgba(192, 192, 192, 0.15);
   position: relative;
 }
 
-.snake-controls-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-  margin: 0 auto;
-}
-
-.control-row {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.control-left,
-.control-right {
-  width: 54px;
-  height: 54px;
-  background: rgba(192, 192, 192, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
-  font-size: 26px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  flex-shrink: 0;
+.flag-modal-footer::before {
+  content: '';
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(192, 192, 192, 0.5), transparent);
 }
 
-.control-left {
-  left: 0;
+.flag-modal-footer h3 {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #e8e8e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 4px;
+  text-shadow: 0 0 50px rgba(192, 192, 192, 0.4);
+  animation: shimmerText 3s ease-in-out infinite;
+  position: relative;
+  display: inline-block;
 }
 
-.control-right {
-  right: 0;
+@keyframes shimmerText {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
 }
 
-.snake-controls-center button {
-  width: 54px;
-  height: 54px;
-  background: rgba(192, 192, 192, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
-  font-size: 26px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  flex-shrink: 0;
-}
-
-.control-left:hover,
-.control-right:hover,
-.snake-controls-center button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
-}
-
-.control-left:active,
-.control-right:active,
-.snake-controls-center button:active {
-  transform: scale(0.95);
-}
-
-.game-reset {
-  background: rgba(239, 68, 68, 0.2);
-  border: 1px solid rgba(239, 68, 68, 0.5);
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-}
-
-.game-reset:hover {
-  background: rgba(239, 68, 68, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
-}
-
-/* Show Game Icon only on mobile (not tablet or desktop) */
-@media (max-width: 767px) {
-  .game-icon-wrapper {
-    display: flex;
-  }
-}
-
+/* Modal Responsive */
 @media (max-width: 768px) {
-  .game-container {
-    width: 95%;
-    padding: 1.5rem 1rem;
+  .flag-modal-content {
+    padding: 0;
+    max-width: 92%;
   }
-
-  .snake-board {
-    width: 280px;
-    height: 280px;
+  
+  .flag-modal-logos {
+    padding: 40px 25px;
   }
-
-  .game-container h3 {
-    font-size: 1.2rem;
+  
+  .flag-modal-logo-container {
+    gap: 35px;
   }
-
-  .game-score {
-    font-size: 1.5rem;
-    margin: 1rem 0;
-  }
-
-  .snake-controls-wrapper {
+  
+  .flag-modal-logo-wrapper {
     padding: 0;
   }
-
-  .control-left,
-  .control-right {
-    width: 50px;
-    height: 50px;
-    font-size: 22px;
+  
+  .flag-modal-logo {
+    width: 140px;
+    padding: 25px;
   }
-
-  .snake-controls-center button {
-    width: 50px;
-    height: 50px;
-    font-size: 22px;
+  
+  .flag-modal-flag {
+    width: 140px;
   }
-
-  .snake-controls-center {
-    gap: 1rem;
+  
+  .flag-modal-divider {
+    height: 100px;
   }
-
-  .game-container {
-    padding: 1.5rem 0.75rem;
+  
+  .flag-modal-text {
+    padding: 35px 30px;
+  }
+  
+  .flag-modal-statement {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  
+  .flag-modal-footer {
+    padding: 30px 25px;
+  }
+  
+  .flag-modal-footer h3 {
+    font-size: 24px;
+    letter-spacing: 3px;
   }
 }
 
-/* Hide on tablets and larger screens */
-@media (min-width: 768px) {
-  .game-icon-wrapper {
-    display: none !important;
+@media (max-width: 480px) {
+  .flag-modal-content {
+    max-width: 95%;
+    border-radius: 24px;
+  }
+  
+  .flag-modal-logos {
+    padding: 35px 20px;
+  }
+  
+  .flag-modal-logo-container {
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .flag-modal-logo-wrapper {
+    padding: 0;
+  }
+  
+  .flag-modal-logo {
+    width: 126px;
+    padding: 22px;
+  }
+  
+  .flag-modal-flag {
+    width: 126px;
+  }
+  
+  .flag-modal-divider {
+    width: 120px;
+    height: 3px;
+    transform: rotate(0);
+  }
+  
+  .flag-modal-divider::before {
+    top: 50%;
+    left: 50%;
+  }
+  
+  .flag-modal-text {
+    padding: 30px 20px;
+  }
+  
+  .flag-modal-statement {
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  
+  .flag-modal-footer {
+    padding: 28px 20px;
+  }
+  
+  .flag-modal-footer h3 {
+    font-size: 22px;
+    letter-spacing: 2.5px;
   }
 }

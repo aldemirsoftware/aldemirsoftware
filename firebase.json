@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "aldemirsoftware",
     "public": "build",
     "ignore": [
       "firebase.json",

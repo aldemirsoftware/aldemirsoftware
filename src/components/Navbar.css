@@ -10,6 +10,12 @@
   transition: all 0.3s ease;
 }
 
+.navbar.navbar-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 .navbar.scrolled {
   background: linear-gradient(135deg, rgba(10, 10, 31, 0.95) 0%, rgba(26, 42, 78, 0.95) 100%);
   border-bottom-color: rgba(192, 192, 192, 0.3);
