@@ -211,6 +211,7 @@
 @media (max-width: 768px) {
   .navbar-container {
     padding: 1rem 1.5rem;
+    justify-content: center;
   }
   
   .navbar-links {
@@ -230,6 +231,7 @@
 @media (max-width: 480px) {
   .navbar-container {
     padding: 0.875rem 1rem;
+    justify-content: center;
   }
   
   .logo-text {

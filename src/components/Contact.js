@@ -139,7 +139,7 @@ const Contact = () => {
               </div>
               <div className="info-details">
                 <h4>Email</h4>
-                <a href="mailto:ademaldemir@icloud.com">ademaldemir@icloud.com</a>
+                <a href="mailto:ademaldemirx@icloud.com">ademaldemirx@icloud.com</a>
               </div>
             </div>
 
@@ -224,13 +224,13 @@ const Contact = () => {
 
               <div className="form-group">
                 <label htmlFor="phone">Telefon</label>
-                <input
-                  type="tel"
+                <input 
+                  type="tel" 
                   id="phone"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+90 555 123 45 67"
+                  placeholder="+90 505 078 46 35"
                 />
               </div>
 
