@@ -1,370 +1,141 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import './Hero.css';
+import React, { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
+import {
+  FiArrowUpRight, FiArrowDown, FiGlobe, FiCode,
+  FiSmartphone, FiLayers, FiPause, FiPlay,
+} from "react-icons/fi";
+import { TurkishFlag } from "./Brand";
+import OrbitalScene from "./OrbitalScene";
 
-const Hero = () => {
-  const canvasRef = useRef(null);
-  const texts = useMemo(() => [
-    "ile Web Sitenizi Hayata Geçirin",
-    "ile Mobil Uygulamanızı Geliştirin",
-    "ile E-Ticaret Çözümlerinizi Oluşturun",
-    "ile Kurumsal Yazılımınızı İnşa Edin",
-    "ile Dijital Dönüşümünüzü Gerçekleştirin",
-    "ile Bulut Tabanlı Çözümler Edinin",
-    "ile Modern Web Uygulamaları Yapın",
-    "ile API ve Backend Sistemleri Geliştirin"
-  ], []);
+export const heroSlides = [
+  {
+    label: "Özel yazılım",
+    eyebrow: "İŞİNİZİ ANLAYAN TEKNOLOJİ PARTNERİNİZ",
+    lines: ["İşinize özel", "yazılımlar,", "kalıcı çözümler."],
+    description: "İhtiyaçlarınızı anlayarak web, mobil ve kurumsal yazılım çözümleri geliştiriyor; işinizi sürdürülebilir bir altyapıyla büyütüyoruz.",
+  },
+  {
+    label: "Web ve mobil",
+    eyebrow: "WEB VE MOBİL UYGULAMA GELİŞTİRME",
+    lines: ["Markanızı yansıtan", "web ve mobil", "deneyimler."],
+    description: "Müşterilerinizin size kolayca ulaşmasını sağlayan, hızlı, erişilebilir ve markanızla uyumlu dijital deneyimler tasarlıyoruz.",
+  },
+  {
+    label: "İş süreçleri",
+    eyebrow: "YÖNETİM SİSTEMLERİ VE OTOMASYON",
+    lines: ["İş süreçlerinizi", "tek merkezden", "yönetin."],
+    description: "Operasyonlarınızı, verilerinizi ve ekiplerinizi iş akışınıza özel sistemlerle bir araya getiriyor; süreçlerinizi görünür ve yönetilebilir kılıyoruz.",
+  },
+  {
+    label: "Dijital dönüşüm",
+    eyebrow: "GÜVENLİ ALTYAPI, SÜRDÜRÜLEBİLİR GELİŞİM",
+    lines: ["Dijital dönüşümü", "sağlam bir temelle", "başlatın."],
+    description: "Bulut altyapısı, veri yönetimi ve sistem entegrasyonlarıyla işinizi geleceğe hazırlıyor; güvenlik ve performansı birlikte ele alıyoruz.",
+  },
+  {
+    label: "Teknoloji ortaklığı",
+    eyebrow: "UZUN VADELİ TEKNOLOJİ ORTAKLIĞI",
+    lines: ["Fikirden yayına,", "her aşamada", "yanınızdayız."],
+    description: "Analiz, tasarım ve geliştirmeden bakım ve desteğe kadar projenizin sorumluluğunu paylaşıyor; değişen ihtiyaçlarınıza birlikte çözüm üretiyoruz.",
+  },
+];
 
-  const badgeTexts = useMemo(() => [
-    "Profesyonel Yazılım Geliştirme",
-    "Kurumsal Dijital Çözümler",
-    "7+ Yıllık Sektör Deneyimi",
-    "Uluslararası Standartlarda Hizmet",
-    "Yenilikçi Teknoloji Çözümleri",
-    "Müşteri Odaklı Yaklaşım"
-  ], []);
-  
-  const [textIndex, setTextIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [startTyping, setStartTyping] = useState(false);
-  const [badgeIndex, setBadgeIndex] = useState(0);
-  const [badgeVisible, setBadgeVisible] = useState(true);
-  const [showFlagModal, setShowFlagModal] = useState(false);
+const destinations = [
+  ["Web çözümleri", "Kurumsal siteler ve e-ticaret", "#solution-web", FiGlobe],
+  ["Özel yazılım", "İşinize uyarlanan sistemler", "#solution-software", FiCode],
+  ["Mobil uygulamalar", "iOS ve Android deneyimleri", "#solution-mobile", FiSmartphone],
+  ["Dijital altyapı", "Bulut ve sistem entegrasyonu", "#solution-cloud", FiLayers],
+];
 
-  // Flag Modal - Body Scroll Control & Navbar Hide
+export default function Hero() {
+  const reduced = useReducedMotion();
+  const heroRef = useRef(null);
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const slide = heroSlides[index];
+
   useEffect(() => {
-    const navbar = document.querySelector('.navbar');
-    if (showFlagModal) {
-      document.body.style.overflow = 'hidden';
-      if (navbar) navbar.classList.add('navbar-hidden');
-    } else {
-      document.body.style.overflow = 'unset';
-      if (navbar) navbar.classList.remove('navbar-hidden');
-    }
+    let inView = true;
+    const update = () => setVisible(inView && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      update();
+    });
+    observer.observe(heroRef.current);
+    document.addEventListener("visibilitychange", update);
+    update();
     return () => {
-      document.body.style.overflow = 'unset';
-      if (navbar) navbar.classList.remove('navbar-hidden');
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", update);
     };
-  }, [showFlagModal]);
-
-  // Badge rotation effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBadgeVisible(false);
-      setTimeout(() => {
-        setBadgeIndex((prev) => (prev + 1) % badgeTexts.length);
-        setBadgeVisible(true);
-      }, 500);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [badgeTexts.length]);
-
-  // Start typing after a delay
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setStartTyping(true);
-    }, 1000);
-    return () => clearTimeout(timer);
   }, []);
 
-  // Typing and deleting animation
   useEffect(() => {
-    if (!startTyping) return;
-
-    const currentText = texts[textIndex];
-
-    if (!isDeleting && currentIndex < currentText.length) {
-      // Typing
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + currentText[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, 80);
-      return () => clearTimeout(timeout);
-    } else if (!isDeleting && currentIndex === currentText.length) {
-      // Pause before deleting
-      const timeout = setTimeout(() => {
-        setIsDeleting(true);
-      }, 2000);
-      return () => clearTimeout(timeout);
-    } else if (isDeleting && displayText.length > 0) {
-      // Deleting
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev.slice(0, -1));
-      }, 50);
-      return () => clearTimeout(timeout);
-    } else if (isDeleting && displayText.length === 0) {
-      // Move to next text
-      setIsDeleting(false);
-      setCurrentIndex(0);
-      setTextIndex((prev) => (prev + 1) % texts.length);
-    }
-  }, [currentIndex, isDeleting, displayText, textIndex, texts, startTyping]);
-
-  // Advanced Particle System - Synthwave Style
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles = [];
-    const particleCount = 150;
-    const connectionDistance = 150;
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.z = Math.random() * 1000;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.vz = Math.random() * 2 + 1;
-        this.color = Math.random() > 0.5 ? 
-          { r: 192, g: 192, b: 192 } : // Platinum
-          { r: 45, g: 62, b: 111 }; // Dark Navy
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.z -= this.vz;
-
-        if (this.z <= 0) {
-          this.z = 1000;
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-        }
-
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-      }
-
-      draw() {
-        const scale = 1000 / (1000 + this.z);
-        const x = (this.x - canvas.width / 2) * scale + canvas.width / 2;
-        const y = (this.y - canvas.height / 2) * scale + canvas.height / 2;
-        const size = (1000 - this.z) / 1000 * 4;
-        const opacity = (1000 - this.z) / 1000;
-
-        // Glow effect
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${opacity})`;
-
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${opacity * 0.8})`;
-        ctx.fill();
-
-        return { x, y, opacity };
-      }
-    }
-
-    // Create particles
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    function animate() {
-      ctx.fillStyle = 'rgba(10, 10, 31, 1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Draw and connect particles
-      const positions = [];
-      particles.forEach(particle => {
-        particle.update();
-        const pos = particle.draw();
-        positions.push(pos);
-      });
-
-      // Connect nearby particles
-      ctx.shadowBlur = 0;
-      for (let i = 0; i < positions.length; i++) {
-        for (let j = i + 1; j < positions.length; j++) {
-          const dx = positions[i].x - positions[j].x;
-          const dy = positions[i].y - positions[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < connectionDistance) {
-            const opacity = (1 - distance / connectionDistance) * 0.3;
-            ctx.strokeStyle = `rgba(192, 192, 192, ${opacity})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(positions[i].x, positions[i].y);
-            ctx.lineTo(positions[j].x, positions[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    if (reduced || paused || hovered || !visible) return undefined;
+    const timer = setInterval(() => setIndex((current) => (current + 1) % heroSlides.length), 8500);
+    return () => clearInterval(timer);
+  }, [reduced, paused, hovered, visible]);
 
   return (
-    <section className="hero">
-      {/* Türk Bayrağı */}
-      <div className="turkish-flag" onClick={() => setShowFlagModal(true)}>
-        <img src="/turk-bayragimiz.gif" alt="Türk Bayrağı" />
-        <div className="flag-notification">
-          <div className="flag-notification-icon">📢</div>
-          <div className="flag-notification-text">
-            <strong>Kurumsal Bildiri</strong>
-            <p>Bayrağımıza saygı bildirimimizi okumak için tıklayın</p>
-          </div>
-        </div>
-      </div>
-
-      <canvas ref={canvasRef} className="particle-canvas" />
-      
-      {/* Futuristic Scanline Effect */}
-      <div className="scanline"></div>
-      
-      <div className="hero-container">
-        <div className="hero-content hero-content-reveal">
-          <motion.div 
-            className="hero-badge"
-            animate={{ 
-              opacity: badgeVisible ? 1 : 0,
-              scale: badgeVisible ? 1 : 0.8
-            }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="badge-pulse"></span>
-            <span className="badge-text">{badgeTexts[badgeIndex]}</span>
-          </motion.div>
-
-          <div className="hero-title-container">
-            <h1 className="hero-title">
-              <span className="glitch" data-text="ALDEMİR SOFTWARE">
-                ALDEMİR SOFTWARE
-              </span>
+    <section className="orbital-hero hero-refined" id="home" ref={heroRef} aria-labelledby="hero-title">
+      <OrbitalScene reduced={reduced} active={visible} />
+      <div className="orbital-shade" aria-hidden="true" />
+      <div className="container orbital-content">
+        <div className="orbital-copy" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+          <div className="hero-message" key={index} aria-live={paused ? "polite" : "off"}>
+            <div className="eyebrow"><span className="signal-line" />{slide.eyebrow}</div>
+            <h1 id="hero-title">
+              {slide.lines.map((line, lineIndex) => (
+                <span className={lineIndex === 2 ? "hero-line hero-line-accent" : "hero-line"} key={line}>{line}</span>
+              ))}
             </h1>
-            
-            <div className="hero-subtitle-dynamic">
-              <span className="gradient-text">{displayText}</span>
-              <span className="cursor-blink">|</span>
-            </div>
+            <p className="hero-description">{slide.description}</p>
           </div>
-
-          <p className="hero-subtitle">
-          </p>
-
-          <div className="hero-buttons">
-            <button className="cta-button" onClick={() => {
-              const isMobile = window.innerWidth <= 768;
-              const contactForm = document.querySelector('.contact-form-wrapper');
-              const contactSection = document.querySelector('.contact');
-              
-              if (isMobile && contactForm) {
-                // Mobilde formu ekranın tam ortasına getir
-                const formTop = contactForm.getBoundingClientRect().top + window.pageYOffset;
-                const formHeight = contactForm.offsetHeight;
-                const windowHeight = window.innerHeight;
-                const scrollTo = formTop - (windowHeight / 2) + (formHeight / 2);
-                
-                window.scrollTo({ top: scrollTo, behavior: 'smooth' });
-              } else if (contactSection) {
-                // Desktop'ta section'ı ortala
-                contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              }
-            }}>
-              <span className="btn-text">Proje Başlat</span>
-              <span className="btn-icon">→</span>
-              <div className="btn-glow"></div>
-            </button>
+          <div className="hero-actions">
+            <a href="#contact" className="button button-primary">Projenizi konuşalım <FiArrowUpRight aria-hidden="true" /></a>
+            <a href="#services" className="button button-glass">Çözümlerimizi inceleyin <FiArrowDown aria-hidden="true" /></a>
           </div>
-
-          {/* Tech Indicators */}
-          <div className="tech-indicators">
-            <div className="indicator">
-              <div className="indicator-dot"></div>
-              <span>Yazılım</span>
+          <div className="hero-slide-controls" role="group" aria-label="Tanıtım mesajları">
+            <div className="hero-slide-selectors">
+              {heroSlides.map((item, itemIndex) => (
+                <button
+                  type="button"
+                  key={item.label}
+                  className="hero-slide-selector"
+                  aria-label={item.label}
+                  aria-pressed={index === itemIndex}
+                  onClick={() => { setIndex(itemIndex); setPaused(true); }}
+                  onFocus={() => setPaused(true)}
+                ><span /></button>
+              ))}
             </div>
-            <div className="indicator">
-              <div className="indicator-dot"></div>
-              <span>Teknoloji</span>
-            </div>
-            <div className="indicator">
-              <div className="indicator-dot"></div>
-              <span>Danışmanlık</span>
-            </div>
-            <div className="indicator">
-              <div className="indicator-dot"></div>
-              <span>Pazarlama</span>
-            </div>
+            <span className="hero-slide-count" aria-hidden="true">0{index + 1} / 0{heroSlides.length}</span>
+            {!reduced && (
+              <button type="button" className="hero-slide-toggle" aria-label={paused ? "Otomatik geçişi başlat" : "Otomatik geçişi durdur"} onClick={() => setPaused((value) => !value)}>
+                {paused ? <FiPlay aria-hidden="true" /> : <FiPause aria-hidden="true" />}
+              </button>
+            )}
+          </div>
+          <div className="hero-origin">
+            <TurkishFlag />
+            <span>Uşak’tan Türkiye’ye.<small>İşiniz için güvenilir teknoloji ortaklığı.</small></span>
           </div>
         </div>
+        <div className="hero-scene-caption" aria-hidden="true">İhtiyacınıza özel yazılım.<br /><span>Uzun vadeli iş ortaklığı.</span></div>
       </div>
-
-      {/* Türk Bayrağı Modal */}
-      {showFlagModal && (
-        <motion.div 
-          className="flag-modal-overlay"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          onClick={() => setShowFlagModal(false)}
-        >
-          <motion.div 
-            className="flag-modal-content"
-            initial={{ scale: 0.8, y: 50 }}
-            animate={{ scale: 1, y: 0 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button className="flag-modal-close" onClick={() => setShowFlagModal(false)}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-            
-            <div className="flag-modal-logos">
-              <div className="flag-modal-logo-container">
-                <div className="flag-modal-logo-wrapper">
-                  <img src="/logo-nonbck.png" alt="Aldemir Software Logo" className="flag-modal-logo" />
-                </div>
-                <div className="flag-modal-divider"></div>
-                <div className="flag-modal-logo-wrapper">
-                  <img src="/turk-bayragimiz.gif" alt="Türk Bayrağı" className="flag-modal-flag" />
-                </div>
-              </div>
-            </div>
-            
-            <div className="flag-modal-text">
-              <p className="flag-modal-statement">
-                Türk Bayrağı, bu milletin bağımsızlığının ve egemenliğinin sembolüdür.<br />
-                Ona yönelik her saygısızlığı kınıyor,<br />
-                <strong>Aldemir Software olarak;</strong><br />
-                Devletimize, bayrağımıza ve milletimizin onuruna sonsuz saygı duyuyoruz.<br />
-                <br />
-                Devletimizin ve milletimizin daima yanındayız.
-              </p>
-              <p className="flag-modal-motto">
-                <strong>Ne Mutlu Türküm Diyene!</strong>
-              </p>
-            </div>
-            
-            <div className="flag-modal-footer">
-              <h3>ALDEMİR SOFTWARE</h3>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+      <div className="container orbital-footer">
+        <div className="mission-dock" aria-label="Çözüm alanlarımız">
+          {destinations.map(([name, description, href, Icon]) => (
+            <a href={href} key={name}>
+              <Icon aria-hidden="true" />
+              <div><strong>{name}</strong><span>{description}</span></div>
+              <FiArrowUpRight className="dock-arrow" aria-hidden="true" />
+            </a>
+          ))}
+        </div>
+      </div>
     </section>
   );
-};
-
-export default Hero;
+}

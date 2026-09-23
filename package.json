@@ -1,7 +1,7 @@
 {
   "name": "aldemir-software",
   "version": "1.0.0",
-  "description": "Aldemir Software - Your Entire Marketing Team All In One",
+  "description": "Aldemir Software - Yazılım, Teknoloji ve Dijital Çözümler",
   "private": true,
   "scripts": {
     "start": "react-scripts start",

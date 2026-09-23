@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941">
+  <defs>
+    <filter id="soft-edge" x="-10%" y="-20%" width="120%" height="140%">
+      <feGaussianBlur stdDeviation="7" />
+    </filter>
+  </defs>
+  <path fill="white" filter="url(#soft-edge)" d="M 915 402 L 973 400 L 995 382 L 1100 373 L 1190 388 L 1290 403 L 1400 426 L 1520 467 L 1610 498 L 1610 524 L 1520 547 L 1240 560 L 1130 547 L 1060 524 L 1000 507 L 974 480 L 915 476 Z" />
+</svg>

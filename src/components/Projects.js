@@ -1,96 +1,127 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaShoppingCart, FaTasks, FaChartBar, FaRobot, FaWifi, FaCut } from 'react-icons/fa';
-import './Projects.css';
+import React from "react";
+import { FiArrowUpRight } from "react-icons/fi";
+import Reveal from "./Reveal";
+import "./Partners.css";
 
-const Projects = () => {
-  const projects = [
-    {
-      title: 'E-Ticaret Platformu',
-      category: 'Web Development',
-      description: 'Büyük ölçekli e-ticaret çözümü',
-      tech: ['React', 'Node.js', 'MongoDB'],
-      icon: FaShoppingCart
-    },
-    {
-      title: 'İnşaat Proje Takip Sistemi',
-      category: 'Web Application',
-      description: 'Mimar ve inşaat mühendislerinin müşteri projelerini ve tüm proje detaylarını gerçek zamanlı takip etmesini sağlayan entegre yönetim platformu',
-      tech: ['Angular', 'TypeScript', 'PostgreSQL'],
-      icon: FaTasks
-    },
-    {
-      title: 'CRM Sistemi',
-      category: 'Enterprise',
-      description: 'Müşteri ilişkileri yönetimi platformu',
-      tech: ['Vue.js', 'Laravel', 'MySQL'],
-      icon: FaChartBar
-    },
-    {
-      title: 'AI Chatbot',
-      category: 'AI & ML',
-      description: 'Yapay zeka destekli müşteri destek botu',
-      tech: ['Python', 'TensorFlow', 'NLP'],
-      icon: FaRobot
-    },
-    {
-      title: 'IoT Dashboard',
-      category: 'IoT',
-      description: 'Gerçek zamanlı IoT veri görselleştirme',
-      tech: ['Angular', 'WebSocket', 'D3.js'],
-      icon: FaWifi
-    },
-    {
-      title: 'Kuaför Sadakat Sistemi',
-      category: 'Web Application',
-      description: 'Kuaförlerin müşterilerine özel kart ile puan toplama ve hizmet takip sistemi',
-      tech: ['Angular', 'Node.js', 'MongoDB'],
-      icon: FaCut
-    }
-  ];
+const partners = [
+  {
+    name: "Uşak Eczacı Odası",
+    category: "MESLEK KURULUŞU",
+    description: "Türk Eczacıları Birliği 46. Bölge Uşak Eczacı Odası.",
+    image: "/images/partners/usak-eczaci-odasi.png",
+    imageWidth: 512,
+    imageHeight: 512,
+    brand: "usak",
+    website: "https://usakeczaciodasi.org.tr/",
+    domain: "usakeczaciodasi.org.tr",
+  },
+  {
+    name: "Mir Yapı Mühendislik",
+    category: "İNŞAAT & MÜHENDİSLİK",
+    description: "Yapı ve mühendislik alanında birlikte değer ürettiğimiz iş ortağımız.",
+    brand: "mir",
+    website: "https://www.miryapimuhendislik.com/",
+    domain: "miryapimuhendislik.com",
+  },
+  {
+    name: "Aldemir Mimarlık",
+    category: "MİMARLIK & TASARIM",
+    description: "Mimarlık ve tasarım alanında dijital yolculuğuna eşlik ettiğimiz iş ortağımız.",
+    image: "/images/partners/aldemir-mimarlik.png",
+    imageWidth: 977,
+    imageHeight: 1141,
+    brand: "aldemir",
+    website: "https://www.aldemirmimarlik.com/",
+    domain: "aldemirmimarlik.com",
+  },
+];
 
+// Mir Yapı's official website uses this typographic brand mark.
+function MirBrand() {
   return (
-    <section className="projects" id="projects">
-      <div className="projects-container">
-        <motion.div 
-          className="projects-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="gradient-text">PROJELER</h2>
-          <p className="projects-subtitle">Başarıyla tamamladığımız projelerden örnekler</p>
-        </motion.div>
+    <div className="partner-mir-brand" aria-hidden="true">
+      <div className="partner-mir-name">
+        <span className="partner-mir-bars"><i /><i /><i /></span>
+        <span>mir yapı</span>
+      </div>
+      <div className="partner-mir-subtitle"><span>MÜHENDİSLİK</span></div>
+    </div>
+  );
+}
 
-        <div className="projects-grid">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="project-card"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-            >
-              <div className="project-icon">
-                <project.icon />
-              </div>
-              <div className="project-category">{project.category}</div>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="project-tech">
-                {project.tech.map((tech, i) => (
-                  <span key={i} className="tech-tag">{tech}</span>
-                ))}
-              </div>
-              <div className="project-overlay"></div>
-            </motion.div>
+export default function Projects() {
+  return (
+    <section
+      className="section projects partners-section"
+      id="projects"
+      aria-labelledby="projects-title"
+    >
+      <div className="container">
+        <Reveal className="section-heading partners-heading">
+          <div>
+            <div className="eyebrow">
+              <span className="section-index">02 /</span> DEĞERLİ İŞ ORTAKLARIMIZ
+            </div>
+            <h2 id="projects-title">
+              Birlikte
+              <br />
+              <span>değer üretiyoruz.</span>
+            </h2>
+          </div>
+          <p>
+            Teknoloji partneri olduğumuz şirket ve kurumlarla güvene dayalı,
+            uzun vadeli iş birlikleri kuruyoruz. Bize duydukları güveni,
+            birlikte ürettiğimiz her işte özenle taşıyoruz.
+          </p>
+        </Reveal>
+        <div className="partners-grid">
+          {partners.map((partner, index) => (
+            <Reveal className="partner-entry" key={partner.brand} delay={index * 0.08}>
+              <article className={`partner-card partner-${partner.brand}`}>
+                <div className="partner-brand-stage">
+                  <span className="partner-category">{partner.category}</span>
+                  <div className="partner-logo-wrap">
+                    {partner.image ? (
+                      <img
+                        src={partner.image}
+                        alt={`${partner.name} logosu`}
+                        width={partner.imageWidth}
+                        height={partner.imageHeight}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : <MirBrand />}
+                  </div>
+                </div>
+                <div className="partner-details">
+                  <span className="partner-relationship">Teknoloji partneriyiz</span>
+                  <h3>{partner.name}</h3>
+                  <p>{partner.description}</p>
+                </div>
+                <a
+                  className="partner-website"
+                  href={partner.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${partner.name} web sitesini ziyaret et (yeni sekmede açılır)`}
+                >
+                  <span>
+                    <strong>Web sitesini ziyaret et</strong>
+                    <span>{partner.domain}</span>
+                  </span>
+                  <FiArrowUpRight aria-hidden="true" />
+                </a>
+              </article>
+            </Reveal>
           ))}
         </div>
+        <Reveal className="partners-invitation">
+          <p>Güçlü iş birlikleri, kalıcı değer.</p>
+          <a className="text-link" href="#contact">
+            Sizin de teknoloji partneriniz olalım <FiArrowUpRight aria-hidden="true" />
+          </a>
+        </Reveal>
       </div>
     </section>
   );
-};
-
-export default Projects;
+}
