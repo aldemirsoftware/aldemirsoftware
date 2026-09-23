@@ -15,6 +15,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 import "./Space.css";
 import "./components/HeroRefined.css";
+import "./components/SolutionsShowcase.css";
+import "./components/AboutCorporate.css";
 function App() {
   const { scrollYProgress } = useScroll();
   return (

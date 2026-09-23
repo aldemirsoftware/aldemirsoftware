@@ -202,7 +202,9 @@
   .hero-refined .hero-actions .button { padding: 10px 12px; font-size: 0.75rem; gap: 7px; flex: 1; min-height: 44px; }
   .hero-refined .hero-actions .button svg { width: 15px; height: 15px; flex-shrink: 0; }
   .hero-slide-controls { margin: 6px 0; }
-  .hero-slide-selector, .hero-slide-toggle { width: 36px; height: 36px; }
+  .hero-slide-controls { gap: 8px; }
+  .hero-slide-selector { width: 28px; height: 36px; }
+  .hero-slide-toggle { width: 32px; height: 36px; }
   .hero-refined .hero-origin { margin-top: 0; justify-content: flex-start; }
   .hero-refined .mission-dock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-refined .mission-dock > a { padding: 13px 12px; gap: 10px; align-items: center; }
@@ -229,7 +231,8 @@
   .hero-refined .hero-actions { margin-top: 10px; }
   .hero-refined .hero-actions .button { padding: 8px; min-height: 42px; font-size: 0.6875rem; }
   .hero-slide-controls { gap: 8px; margin: 2px 0; }
-  .hero-slide-selector, .hero-slide-toggle { width: 32px; height: 32px; }
+  .hero-slide-selector { width: 28px; height: 32px; }
+  .hero-slide-toggle { width: 32px; height: 32px; }
   .hero-refined .hero-origin { font-size: 0.6875rem; gap: 8px; }
   .hero-refined .hero-origin small { font-size: 0.625rem; }
   .hero-refined .mission-dock > a { padding: 9px 8px; gap: 7px; }
@@ -239,4 +242,8 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-message, .hero-spacecraft, .hero-sunrise, .hero-meteors i { animation: none; }
   .hero-sunrise, .hero-meteors { display: none; }
+}
+@media (max-width: 360px) {
+  .hero-slide-selector { width: 26px; }
+  .hero-slide-count { display: none; }
 }

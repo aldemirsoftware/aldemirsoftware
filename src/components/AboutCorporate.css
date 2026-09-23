@@ -1,0 +1,68 @@
+.about-corporate { background: radial-gradient(ellipse at 20% 45%, #163f6538, transparent 55%), #040a13; }
+.about-corporate .about-layout { grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr); gap: clamp(40px, 6vw, 80px); align-items: center; }
+.about-emblem-reveal { min-width: 0; }
+.about-emblem-stage { perspective: 1200px; padding: 12px; }
+.about-emblem-panel { position: relative; display: flex; flex-direction: column; align-items: center; min-height: 650px; padding: 28px 30px; border: 1px solid #9ccff448; border-radius: 24px; background: radial-gradient(ellipse at 50% 38%, #20476885, transparent 55%), linear-gradient(145deg, #0b1b2d, #040d18 75%); box-shadow: inset 0 1px #d6efff20, 0 35px 80px #0006, 0 0 40px #508abc0a; transform: rotateX(var(--brand-rx, 0deg)) rotateY(var(--brand-ry, 0deg)); transform-style: preserve-3d; transition: transform 280ms ease-out, border-color 500ms, box-shadow 500ms; }
+.about-emblem-panel::before { content: ""; position: absolute; inset: 12px; border: 1px solid #a4d5fa12; border-radius: 17px; pointer-events: none; transform: translateZ(3px); }
+.about-emblem-space { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; transform: translateZ(0); }
+.about-emblem-space img { width: 100%; height: 100%; object-fit: cover; object-position: 64% center; }
+.about-emblem-space::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #04101e20, #04101e0d 40%, #04101e45 65%, #020915d9); }
+.about-emblem-grid { position: absolute; inset: 0; border-radius: inherit; background-image: linear-gradient(#96c9f109 1px, transparent 1px), linear-gradient(90deg, #96c9f109 1px, transparent 1px); background-size: 38px 38px; mask-image: linear-gradient(transparent 10%, #000 65%, transparent); pointer-events: none; }
+.about-emblem-topline { display: flex; justify-content: space-between; align-items: center; width: 100%; color: #8faec8; letter-spacing: .16em; font-size: 10px; transform: translateZ(20px); }
+.about-emblem-point { width: 5px; height: 5px; border-radius: 50%; background: #b2e2ff; box-shadow: 0 0 14px #9cdeff; }
+.about-logo-focus { position: relative; width: min(100%, 330px); margin: 35px auto 0; transform: translateZ(70px); transition: transform 600ms; }
+.about-logo-focus img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; filter: drop-shadow(0 24px 18px #0009) drop-shadow(0 0 25px #97c9f024); }
+.about-emblem-orbit { position: absolute; width: 76%; aspect-ratio: 1; top: 75px; border: 1px solid #87c0ed28; border-radius: 50%; transform: translateZ(25px); pointer-events: none; transition: transform 800ms; }
+.about-emblem-orbit::after { content: ""; position: absolute; inset: 15px; border: 1px dashed #87c0ed16; border-radius: 50%; }
+.about-emblem-orbit-one::before { content: ""; position: absolute; left: 15%; top: 14%; width: 5px; height: 5px; border-radius: 50%; background: #a9dfff; box-shadow: 0 0 16px #80c6ff; }
+.about-emblem-orbit-two { width: 85%; top: 170px; aspect-ratio: 2.8; transform: rotate(-18deg) translateZ(15px); border-color: #9dceee18; }
+.about-emblem-wordmark { display: flex; flex-direction: column; align-items: center; gap: 5px; transform: translateZ(45px); margin-top: 8px; }
+.about-emblem-wordmark strong { font-family: var(--heading); font-size: 29px; letter-spacing: .17em; font-weight: 600; color: #e0edf8; }
+.about-emblem-wordmark > span { font-size: 12px; letter-spacing: .5em; color: #a1bdd6; padding-left: .5em; }
+.about-emblem-promise { margin: 24px 0 30px; font-size: 14px; line-height: 1.8; text-align: center; color: #e1edfa; transform: translateZ(28px); }
+.about-emblem-promise > span { color: #8cabc6; }
+.about-emblem-footer { margin-top: auto; padding-top: 20px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; border-top: 1px solid #a7d0ef24; transform: translateZ(20px); }
+.about-emblem-footer > div { display: flex; align-items: center; gap: 12px; }
+.about-emblem-footer .turkish-flag { width: 34px; height: 23px; }
+.about-emblem-footer span { font-size: 11px; line-height: 1.8; color: #9eb9ce; }
+.about-emblem-footer strong { font-weight: 500; color: #d0e3f3; }
+.about-emblem-footer > svg { width: 19px; height: 19px; color: #a4c8e5; }
+.about-corporate .about-copy h2 { font-size: clamp(30px, 3.3vw, 45px); line-height: 1.18; letter-spacing: -.045em; margin: 22px 0 26px; text-wrap: balance; }
+.about-narrative { display: grid; gap: 16px; color: #a8bfd4; font-size: 15px; line-height: 1.85; }
+.about-narrative strong { color: #e0ecf7; font-weight: 500; }
+.about-vision-statement { border-left: 2px solid #86bde7; padding-left: 17px; color: #c4daed; }
+.about-corporate .principles { gap: 17px; margin: 28px 0; }
+.about-corporate .principle { padding: 14px 0 0; border-top: 1px solid #94bfe21c; gap: 14px; }
+.about-corporate .principle > svg { width: 19px; height: 19px; }
+.about-corporate .principle h3 { font-size: 14px; }
+.about-corporate .principle p { font-size: 13px; line-height: 1.7; color: #92adc6; }
+.about-corporate .about-copy > .text-link { display: inline-flex; align-items: center; gap: 22px; border: 1px solid #b0dcff45; border-radius: 9px; background: #9bcffc0d; padding: 14px 18px; min-height: 48px; font-size: 13px; transition: background 200ms; }
+.about-corporate .about-copy > .text-link:hover { background: #9bcffc20; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .about-emblem-stage:hover .about-emblem-panel { border-color: #acd9ff85; box-shadow: inset 0 1px #e0f3ff35, 0 40px 80px #0007, 0 0 60px #508abc18; }
+  .about-emblem-stage:hover .about-logo-focus { transform: translateZ(95px) translateY(-5px); }
+  .about-emblem-stage:hover .about-emblem-orbit-one { transform: translateZ(25px) rotate(35deg); }
+  .about-emblem-stage:hover .about-emblem-orbit-two { transform: rotate(-5deg) translateZ(15px); }
+}
+@media (max-width: 1000px) {
+  .about-corporate .about-layout { grid-template-columns: minmax(0, 1fr); gap: 42px; }
+  .about-emblem-reveal { width: 100%; max-width: 550px; margin: auto; }
+  .about-emblem-panel { min-height: 610px; }
+  .about-corporate .about-copy { max-width: 740px; margin-inline: auto; }
+}
+@media (max-width: 600px) {
+  .about-emblem-stage { padding: 5px; }
+  .about-emblem-panel { min-height: 500px; padding: 24px; }
+  .about-logo-focus { width: min(100%, 250px); margin-top: 30px; }
+  .about-emblem-orbit { top: 65px; }
+  .about-emblem-orbit-two { top: 140px; }
+  .about-emblem-wordmark strong { font-size: 25px; }
+  .about-emblem-wordmark > span { font-size: 10px; }
+  .about-emblem-promise { font-size: 13px; margin: 20px 0 24px; }
+  .about-narrative { font-size: 14px; }
+  .about-corporate .about-copy h2 { font-size: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-emblem-panel { transform: none; }
+  .about-corporate *, .about-corporate *::before, .about-corporate *::after { transition: none !important; }
+}

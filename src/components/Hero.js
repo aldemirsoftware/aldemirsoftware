@@ -9,6 +9,12 @@ import OrbitalScene from "./OrbitalScene";
 
 export const heroSlides = [
   {
+    label: "Geleceğin yörüngesi",
+    eyebrow: "ALDEMİR SOFTWARE · HEDEFİNİZ GELECEK",
+    lines: ["Markanızı geleceğin", "yörüngesine", "taşıyoruz."],
+    description: "Mühendislik gücümüzü markanızın hedefleriyle buluşturuyoruz. Özel yazılım, web ve mobil çözümlerle büyümenize sağlam bir rota çiziyoruz.",
+  },
+  {
     label: "Özel yazılım",
     eyebrow: "İŞİNİZİ ANLAYAN TEKNOLOJİ PARTNERİNİZ",
     lines: ["İşinize özel", "yazılımlar,", "kalıcı çözümler."],
@@ -37,6 +43,18 @@ export const heroSlides = [
     eyebrow: "UZUN VADELİ TEKNOLOJİ ORTAKLIĞI",
     lines: ["Fikirden yayına,", "her aşamada", "yanınızdayız."],
     description: "Analiz, tasarım ve geliştirmeden bakım ve desteğe kadar projenizin sorumluluğunu paylaşıyor; değişen ihtiyaçlarınıza birlikte çözüm üretiyoruz.",
+  },
+  {
+    label: "Dijitalde sınırları aşın",
+    eyebrow: "YAZILIM GÜCÜMÜZLE DAHA İLERİYE",
+    lines: ["Dijitalde sınırları", "aşan güç:", "Aldemir Software."],
+    description: "İddiamızı geliştirdiğimiz yazılımlara yansıtıyoruz. Karmaşık ihtiyaçları güçlü sistemlere dönüştürüyor, işinize yeni hareket alanları açıyoruz.",
+  },
+  {
+    label: "Yeni ufuklar",
+    eyebrow: "GÜÇLÜ MÜHENDİSLİK · BÜYÜK HEDEFLER",
+    lines: ["Güçlü yazılımlarla", "yeni ufuklara", "birlikte."],
+    description: "Büyük hedeflerin arkasında sağlam bir teknoloji vardır. Fikrinizi ölçeklenebilir yazılıma dönüştürüyor, her yeni aşamada yanınızda yer alıyoruz.",
   },
 ];
 

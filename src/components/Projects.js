@@ -1,5 +1,5 @@
 import React from "react";
-import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowUpRight, FiLink, FiGlobe } from "react-icons/fi";
 import Reveal from "./Reveal";
 import "./Partners.css";
 
@@ -52,34 +52,46 @@ function MirBrand() {
 export default function Projects() {
   return (
     <section
-      className="section projects partners-section"
+      className="section projects partners-section partners-showcase"
       id="projects"
       aria-labelledby="projects-title"
     >
       <div className="container">
-        <Reveal className="section-heading partners-heading">
+        <Reveal className="partners-heading">
           <div>
             <div className="eyebrow">
               <span className="section-index">02 /</span> DEĞERLİ İŞ ORTAKLARIMIZ
             </div>
             <h2 id="projects-title">
-              Birlikte
+              Güveninizle güçleniyor,
               <br />
-              <span>değer üretiyoruz.</span>
+              <span>birlikte ileriye gidiyoruz.</span>
             </h2>
           </div>
           <p>
-            Teknoloji partneri olduğumuz şirket ve kurumlarla güvene dayalı,
-            uzun vadeli iş birlikleri kuruyoruz. Bize duydukları güveni,
-            birlikte ürettiğimiz her işte özenle taşıyoruz.
+            Dijital yolculuklarına eşlik ettiğimiz şirket ve kurumlar.
+            Her iş birliğinde aynı özen, ortak hedefler ve uzun vadeli teknoloji desteği.
           </p>
+        </Reveal>
+        <Reveal className="partners-intro-line">
+          <span aria-hidden="true" />
+          <p><FiLink aria-hidden="true" /> TEKNOLOJİ PARTNERİ OLDUĞUMUZ MARKALAR</p>
+          <span aria-hidden="true" />
         </Reveal>
         <div className="partners-grid">
           {partners.map((partner, index) => (
             <Reveal className="partner-entry" key={partner.brand} delay={index * 0.08}>
               <article className={`partner-card partner-${partner.brand}`}>
+                <a
+                  className="partner-card-link"
+                  href={partner.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${partner.name} web sitesini ziyaret et (yeni sekmede açılır)`}
+                >
                 <div className="partner-brand-stage">
-                  <span className="partner-category">{partner.category}</span>
+                  <div className="partner-stage-heading"><span className="partner-category">{partner.category}</span><FiArrowUpRight aria-hidden="true" /></div>
+                  <div className="partner-halo" aria-hidden="true" />
                   <div className="partner-logo-wrap">
                     {partner.image ? (
                       <img
@@ -94,29 +106,24 @@ export default function Projects() {
                   </div>
                 </div>
                 <div className="partner-details">
-                  <span className="partner-relationship">Teknoloji partneriyiz</span>
+                  <span className="partner-relationship"><FiLink aria-hidden="true" /> Teknoloji partneriyiz</span>
                   <h3>{partner.name}</h3>
                   <p>{partner.description}</p>
                 </div>
-                <a
-                  className="partner-website"
-                  href={partner.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${partner.name} web sitesini ziyaret et (yeni sekmede açılır)`}
-                >
+                <div className="partner-website">
                   <span>
-                    <strong>Web sitesini ziyaret et</strong>
-                    <span>{partner.domain}</span>
+                    <strong>Web sitesini keşfedin</strong>
+                    <span><FiGlobe aria-hidden="true" /> {partner.domain}</span>
                   </span>
                   <FiArrowUpRight aria-hidden="true" />
+                </div>
                 </a>
               </article>
             </Reveal>
           ))}
         </div>
         <Reveal className="partners-invitation">
-          <p>Güçlü iş birlikleri, kalıcı değer.</p>
+          <div><span className="partners-invitation-label">BİR SONRAKİ GÜÇLÜ İŞ BİRLİĞİ</span><p>Birlikte yeni bir hikâye yazalım.</p></div>
           <a className="text-link" href="#contact">
             Sizin de teknoloji partneriniz olalım <FiArrowUpRight aria-hidden="true" />
           </a>

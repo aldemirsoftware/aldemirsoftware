@@ -1,58 +1,65 @@
-import React from "react";
-import { FiArrowUpRight, FiUsers, FiLink, FiTrendingUp } from "react-icons/fi";
+import React, { useRef } from "react";
+import { useReducedMotion } from "framer-motion";
+import { FiArrowUpRight, FiUsers, FiLink, FiTrendingUp, FiMapPin } from "react-icons/fi";
 import { TurkishFlag } from "./Brand";
 import Reveal from "./Reveal";
 const principles = [
   [
-    "Uzman ekip",
-    "Fikrinizi anlamaktan sistemi hayata geçirmeye kadar her aşamada mühendislik disiplini.",
+    "Stratejiden uygulamaya",
+    "İhtiyaç analizi, teknoloji danışmanlığı ve yazılım geliştirmeyi aynı hedef etrafında birleştiriyoruz.",
     FiUsers,
   ],
   [
     "Uzun vadeli iş ortaklığı",
-    "Açık iletişim, birlikte alınan kararlar ve ihtiyaçlarınızla gelişen bir yol haritası.",
+    "Şeffaf iletişim ve işinizi anlayan bir yaklaşımla, ihtiyaçlarınızla birlikte gelişen çözümler sunuyoruz.",
     FiLink,
   ],
   [
     "Sürekli gelişim",
-    "Yayına çıktıktan sonra da bakım, destek ve iyileştirmeyle ürününüzün yanında.",
+    "Yayına aldıktan sonra da bakım, destek ve iyileştirmeyle yatırımınızın değerini korumaya odaklanıyoruz.",
     FiTrendingUp,
   ],
 ];
 export default function About() {
+  const reduced = useReducedMotion();
+  const panelRef = useRef(null);
+  const reset = () => {
+    panelRef.current?.style.setProperty("--brand-rx", "0deg");
+    panelRef.current?.style.setProperty("--brand-ry", "0deg");
+  };
+  const tilt = (event) => {
+    if (reduced || event.pointerType !== "mouse") return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    panelRef.current.style.setProperty("--brand-rx", ((0.5 - (event.clientY - rect.top) / rect.height) * 8) + "deg");
+    panelRef.current.style.setProperty("--brand-ry", (((event.clientX - rect.left) / rect.width - 0.5) * 10) + "deg");
+  };
   return (
-    <section className="section about" id="about" aria-labelledby="about-title">
+    <section className="section about about-corporate" id="about" aria-labelledby="about-title">
       <div className="container about-layout">
-        <Reveal className="about-brand-panel">
-          <div className="about-space-image" aria-hidden="true">
-            <img
-              src="/images/orbital-horizon.jpg"
-              alt=""
-              width="1672"
-              height="941"
-              loading="lazy"
-              decoding="async"
-            />
+        <Reveal className="about-emblem-reveal">
+          <div className="about-emblem-stage" onPointerMove={tilt} onPointerLeave={reset} onPointerCancel={reset}>
+          <div className="about-emblem-panel" ref={panelRef}>
+          <div className="about-emblem-space" aria-hidden="true">
+            <img src="/images/orbital-background.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async" />
           </div>
-          <div className="eyebrow">ALDEMİR SOFTWARE</div>
-          <img
+          <div className="about-emblem-grid" aria-hidden="true" />
+          <div className="about-emblem-orbit about-emblem-orbit-one" aria-hidden="true" />
+          <div className="about-emblem-orbit about-emblem-orbit-two" aria-hidden="true" />
+          <div className="about-emblem-topline"><span>ALDEMİR SOFTWARE</span><span className="about-emblem-point" aria-hidden="true" /></div>
+          <div className="about-logo-focus"><img
             src="/logo-nonbck.png"
             alt="Aldemir Software logosu"
             loading="lazy"
             width="300"
             height="300"
-          />
-          <div className="about-brand-caption">
-            <TurkishFlag />
-            <p>
-              Teknoloji üretiyor,
-              <br />
-              <strong>değer katıyoruz.</strong>
-            </p>
+          /></div>
+          <div className="about-emblem-wordmark"><strong>ALDEMİR</strong><span>SOFTWARE</span></div>
+          <p className="about-emblem-promise">Güçlü mühendislik.<br /><span>Geleceğe yön veren çözümler.</span></p>
+          <div className="about-emblem-footer">
+            <div><TurkishFlag /><span>Uşak merkezli.<br /><strong>Geleceğe odaklı.</strong></span></div>
+            <FiMapPin aria-hidden="true" />
           </div>
-          <div className="about-panel-footer">
-            <span>UŞAK, TÜRKİYE</span>
-            <span>GELECEĞE BİRLİKTE</span>
+          </div>
           </div>
         </Reveal>
         <Reveal className="about-copy">
@@ -60,15 +67,15 @@ export default function About() {
             <span className="section-index">03 /</span> BİZ ALDEMİR SOFTWARE'İZ
           </div>
           <h2 id="about-title">
-            Teknolojide sınır yok.
+            Teknolojiyi işiniz için
             <br />
-            <span>Hedeflerinizde de olmasın.</span>
+            <span>kalıcı değere dönüştürüyoruz.</span>
           </h2>
-          <p className="about-intro">
-            Hayallerinizi gerçeğe dönüştürmek için yanınızdayız. Uşak'tan
-            dünyaya uzanan bir vizyonla, işinize özel yazılımlar ve güçlü
-            dijital sistemler geliştiriyoruz.
-          </p>
+          <div className="about-narrative">
+            <p><strong>Uşak merkezli Aldemir Software olarak</strong>, şirketlerin, kurumların ve girişimcilerin dijital dönüşümüne eşlik ediyoruz. Stratejik teknoloji danışmanlığından özel yazılım geliştirmeye kadar, iş hedeflerinizi merkeze alan bir yaklaşımla çalışıyoruz.</p>
+            <p>Güncel teknolojileri mühendislik disiplinimizle birleştirerek operasyonlarınızı güçlendiren, rekabet gücünüzü artırmayı hedefleyen sürdürülebilir çözümler sunuyoruz. Web, mobil ve kurumsal sistemleri işletmenizin çalışma biçimine göre tasarlıyoruz.</p>
+            <p className="about-vision-statement">Vizyonumuz, teknoloji partneri olduğumuz her işletmenin geleceğe güvenle ilerlemesini sağlamak; bugünün ihtiyaçlarını karşılarken yarının fırsatlarına hazır olmaktır.</p>
+          </div>
           <div className="principles">
             {principles.map(([title, description, Icon]) => (
               <div className="principle" key={title}>
@@ -81,7 +88,7 @@ export default function About() {
             ))}
           </div>
           <a href="#contact" className="text-link">
-            Geleceğe birlikte <FiArrowUpRight aria-hidden="true" />
+            İşinizi ve hedeflerinizi konuşalım <FiArrowUpRight aria-hidden="true" />
           </a>
         </Reveal>
       </div>
