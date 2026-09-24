@@ -44,6 +44,25 @@ afterEach(() => {
   container.remove();
 });
 const render = (element) => act(() => root.render(element));
+it("keeps the same audio element through FAQ, 404 and home navigation", () => {
+  window.matchMedia.mockReturnValue({ matches: true, addEventListener: jest.fn(), removeEventListener: jest.fn() });
+  render(<App />);
+  const audio = container.querySelector("audio");
+  try {
+    act(() => container.querySelector('footer a[href="/sss"]').click());
+    expect(window.location.pathname).toBe("/sss");
+    expect(container.querySelector("audio")).toBe(audio);
+    const missingLink = document.createElement("a");
+    missingLink.href = "/missing-page";
+    container.querySelector(".App").appendChild(missingLink);
+    act(() => missingLink.click());
+    expect(container.querySelector("h1").textContent).toContain("Rotanın biraz");
+    expect(container.querySelector("audio")).toBe(audio);
+    act(() => container.querySelector('.hero-actions a[href="/"]').click());
+    expect(container.querySelector("#services")).not.toBeNull();
+    expect(container.querySelector("audio")).toBe(audio);
+  } finally { window.history.replaceState({}, "", "/"); }
+});
 it("scrolls to the contact form after loading a cross-page contact link", () => {
   window.history.replaceState({}, "", "/#contact-form");
   const originalScroll = HTMLElement.prototype.scrollIntoView;
