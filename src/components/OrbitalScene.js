@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 
 const vertexSource = `
 attribute vec2 a_position;
@@ -72,6 +72,7 @@ function createShader(gl, type, source) {
 }
 
 export default function OrbitalScene({ reduced, active }) {
+  const shipMaskId = useId().replace(/:/g, "") + "-engine-fade";
   const canvasRef = useRef(null);
   const controlsRef = useRef(null);
   const activeRef = useRef(active);
@@ -212,7 +213,20 @@ export default function OrbitalScene({ reduced, active }) {
       <div className="hero-sunrise" />
       <div className="hero-meteors"><i /><i /><i /></div>
       <div className="hero-spacecraft">
-        <img src="/images/orbital-horizon.jpg" alt="" width="1672" height="941" fetchpriority="high" />
+        <svg viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id={shipMaskId + "-gradient"} x1="880" x2="1010" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="white" stopOpacity="0" />
+              <stop offset="0.45" stopColor="white" stopOpacity="0.15" />
+              <stop offset="0.75" stopColor="white" stopOpacity="0.6" />
+              <stop offset="1" stopColor="white" />
+            </linearGradient>
+            <mask id={shipMaskId} maskUnits="userSpaceOnUse" x="0" y="0" width="1672" height="941">
+              <rect width="1672" height="941" fill={"url(#" + shipMaskId + "-gradient)"} />
+            </mask>
+          </defs>
+          <image href="/images/orbital-ship-branded.png" x="380" y="100" width="1237.28" height="696.34" mask={"url(#" + shipMaskId + ")"} />
+        </svg>
       </div>
     </div>
   );

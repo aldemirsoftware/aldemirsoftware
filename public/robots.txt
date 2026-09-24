@@ -1,15 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
-Disallow: /static/
 
-# Site Haritası
 Sitemap: https://www.aldemirsoftware.com/sitemap.xml
-
-# Google Bot
-User-agent: Googlebot
-Allow: /
-
-# Bing Bot
-User-agent: Bingbot
-Allow: /

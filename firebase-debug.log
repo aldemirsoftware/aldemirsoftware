@@ -1,0 +1,173 @@
+[debug] [2026-09-24T11:05:31.248Z] ----------------------------------------------------------------------
+[debug] [2026-09-24T11:05:31.250Z] Command:       /opt/homebrew/Cellar/node/25.6.1_1/bin/node /opt/homebrew/bin/firebase emulators:start --only hosting --project aldemirsoftware
+[debug] [2026-09-24T11:05:31.250Z] CLI Version:   15.12.0
+[debug] [2026-09-24T11:05:31.250Z] Platform:      darwin
+[debug] [2026-09-24T11:05:31.250Z] Node Version:  v25.6.1
+[debug] [2026-09-24T11:05:31.250Z] Time:          Thu Sep 24 2026 14:05:31 GMT+0300 (Türkiye Standard Time)
+[debug] [2026-09-24T11:05:31.250Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-09-24T11:05:31.250Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-09-24T11:05:31.818Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-09-24T11:05:31.819Z] > authorizing via signed-in user (info@miryapimuhendislik.com)
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[warn] ⚠  hub: Error when trying to check port 4400 on 127.0.0.1: Error: listen EPERM: operation not permitted 127.0.0.1:4400 {"metadata":{"emulator":{"name":"hub"},"message":"Error when trying to check port 4400 on 127.0.0.1: Error: listen EPERM: operation not permitted 127.0.0.1:4400"}}
+[warn] ⚠  logging: Error when trying to check port 4500 on 127.0.0.1: Error: listen EPERM: operation not permitted 127.0.0.1:4500 {"metadata":{"emulator":{"name":"logging"},"message":"Error when trying to check port 4500 on 127.0.0.1: Error: listen EPERM: operation not permitted 127.0.0.1:4500"}}
+[warn] ⚠  hosting: Error when trying to check port 5002 on 127.0.0.1: Error: listen EPERM: operation not permitted 127.0.0.1:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Error when trying to check port 5002 on 127.0.0.1: Error: listen EPERM: operation not permitted 127.0.0.1:5002"}}
+[warn] ⚠  hub: Error when trying to check port 4400 on ::1: Error: listen EPERM: operation not permitted ::1:4400 {"metadata":{"emulator":{"name":"hub"},"message":"Error when trying to check port 4400 on ::1: Error: listen EPERM: operation not permitted ::1:4400"}}
+[warn] ⚠  hub: Port 4400 is not open on localhost (127.0.0.1,::1), could not start emulator hub. {"metadata":{"emulator":{"name":"hub"},"message":"Port 4400 is not open on localhost (127.0.0.1,::1), could not start emulator hub."}}
+[warn] ⚠  hub: To select a different host/port, specify that host/port in a firebase.json config file:
+      {
+        // ...
+        "emulators": {
+          "hub": {
+            "host": "HOST",
+            "port": "PORT"
+          }
+        }
+      } {"metadata":{"emulator":{"name":"hub"},"message":"To select a different host/port, specify that host/port in a firebase.json config file:\n      {\n        // ...\n        \"emulators\": {\n          \"hub\": {\n            \"host\": \"HOST\",\n            \"port\": \"PORT\"\n          }\n        }\n      }"}}
+[warn] ⚠  logging: Error when trying to check port 4500 on ::1: Error: listen EPERM: operation not permitted ::1:4500 {"metadata":{"emulator":{"name":"logging"},"message":"Error when trying to check port 4500 on ::1: Error: listen EPERM: operation not permitted ::1:4500"}}
+[warn] ⚠  logging: Port 4500 is not open on localhost (127.0.0.1,::1), could not start Logging Emulator. {"metadata":{"emulator":{"name":"logging"},"message":"Port 4500 is not open on localhost (127.0.0.1,::1), could not start Logging Emulator."}}
+[warn] ⚠  logging: To select a different host/port, specify that host/port in a firebase.json config file:
+      {
+        // ...
+        "emulators": {
+          "logging": {
+            "host": "HOST",
+            "port": "PORT"
+          }
+        }
+      } {"metadata":{"emulator":{"name":"logging"},"message":"To select a different host/port, specify that host/port in a firebase.json config file:\n      {\n        // ...\n        \"emulators\": {\n          \"logging\": {\n            \"host\": \"HOST\",\n            \"port\": \"PORT\"\n          }\n        }\n      }"}}
+[warn] ⚠  hosting: Error when trying to check port 5002 on ::1: Error: listen EPERM: operation not permitted ::1:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Error when trying to check port 5002 on ::1: Error: listen EPERM: operation not permitted ::1:5002"}}
+[warn] ⚠  hosting: Port 5000 is not open on localhost (127.0.0.1,::1), could not start Hosting Emulator. {"metadata":{"emulator":{"name":"hosting"},"message":"Port 5000 is not open on localhost (127.0.0.1,::1), could not start Hosting Emulator."}}
+[warn] ⚠  hosting: To select a different host/port, specify that host/port in a firebase.json config file:
+      {
+        // ...
+        "emulators": {
+          "hosting": {
+            "host": "HOST",
+            "port": "PORT"
+          }
+        }
+      } {"metadata":{"emulator":{"name":"hosting"},"message":"To select a different host/port, specify that host/port in a firebase.json config file:\n      {\n        // ...\n        \"emulators\": {\n          \"hosting\": {\n            \"host\": \"HOST\",\n            \"port\": \"PORT\"\n          }\n        }\n      }"}}
+[debug] [2026-09-24T11:05:32.095Z] *** [apiv2] error from fetch(https://firebase-public.firebaseio.com/cli.json, {"headers":{},"method":"GET"}): FetchError: request to https://firebase-public.firebaseio.com/cli.json failed, reason: getaddrinfo ENOTFOUND firebase-public.firebaseio.com
+[warn] ⚠  Unable to fetch the CLI MOTD and remote config. This is not a fatal error, but may indicate an issue with your network connection. 
+[debug] [2026-09-24T11:05:32.095Z] Failed to fetch MOTD FirebaseError: Failed to make request to https://firebase-public.firebaseio.com/cli.json
+[debug] [2026-09-24T11:05:32.098Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[debug] [2026-09-24T11:05:32.099Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
+[error] 
+[error] Error: Could not start emulator hub, port taken.
+[debug] [2026-09-24T11:05:32.360Z] Error: EPERM: operation not permitted, open '/Users/ademaldemir/.config/configstore/firebase-tools.json.451861923'
+    at Object.openSync (node:fs:555:18)
+    at writeFile.writeFileSync [as sync] (/opt/homebrew/lib/node_modules/firebase-tools/node_modules/write-file-atomic/index.js:205:13)
+    at set all (/opt/homebrew/lib/node_modules/firebase-tools/node_modules/configstore/index.js:61:20)
+    at Configstore.delete (/opt/homebrew/lib/node_modules/firebase-tools/node_modules/configstore/index.js:101:12)
+    at process.<anonymous> (/opt/homebrew/lib/node_modules/firebase-tools/lib/bin/cli.js:65:45)
+    at process.emit (node:events:520:22)
+    at process.exit (node:internal/process/per_thread:236:15)
+    at Timeout._onTimeout (/opt/homebrew/lib/node_modules/firebase-tools/lib/errorOut.js:20:17)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-09-24T11:06:37.042Z] ----------------------------------------------------------------------
+[debug] [2026-09-24T11:06:37.044Z] Command:       /opt/homebrew/Cellar/node/25.6.1_1/bin/node /opt/homebrew/bin/firebase emulators:start --only hosting --project aldemirsoftware
+[debug] [2026-09-24T11:06:37.044Z] CLI Version:   15.12.0
+[debug] [2026-09-24T11:06:37.044Z] Platform:      darwin
+[debug] [2026-09-24T11:06:37.044Z] Node Version:  v25.6.1
+[debug] [2026-09-24T11:06:37.044Z] Time:          Thu Sep 24 2026 14:06:37 GMT+0300 (Türkiye Standard Time)
+[debug] [2026-09-24T11:06:37.044Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-09-24T11:06:37.045Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-09-24T11:06:37.528Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-09-24T11:06:37.528Z] > authorizing via signed-in user (info@miryapimuhendislik.com)
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[debug] [2026-09-24T11:06:37.759Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[warn] ⚠  hosting: Hosting Emulator unable to start on port 5000, starting on 5002 instead. {"metadata":{"emulator":{"name":"hosting"},"message":"Hosting Emulator unable to start on port 5000, starting on 5002 instead."}}
+[debug] [2026-09-24T11:06:37.759Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-09-24T11:06:37.759Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5002}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2026-09-24T11:06:37.761Z] Write emulator hub locator at /var/folders/4f/yg5qb4bx2492pql_5f5_vs9c0000gn/T/hub-aldemirsoftware.json
+[debug] [2026-09-24T11:06:37.764Z] Checked if tokens are valid: false, expires at: 1774832317125
+[debug] [2026-09-24T11:06:37.764Z] Checked if tokens are valid: false, expires at: 1774832317125
+[debug] [2026-09-24T11:06:37.764Z] > refreshing access token with scopes: []
+[debug] [2026-09-24T11:06:37.765Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-09-24T11:06:37.765Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-09-24T11:06:37.952Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-09-24T11:06:37.952Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-09-24T11:06:37.952Z] Failed to list hosting sites
+[debug] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-09-24T11:06:37.952Z] Checked if tokens are valid: false, expires at: 1774832317125
+[debug] [2026-09-24T11:06:37.953Z] Checked if tokens are valid: false, expires at: 1774832317125
+[debug] [2026-09-24T11:06:37.953Z] > refreshing access token with scopes: []
+[debug] [2026-09-24T11:06:37.953Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-09-24T11:06:37.953Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-09-24T11:06:38.036Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-09-24T11:06:38.036Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-09-24T11:06:38.037Z] fetchWebSetup error: FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[warn] ⚠  hosting: Could not fetch web app configuration and there is no cached configuration on this machine. Check your internet connection and make sure you are authenticated. To continue, you must call firebase.initializeApp({...}) in your code before using Firebase. 
+[debug] [2026-09-24T11:06:38.037Z] Checked if tokens are valid: false, expires at: 1774832317125
+[debug] [2026-09-24T11:06:38.037Z] Checked if tokens are valid: false, expires at: 1774832317125
+[debug] [2026-09-24T11:06:38.037Z] > refreshing access token with scopes: []
+[debug] [2026-09-24T11:06:38.038Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-09-24T11:06:38.038Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-09-24T11:06:38.162Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-09-24T11:06:38.162Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-09-24T11:06:38.162Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[info] i  hosting[aldemirsoftware]: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: build"}}
+[info] ✔  hosting[aldemirsoftware]: Local server: http://127.0.0.1:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: http://127.0.0.1:5002"}}
+[debug] [2026-09-24T11:06:38.209Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-09-24T11:06:38.209Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[warn] ⚠  emulators: The Emulator UI is not starting because none of the running emulators have a UI component. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI is not starting because none of the running emulators have a UI component."}}
+[debug] [2026-09-24T11:06:38.228Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┐
+│ Emulator │ Host:Port      │
+├──────────┼────────────────┤
+│ Hosting  │ 127.0.0.1:5002 │
+└──────────┴────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [24/Sep/2026:11:09:11 +0000] "GET /olmayan/sayfa HTTP/1.1" 404 2999 "-" "curl/8.7.1" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [24/Sep/2026:11:09:11 +0000] \"GET /olmayan/sayfa HTTP/1.1\" 404 2999 \"-\" \"curl/8.7.1\""}}
+[info] i  hosting: 127.0.0.1 - - [24/Sep/2026:11:09:11 +0000] "GET / HTTP/1.1" 200 4402 "-" "curl/8.7.1" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [24/Sep/2026:11:09:11 +0000] \"GET / HTTP/1.1\" 200 4402 \"-\" \"curl/8.7.1\""}}
+[debug] [2026-09-24T11:10:23.361Z] Received signal SIGINT (Ctrl-C) 1
+[info]  
+[info] i  emulators: Received SIGINT (Ctrl-C) for the first time. Starting a clean shutdown. 
+[info] i  emulators: Please wait for a clean shutdown or send the SIGINT (Ctrl-C) signal again to stop right now. 
+[debug] [2026-09-24T11:10:23.361Z] Found emulator hub locator: {"version":"15.12.0","origins":["http://127.0.0.1:4400","http://[::1]:4400"],"pid":62234}
+[debug] [2026-09-24T11:10:23.362Z] Delete emulator hub locator file: /var/folders/4f/yg5qb4bx2492pql_5f5_vs9c0000gn/T/hub-aldemirsoftware.json
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  hosting: Stopping Hosting Emulator {"metadata":{"emulator":{"name":"hosting"},"message":"Stopping Hosting Emulator"}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[info] i  logging: Stopping Logging Emulator {"metadata":{"emulator":{"name":"logging"},"message":"Stopping Logging Emulator"}}
+[debug] [2026-09-24T11:10:23.364Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.

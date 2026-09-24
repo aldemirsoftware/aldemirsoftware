@@ -1,13 +1,14 @@
 {
   "name": "aldemir-software",
   "version": "1.0.0",
-  "description": "Aldemir Software - Yazılım, Teknoloji ve Dijital Çözümler",
+  "description": "Aldemir Software - Yaz\u0131l\u0131m, Teknoloji ve Dijital \u00c7\u00f6z\u00fcmler",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "node scripts/build-404.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

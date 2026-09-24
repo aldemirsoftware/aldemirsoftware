@@ -56,8 +56,14 @@ export default function About() {
           <div className="about-emblem-wordmark"><strong>ALDEMİR</strong><span>SOFTWARE</span></div>
           <p className="about-emblem-promise">Güçlü mühendislik.<br /><span>Geleceğe yön veren çözümler.</span></p>
           <div className="about-emblem-footer">
-            <div><TurkishFlag /><span>Uşak merkezli.<br /><strong>Geleceğe odaklı.</strong></span></div>
-            <FiMapPin aria-hidden="true" />
+            <div className="about-emblem-origin">
+              <TurkishFlag />
+              <span>Türkiye'den<br /><strong>Dünyaya.</strong></span>
+            </div>
+            <div className="about-emblem-location">
+              <span>UŞAK, TÜRKİYE</span>
+              <FiMapPin aria-hidden="true" />
+            </div>
           </div>
           </div>
           </div>

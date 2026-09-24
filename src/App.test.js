@@ -6,8 +6,8 @@ import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
 
 jest.mock("@emailjs/browser", () => ({ send: jest.fn() }));
-jest.mock("./components/Reveal", () => ({ children, className }) => (
-  <div className={className}>{children}</div>
+jest.mock("./components/Reveal", () => ({ children, className, delay, ...props }) => (
+  <div className={className} {...props}>{children}</div>
 ));
 jest.mock("framer-motion", () => {
   const React = require("react");
@@ -43,6 +43,48 @@ afterEach(() => {
   container.remove();
 });
 const render = (element) => act(() => root.render(element));
+it("scrolls to the contact form after loading a cross-page contact link", () => {
+  window.history.replaceState({}, "", "/#contact-form");
+  const originalScroll = HTMLElement.prototype.scrollIntoView;
+  const scroll = jest.fn();
+  HTMLElement.prototype.scrollIntoView = scroll;
+  try {
+    render(<App />);
+    act(() => window.dispatchEvent(new Event("load")));
+    expect(scroll).toHaveBeenCalled();
+    expect(document.activeElement.id).toBe("contact-form");
+    expect(container.querySelectorAll('a[href="https://x.com/aldemirsoftware"]')).toHaveLength(2);
+  } finally {
+    HTMLElement.prototype.scrollIntoView = originalScroll;
+    window.history.replaceState({}, "", "/");
+  }
+});
+it("shows FAQ on its own space page and links it from the home footer", () => {
+  render(<App />);
+  expect(container.querySelector('footer a[href="/sss"]').textContent).toBe("S.S.S");
+  expect(container.querySelector(".site-faq")).toBeNull();
+  window.history.replaceState({}, "", "/sss");
+  try {
+    render(<App />);
+    expect(container.querySelector(".faq-page .hero-space-scene")).not.toBeNull();
+    expect(container.querySelectorAll(".site-faq details")).toHaveLength(5);
+    expect(container.querySelector("h1").textContent).toContain("Sıkça sorulan");
+  } finally {
+    window.history.replaceState({}, "", "/");
+  }
+});
+it("renders the shared space scene and home links for unknown URLs", () => {
+  window.history.replaceState({}, "", "/olmayan-sayfa");
+  try {
+    render(<App />);
+    expect(container.querySelector("h1").textContent).toContain("Rotanın biraz");
+    expect(container.querySelector(".hero-space-scene")).not.toBeNull();
+    expect(container.querySelector('.not-found a[href="/"]')).not.toBeNull();
+    expect(container.querySelector("#services")).toBeNull();
+  } finally {
+    window.history.replaceState({}, "", "/");
+  }
+});
 const click = (element) =>
   act(() => element.dispatchEvent(new MouseEvent("click", { bubbles: true })));
 const key = (element, value) =>

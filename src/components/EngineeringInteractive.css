@@ -1,0 +1,45 @@
+.engineering-interactive { position: relative; isolation: isolate; }
+.engineering-interactive .engineering-visual { align-self: stretch; aspect-ratio: auto; min-height: 740px; overflow: visible; border-radius: 0; }
+.engineering-interactive .engineering-visual > img { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; object-fit: cover; animation: iceberg-buoyancy 8s ease-in-out infinite; transform-origin: 50% 26%; -webkit-mask-image: radial-gradient(ellipse 50% 55% at 50% 49%, #000 55%, #000b 73%, transparent 100%); mask-image: radial-gradient(ellipse 50% 55% at 50% 49%, #000 55%, #000b 73%, transparent 100%); }
+.engineering-ocean { position: absolute; z-index: -1; pointer-events: none; inset: 20% -4% 5%; background: radial-gradient(ellipse at 35% 12%, #17658132, transparent 55%), radial-gradient(ellipse at 75% 45%, #07527424, transparent 70%); filter: blur(18px); }
+.engineering-ocean::after { content: ""; position: absolute; inset: 0; background: repeating-conic-gradient(from 12deg at 35% -30%, transparent 0deg 12deg, #6ddfff0a 13deg 15deg, transparent 17deg 27deg); mask-image: radial-gradient(ellipse, #0008, transparent 70%); animation: iceberg-refraction 11s ease-in-out infinite alternate; }
+.engineering-interactive .engineering-layers { position: relative; z-index: 1; }
+.engineering-interactive .engineering-layer:focus-visible { outline: 2px solid #a1e5ff; outline-offset: 4px; }
+.iceberg-zone::before { content: ""; position: absolute; inset: -8%; background: radial-gradient(ellipse, #86dfff20, transparent 65%); opacity: 0; transition: opacity .5s; pointer-events: none; }
+.iceberg-zone[aria-pressed="true"]::before { opacity: 1; }
+.engineering-interactive .iceberg-caption { pointer-events: none; font-size: 10px; padding: 18px; opacity: .7; }
+.iceberg-water { position: absolute; top: 25%; left: 0; width: 190%; height: 5%; pointer-events: none; filter: blur(1px); mask-image: linear-gradient(90deg, transparent, #0008 15%, #0005 48%, transparent 95%); }
+.iceberg-water i { position: absolute; inset: 15% -10%; border-radius: 50%; border-top: 1px solid #a8ecff6b; box-shadow: 0 -3px 12px #41c9f522; animation: iceberg-ripple 7s ease-in-out infinite; }
+.iceberg-water i:nth-child(2) { inset: 35% -15%; animation-delay: -3s; opacity: .5; }
+.iceberg-water i:nth-child(3) { inset: 55% -5%; animation-delay: -5s; opacity: .3; }
+.iceberg-caustics { position: absolute; inset: 28% 8% 4%; pointer-events: none; background: repeating-conic-gradient(from 15deg at 55% -20%, transparent 0deg 9deg, #67e2ff0d 10deg 12deg, transparent 14deg 24deg); mask-image: radial-gradient(ellipse at top, #0008, transparent 75%); animation: iceberg-refraction 11s ease-in-out infinite alternate; mix-blend-mode: screen; }
+.iceberg-zone { position: absolute; left: 12%; width: 76%; border: 0; background: transparent; cursor: pointer; color: #d5f4ff; border-radius: 24px; padding: 0; }
+.iceberg-zone-surface { top: 3%; height: 23%; }
+.iceberg-zone-depth { top: 28%; height: 66%; }
+.iceberg-zone:focus-visible { outline: 2px solid #91ddff; outline-offset: -3px; }
+.iceberg-beacon { position: absolute; left: 70%; top: 50%; width: 9px; height: 9px; border-radius: 50%; border: 1px solid #b8edff; background: #5bbfdf; box-shadow: 0 0 0 6px #7edcfa12, 0 0 22px #70d5ff80; transition: box-shadow .4s, background .4s; }
+.iceberg-zone-label { position: absolute; left: 50%; top: calc(50% + 28px); padding: 7px 12px; white-space: nowrap; font-size: 11px; letter-spacing: .08em; background: #04131bd9; border: 1px solid #8ddfff45; border-radius: 30px; opacity: 0; transform: translateY(5px); transition: opacity .3s, transform .3s; }
+.iceberg-zone:hover .iceberg-zone-label, .iceberg-zone:focus-visible .iceberg-zone-label, .iceberg-zone[aria-pressed="true"] .iceberg-zone-label { opacity: 1; transform: translateY(0); }
+.iceberg-zone[aria-pressed="true"] .iceberg-beacon { background: #e7fbff; box-shadow: 0 0 0 10px #7edcfa19, 0 0 30px #70d5ff; }
+.iceberg-connectors { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3; }
+.iceberg-connectors path { fill: none; stroke: #8cdefa; stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; filter: drop-shadow(0 0 5px #61cfff80); transition: stroke-dashoffset .65s ease, opacity .25s; }
+.iceberg-connectors path.is-active { stroke-dashoffset: 0; opacity: .9; }
+.engineering-interactive .engineering-layer { transition: border-color .4s, box-shadow .4s, background-color .4s; }
+.engineering-interactive[data-active="surface"] #engineering-surface,
+.engineering-interactive[data-active="depth"] #engineering-depth { border-color: #95dfffba; background-color: #0b2c4080; box-shadow: 0 0 42px #38b9ef1c, inset 0 0 30px #69d0fc0a; }
+.engineering-interactive[data-active="surface"] #engineering-surface h3,
+.engineering-interactive[data-active="depth"] #engineering-depth h3 { color: #bdedff; text-shadow: 0 0 24px #57c8fa50; }
+@keyframes iceberg-buoyancy { 0%, 100% { transform: translateY(3px) rotate(-.25deg) scale(1.015); } 50% { transform: translateY(-4px) rotate(.25deg) scale(1.015); } }
+@keyframes iceberg-ripple { 0%, 100% { transform: translateX(-2%) scaleX(.96); opacity: .35; } 50% { transform: translateX(2%) scaleX(1.04); opacity: .7; } }
+@keyframes iceberg-refraction { from { transform: translateX(-2%) skewX(-2deg); opacity: .35; } to { transform: translateX(2%) skewX(2deg); opacity: .7; } }
+@media (max-width: 700px) {
+  .engineering-interactive .engineering-visual { width: 100%; aspect-ratio: .85; min-height: 0; }
+  .iceberg-water { width: 100%; }
+  .iceberg-connectors { display: none; }
+  .iceberg-zone-label { left: 35%; opacity: 1; font-size: 10px; }
+  .engineering-interactive .engineering-layer { scroll-margin-top: 110px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .engineering-interactive .engineering-visual > img, .iceberg-water i, .iceberg-caustics, .engineering-ocean::after { animation: none; }
+  .engineering-interactive *, .engineering-interactive *::before { transition: none !important; }
+}

@@ -12,49 +12,49 @@ export const heroSlides = [
     label: "Geleceğin yörüngesi",
     eyebrow: "ALDEMİR SOFTWARE · HEDEFİNİZ GELECEK",
     lines: ["Markanızı geleceğin", "yörüngesine", "taşıyoruz."],
-    description: "Mühendislik gücümüzü markanızın hedefleriyle buluşturuyoruz. Özel yazılım, web ve mobil çözümlerle büyümenize sağlam bir rota çiziyoruz.",
+    descriptionParts: ["Mühendislik gücümüzü markanızın hedefleriyle buluşturuyoruz.", "Özel yazılım, web ve mobil çözümlerle büyümenize sağlam bir rota çiziyoruz."],
   },
   {
     label: "Özel yazılım",
     eyebrow: "İŞİNİZİ ANLAYAN TEKNOLOJİ PARTNERİNİZ",
     lines: ["İşinize özel", "yazılımlar,", "kalıcı çözümler."],
-    description: "İhtiyaçlarınızı anlayarak web, mobil ve kurumsal yazılım çözümleri geliştiriyor; işinizi sürdürülebilir bir altyapıyla büyütüyoruz.",
+    descriptionParts: ["İhtiyaçlarınızı anlayarak web, mobil ve kurumsal yazılım çözümleri geliştiriyor;", "işinizi sürdürülebilir bir altyapıyla büyütüyoruz."],
   },
   {
     label: "Web ve mobil",
     eyebrow: "WEB VE MOBİL UYGULAMA GELİŞTİRME",
     lines: ["Markanızı yansıtan", "web ve mobil", "deneyimler."],
-    description: "Müşterilerinizin size kolayca ulaşmasını sağlayan, hızlı, erişilebilir ve markanızla uyumlu dijital deneyimler tasarlıyoruz.",
+    descriptionParts: ["Müşterilerinizin size kolayca ulaşmasını sağlayan,", "hızlı, erişilebilir ve markanızla uyumlu dijital deneyimler tasarlıyoruz."],
   },
   {
     label: "İş süreçleri",
     eyebrow: "YÖNETİM SİSTEMLERİ VE OTOMASYON",
     lines: ["İş süreçlerinizi", "tek merkezden", "yönetin."],
-    description: "Operasyonlarınızı, verilerinizi ve ekiplerinizi iş akışınıza özel sistemlerle bir araya getiriyor; süreçlerinizi görünür ve yönetilebilir kılıyoruz.",
+    descriptionParts: ["Operasyonlarınızı, verilerinizi ve ekiplerinizi iş akışınıza özel sistemlerle bir araya getiriyor;", "süreçlerinizi görünür ve yönetilebilir kılıyoruz."],
   },
   {
     label: "Dijital dönüşüm",
     eyebrow: "GÜVENLİ ALTYAPI, SÜRDÜRÜLEBİLİR GELİŞİM",
     lines: ["Dijital dönüşümü", "sağlam bir temelle", "başlatın."],
-    description: "Bulut altyapısı, veri yönetimi ve sistem entegrasyonlarıyla işinizi geleceğe hazırlıyor; güvenlik ve performansı birlikte ele alıyoruz.",
+    descriptionParts: ["Bulut altyapısı, veri yönetimi ve sistem entegrasyonlarıyla işinizi geleceğe hazırlıyor;", "güvenlik ve performansı birlikte ele alıyoruz."],
   },
   {
     label: "Teknoloji ortaklığı",
     eyebrow: "UZUN VADELİ TEKNOLOJİ ORTAKLIĞI",
     lines: ["Fikirden yayına,", "her aşamada", "yanınızdayız."],
-    description: "Analiz, tasarım ve geliştirmeden bakım ve desteğe kadar projenizin sorumluluğunu paylaşıyor; değişen ihtiyaçlarınıza birlikte çözüm üretiyoruz.",
+    descriptionParts: ["Analiz, tasarım ve geliştirmeden bakım ve desteğe kadar projenizin sorumluluğunu paylaşıyor;", "değişen ihtiyaçlarınıza birlikte çözüm üretiyoruz."],
   },
   {
     label: "Dijitalde sınırları aşın",
     eyebrow: "YAZILIM GÜCÜMÜZLE DAHA İLERİYE",
     lines: ["Dijitalde sınırları", "aşan güç:", "Aldemir Software."],
-    description: "İddiamızı geliştirdiğimiz yazılımlara yansıtıyoruz. Karmaşık ihtiyaçları güçlü sistemlere dönüştürüyor, işinize yeni hareket alanları açıyoruz.",
+    descriptionParts: ["İddiamızı geliştirdiğimiz yazılımlara yansıtıyoruz.", "Karmaşık ihtiyaçları güçlü sistemlere dönüştürüyor, işinize yeni hareket alanları açıyoruz."],
   },
   {
     label: "Yeni ufuklar",
     eyebrow: "GÜÇLÜ MÜHENDİSLİK · BÜYÜK HEDEFLER",
     lines: ["Güçlü yazılımlarla", "yeni ufuklara", "birlikte."],
-    description: "Büyük hedeflerin arkasında sağlam bir teknoloji vardır. Fikrinizi ölçeklenebilir yazılıma dönüştürüyor, her yeni aşamada yanınızda yer alıyoruz.",
+    descriptionParts: ["Büyük hedeflerin arkasında sağlam bir teknoloji vardır.", "Fikrinizi ölçeklenebilir yazılıma dönüştürüyor, her yeni aşamada yanınızda yer alıyoruz."],
   },
 ];
 
@@ -109,7 +109,7 @@ export default function Hero() {
                 <span className={lineIndex === 2 ? "hero-line hero-line-accent" : "hero-line"} key={line}>{line}</span>
               ))}
             </h1>
-            <p className="hero-description">{slide.description}</p>
+            <p className="hero-description">{(slide.descriptionParts || [slide.description]).map((part, idx, arr) => (<React.Fragment key={idx}>{part}{idx < arr.length - 1 && <br />}</React.Fragment>))}</p>
           </div>
           <div className="hero-actions">
             <a href="#contact" className="button button-primary">Projenizi konuşalım <FiArrowUpRight aria-hidden="true" /></a>

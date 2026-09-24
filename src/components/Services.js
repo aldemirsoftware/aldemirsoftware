@@ -7,43 +7,43 @@ const services = [
   {
     id: "web", icon: FiGlobe, label: "Web çözümleri",
     outcome: "Güçlü bir dijital ilk izlenim.",
-    title: "Markanızın dijitaldeki en güçlü karşılığı.",
+    titleParts: ["Markanızın dijitaldeki", "en güçlü karşılığı."],
     description: "Markanızın kimliğini yansıtan kurumsal siteler ve alışverişi kolaylaştıran e-ticaret deneyimleri geliştiriyoruz. Her ekranda hızlı, erişilebilir ve arama motorlarıyla uyumlu bir yapı kuruyoruz.",
     items: ["Kurumsal web siteleri & kampanya sayfaları", "E-ticaret & özel web uygulamaları", "Mobil uyumlu, erişilebilir arayüzler"],
   },
   {
     id: "software", icon: FiCode, label: "Özel yazılım",
     outcome: "Daha az tekrar. Daha fazla kontrol.",
-    title: "Yazılım işinize uyum sağlasın.",
+    titleParts: ["Yazılım,", "işinize uyum sağlasın."],
     description: "Ekibinizin çalışma biçimine göre tasarlanan yönetim panelleri ve otomasyon sistemleriyle dağınık iş akışlarını birleştiriyoruz. Tekrarlayan işleri azaltıyor, operasyonlarınızı tek merkezden yönetmenizi sağlıyoruz.",
     items: ["İşinize özel yönetim panelleri", "CRM, ERP & sistem entegrasyonları", "İş akışı & süreç otomasyonu"],
   },
   {
     id: "mobile", icon: FiSmartphone, label: "Mobil uygulama",
     outcome: "Müşterinizle her an bağlantıda.",
-    title: "İyi bir deneyim, her zaman elinizin altında.",
+    titleParts: ["İyi bir deneyim,", "her zaman elinizin altında."],
     description: "iOS ve Android uygulamalarıyla hizmetlerinizi müşterilerinizin günlük hayatına taşıyoruz. Sade kullanım, doğru zamanda bildirim ve büyümeye hazır altyapıyla kalıcı bir mobil deneyim oluşturuyoruz.",
     items: ["iOS & Android uygulamaları", "Kullanıcı deneyimi & bildirim sistemleri", "Ölçeklenebilir mobil altyapı"],
   },
   {
     id: "cloud", icon: FiCloud, label: "Dijital altyapı",
     outcome: "Bugünün ihtiyaçları, yarının kapasitesi.",
-    title: "Büyümenizi taşıyan sağlam bir altyapı.",
+    titleParts: ["Büyümenizi taşıyan", "sağlam bir altyapı."],
     description: "Bulut sistemlerini, veri yönetimini ve güvenlik odaklı altyapıyı birlikte ele alıyoruz. İş sürekliliğini destekleyen, izlenebilir ve ihtiyaçlarınızla birlikte ölçeklenebilen sistemler kuruyoruz.",
     items: ["Bulut sistemleri & veri yönetimi", "Güvenlik odaklı altyapı & izleme", "Yedekleme & süreklilik planlaması"],
   },
   {
     id: "data", icon: FiBarChart2, label: "Veri & raporlama",
     outcome: "Veriden içgörüye, içgörüden aksiyona.",
-    title: "Verilerinizi karar gücüne dönüştürün.",
+    titleParts: ["Verilerinizi karar", "gücüne dönüştürün."],
     description: "Farklı kaynaklardaki verileri anlaşılır raporlarda ve canlı panellerde buluşturuyoruz. Performansınızı takip etmenizi, değişimleri görmenizi ve sonraki adımı veriye dayanarak planlamanızı kolaylaştırıyoruz.",
     items: ["Canlı raporlama & özel paneller", "Analitik izleme", "Anlaşılır veri görselleştirmeleri"],
   },
   {
     id: "strategy", icon: FiSettings, label: "Akıllı sistemler",
-    image: "/images/smart-systems.png",
+    image: "/images/smart-systems.jpg",
     outcome: "Birbirine bağlı süreçler. Tek merkezden güçlü yönetim.",
-    title: "İşinizin tüm süreçleri, aynı merkezde.",
+    titleParts: ["İşinizin tüm süreçleri,", "aynı merkezde."],
     description: "Yönetim panellerinizi, otomasyonlarınızı ve iş uygulamalarınızı birbiriyle konuşan bir yapıda buluşturuyoruz. Operasyonlarınızı tek merkezden takip etmenizi, tekrarlayan işleri otomatikleştirmenizi ve güncel verilerle karar almanızı sağlıyoruz.",
     items: ["İşinize özel yönetim panelleri", "Süreç otomasyonu & entegre iş sistemleri", "Veri odaklı yönetim & operasyon takibi"],
   },
@@ -117,7 +117,7 @@ export default function Services() {
               <Reveal className="solution-visual-reveal"><SolutionArtwork service={service} onOpen={openPreview} /></Reveal>
               <Reveal className="solution-details" delay={0.12}>
                 <div className="solution-heading-line"><span className="solution-icon"><service.icon aria-hidden="true" /></span><span>{service.label}</span><span className="solution-number" aria-hidden="true">0{i + 1} / 06</span></div>
-                <h3 id={"solution-title-" + service.id}>{service.title}</h3>
+                <h3 id={"solution-title-" + service.id}>{(service.titleParts || [service.title]).map((part, idx, arr) => (<React.Fragment key={idx}>{part}{idx < arr.length - 1 && <br />}</React.Fragment>))}</h3>
                 <p className="solution-description">{service.description}</p>
                 <ul className="solution-capabilities">{service.items.map(item => <li key={item}><FiCheck aria-hidden="true" />{item}</li>)}</ul>
                 <p className="solution-outcome"><span aria-hidden="true" />{service.outcome}</p>

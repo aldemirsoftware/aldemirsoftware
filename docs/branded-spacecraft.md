@@ -1,0 +1,9 @@
+# Branded spacecraft overlay
+
+Asset: `public/images/orbital-ship-branded.png` (1672 × 941, RGBA).
+
+Created with the built-in imagegen tool from `public/images/orbital-horizon.jpg` and the official `public/logo-nonbck.png`. The original files are preserved. The overlay uses true transparency instead of the previous photograph-shaped mask; a vector opacity gradient softens the engine glow. The SVG placement maintains the approximate original ship size and position while keeping the existing floating animation.
+
+## Generation prompt
+
+Use case: compositing / background-extraction. Edit target image 1 is the existing website hero; input image 2 is the official silver A brand mark to apply. Produce a genuine transparent RGBA PNG overlay, 16:9 canvas, preserving the spaceship EXACTLY in its existing normalized position and scale: right side of canvas, ship body roughly x=59.5% to95.2%, y=41% to57.5%, nose pointing right. Preserve the original spacecraft silhouette, perspective, metal panels, lighting and blue engine flames. Remove ALL stars, sky, Milky Way and Earth to true transparency, leaving only the ship and softly fading blue engine glow. No dark rectangular background residue, no horizontal line beneath it, no artificial shadow rectangle, no checkerboard baked in. Add the supplied silver stylized A logo and exact small uppercase words "ALDEMİR SOFTWARE" as a legible premium silver-white decal physically attached to the broad side hull panel behind the cockpit, following hull perspective and lighting. Make the decal visible but tasteful, not a floating watermark. Keep all other ship details unchanged. This overlay will float over a separate animated space background, so all edges must be smoothly antialiased with clean alpha, and engine glow must fade naturally to alpha zero. Keep large empty transparent left and top/bottom margins; do not center or enlarge the ship.

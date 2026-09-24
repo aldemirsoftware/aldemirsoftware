@@ -64,6 +64,17 @@ const solutions = [
 export default function SectorSolutions() {
   return (
     <section className="sector-solutions" aria-labelledby="sector-solutions-title">
+      <div className="sector-cosmos" aria-hidden="true">
+        <div className="sector-nebula" />
+        <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+          <g className="sector-orbits" fill="none" stroke="currentColor">
+            <ellipse cx="600" cy="350" rx="530" ry="190" transform="rotate(-24 600 350)" />
+            <ellipse cx="600" cy="350" rx="460" ry="270" transform="rotate(28 600 350)" />
+            <ellipse cx="600" cy="350" rx="320" ry="310" />
+          </g>
+          <g fill="currentColor"><circle cx="135" cy="185" r="2" /><circle cx="1030" cy="190" r="3" /><circle cx="890" cy="560" r="2" /><circle cx="350" cy="600" r="3" /><circle cx="640" cy="75" r="2" /></g>
+        </svg>
+      </div>
       <Reveal className="sector-heading">
         <div>
           <div className="eyebrow">SEKTÖREL ÇÖZÜMLER</div>
@@ -81,12 +92,15 @@ export default function SectorSolutions() {
         <ul className="sector-grid">
           {solutions.map(({ title, description, icon: Icon }, index) => (
             <li className="sector-item" key={title}>
+              <a className="sector-card" href="#contact" aria-label={`${title} hakkında görüşelim`}>
               <div className="sector-item-top" aria-hidden="true">
                 <Icon />
                 <span>{String(index + 1).padStart(2, "0")}</span>
               </div>
               <h4>{title}</h4>
               <p>{description}</p>
+              <span className="sector-card-link">Birlikte geliştirelim <FiArrowUpRight aria-hidden="true" /></span>
+              </a>
             </li>
           ))}
         </ul>

@@ -21,6 +21,12 @@ export default function Footer() {
               <h3>Aldemir Software</h3>
               <a href="#about">Hakkımızda</a>
               <a href="#contact">İletişim</a>
+              <a href="/sss">S.S.S</a>
+            </div>
+            <div>
+              <h3>Sosyal Medya</h3>
+              <a href="https://x.com/aldemirsoftware" target="_blank" rel="noopener noreferrer">X <FiArrowUpRight aria-hidden="true" /></a>
+              <a href="https://instagram.com/aldemirsoftware" target="_blank" rel="noopener noreferrer">Instagram <FiArrowUpRight aria-hidden="true" /></a>
               <a
                 href="https://www.linkedin.com/company/aldemi%CC%87rsoftware/"
                 target="_blank"

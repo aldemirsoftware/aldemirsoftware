@@ -1,0 +1,12 @@
+/* Native cursors retain exact pointer positioning without a tracking overlay. */
+@media (hover: hover) and (pointer: fine) {
+  html, body, .App { cursor: url('../assets/cursors/orbit-arrow.svg') 2 2, auto; }
+  a, button, summary, select, [role="button"], [role="link"],
+  [class*="-card"], [class*="-panel"], .sector-item, .engineering-layer,
+  .solution-row, .solution-poster-button, .vision-card, .tech-item, .about-emblem-stage {
+    cursor: url('../assets/cursors/orbit-hand.svg') 10 2, pointer;
+  }
+  input, textarea, [contenteditable="true"] { cursor: text; }
+  button:disabled, input:disabled, select:disabled { cursor: not-allowed; }
+  [aria-busy="true"] { cursor: progress; }
+}

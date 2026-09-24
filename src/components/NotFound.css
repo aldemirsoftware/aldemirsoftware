@@ -1,0 +1,18 @@
+.not-found { position: relative; isolation: isolate; min-height: 100svh; overflow: hidden; display: flex; align-items: center; padding: 130px 0 160px; background: #020811; }
+.not-found .hero-space-scene { z-index: -2; }
+.not-found .orbital-shade { z-index: -1; }
+.not-found-brand { position: absolute; top: 28px; left: max(24px, calc((100vw - 1280px) / 2)); display: flex; gap: 14px; align-items: center; color: #e4efff; font-size: 13px; font-weight: 700; letter-spacing: .15em; }
+.not-found-brand img { object-fit: contain; }
+.not-found-copy h1 { font-size: clamp(44px, 5.5vw, 78px); line-height: 1.1; letter-spacing: -.05em; margin: 24px 0; }
+.not-found-copy h1 span { color: #a4cff2; }
+.not-found-copy p { max-width: 520px; color: #adc3d9; font-size: 16px; line-height: 1.8; }
+.not-found .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+.faq-page { align-items: flex-start; padding-bottom: 90px; }
+.faq-page .hero-space-scene, .faq-page > .orbital-shade { position: fixed; }
+.faq-page .not-found-copy h1 { font-size: clamp(36px, 4vw, 56px); }
+.faq-page .site-faq { width: min(100%, 740px); max-width: none; margin: 28px 0 0; padding: 12px 24px; border: 1px solid #91bdd430; border-radius: 18px; background: #04101dde; backdrop-filter: blur(12px); }
+.faq-page .site-faq > .eyebrow, .faq-page .site-faq > h2 { display: none; }
+.faq-page .site-faq details:last-child { border-bottom: 0; }
+.faq-page .site-faq summary { line-height: 1.6; }
+.faq-page .site-faq details p { font-size: 14px; }
+@media(max-width:700px) { .not-found { padding: 120px 0 180px; } .not-found-copy p { font-size: 14px; } }

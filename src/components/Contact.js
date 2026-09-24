@@ -80,6 +80,7 @@ export default function Contact() {
             </span>
           </div>
           <div className="contact-socials">
+            <a href="https://x.com/aldemirsoftware" target="_blank" rel="noopener noreferrer">X <FiArrowUpRight aria-hidden="true" /></a>
             <a
               href="https://www.linkedin.com/company/aldemi%CC%87rsoftware/"
               target="_blank"
@@ -96,7 +97,7 @@ export default function Contact() {
             </a>
           </div>
         </Reveal>
-        <Reveal className="contact-form-wrapper glass-card">
+        <Reveal id="contact-form" tabIndex={-1} className="contact-form-wrapper glass-card">
           <div className="form-heading">
             <h3>Projenizi anlatın.</h3>
             <FiMail aria-hidden="true" />

@@ -17,16 +17,31 @@
 .about-emblem-orbit-one::before { content: ""; position: absolute; left: 15%; top: 14%; width: 5px; height: 5px; border-radius: 50%; background: #a9dfff; box-shadow: 0 0 16px #80c6ff; }
 .about-emblem-orbit-two { width: 85%; top: 170px; aspect-ratio: 2.8; transform: rotate(-18deg) translateZ(15px); border-color: #9dceee18; }
 .about-emblem-wordmark { display: flex; flex-direction: column; align-items: center; gap: 5px; transform: translateZ(45px); margin-top: 8px; }
-.about-emblem-wordmark strong { font-family: var(--heading); font-size: 29px; letter-spacing: .17em; font-weight: 600; color: #e0edf8; }
-.about-emblem-wordmark > span { font-size: 12px; letter-spacing: .5em; color: #a1bdd6; padding-left: .5em; }
+.about-emblem-wordmark strong,
+.about-emblem-wordmark > span {
+  font-family: var(--heading);
+  font-weight: 800;
+  color: #dce0e3;
+  background-image:
+    repeating-linear-gradient(0deg, #ffffff14 0, #ffffff14 .5px, transparent .5px, transparent 2px),
+    linear-gradient(165deg, #fafbfc 4%, #c8cdd1 27%, #f4f5f6 43%, #858e96 52%, #d9dde0 68%, #a1a9af 87%, #edf0f2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 #5e6872) drop-shadow(0 3px 3px #000b);
+}
+.about-emblem-wordmark strong { font-size: 48px; line-height: 1.15; letter-spacing: .12em; padding-left: .12em; }
+.about-emblem-wordmark > span { font-size: 20px; line-height: 1.4; letter-spacing: .43em; padding-left: .43em; }
 .about-emblem-promise { margin: 24px 0 30px; font-size: 14px; line-height: 1.8; text-align: center; color: #e1edfa; transform: translateZ(28px); }
 .about-emblem-promise > span { color: #8cabc6; }
 .about-emblem-footer { margin-top: auto; padding-top: 20px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; border-top: 1px solid #a7d0ef24; transform: translateZ(20px); }
 .about-emblem-footer > div { display: flex; align-items: center; gap: 12px; }
-.about-emblem-footer .turkish-flag { width: 34px; height: 23px; }
-.about-emblem-footer span { font-size: 11px; line-height: 1.8; color: #9eb9ce; }
+.about-emblem-footer .turkish-flag { width: 34px; height: 23px; flex-shrink: 0; }
+.about-emblem-footer span { font-size: 11px; line-height: 1.6; color: #9eb9ce; }
 .about-emblem-footer strong { font-weight: 500; color: #d0e3f3; }
-.about-emblem-footer > svg { width: 19px; height: 19px; color: #a4c8e5; }
+.about-emblem-location { gap: 8px !important; }
+.about-emblem-location span { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; color: #d0e3f3; white-space: nowrap; }
+.about-emblem-footer svg { width: 18px; height: 18px; color: #a4c8e5; flex-shrink: 0; }
 .about-corporate .about-copy h2 { font-size: clamp(30px, 3.3vw, 45px); line-height: 1.18; letter-spacing: -.045em; margin: 22px 0 26px; text-wrap: balance; }
 .about-narrative { display: grid; gap: 16px; color: #a8bfd4; font-size: 15px; line-height: 1.85; }
 .about-narrative strong { color: #e0ecf7; font-weight: 500; }
@@ -56,8 +71,8 @@
   .about-logo-focus { width: min(100%, 250px); margin-top: 30px; }
   .about-emblem-orbit { top: 65px; }
   .about-emblem-orbit-two { top: 140px; }
-  .about-emblem-wordmark strong { font-size: 25px; }
-  .about-emblem-wordmark > span { font-size: 10px; }
+  .about-emblem-wordmark strong { font-size: clamp(30px, 8.5vw, 38px); }
+  .about-emblem-wordmark > span { font-size: clamp(14px, 4vw, 17px); }
   .about-emblem-promise { font-size: 13px; margin: 20px 0 24px; }
   .about-narrative { font-size: 14px; }
   .about-corporate .about-copy h2 { font-size: 32px; }
