@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig, motion, useScroll } from "framer-motion";
 import SEO from "./components/SEO";
@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import NotFound from "./components/NotFound";
 import FAQPage from "./components/FAQPage";
+import MusicPlayer from "./components/MusicPlayer";
 import "./App.css";
 import "./Space.css";
 import "./components/HeroRefined.css";
@@ -23,15 +24,20 @@ import "./components/EngineeringInteractive.css";
 import "./components/FuturisticCursor.css";
 function App() {
   const { scrollYProgress } = useScroll();
-  const faqPage = ["/sss", "/sss/", "/sss.html"].includes(window.location.pathname);
-  const notFound = (!faqPage && !["/", "/index.html"].includes(window.location.pathname)) || document.documentElement.dataset.page === "404";
+  const [navigation, setNavigation] = useState(0);
   useEffect(() => {
-    if (notFound || faqPage) return;
+    const update = () => setNavigation(value => value + 1);
+    window.addEventListener("popstate", update);
+    return () => window.removeEventListener("popstate", update);
+  }, []);
+  const faqPage = ["/sss", "/sss/", "/sss.html"].includes(window.location.pathname);
+  const notFound = !faqPage && !["/", "/index.html"].includes(window.location.pathname);
+  useEffect(() => {
     const navigateToHash = () => {
       let id;
       try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
       const target = document.getElementById(id);
-      if (!target) return;
+      if (!target) { if (navigation) window.scrollTo({ top: 0, behavior: "instant" }); return; }
       target.scrollIntoView({ block: "start", behavior: "instant" });
       if (id === "contact-form") target.focus({ preventScroll: true });
     };
@@ -43,11 +49,19 @@ function App() {
       window.removeEventListener("load", navigateToHash);
       window.removeEventListener("hashchange", navigateToHash);
     };
-  }, [notFound, faqPage]);
+  }, [notFound, faqPage, navigation]);
   return (
     <HelmetProvider>
       <MotionConfig reducedMotion="user">
-        <div className="App" onDragStartCapture={(event) => {
+        <div className="App" onClickCapture={(event) => {
+          const link = event.target.closest?.("a[href]");
+          if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target || link.hasAttribute("download")) return;
+          const url = new URL(link.href, window.location.href);
+          if (url.origin !== window.location.origin || url.pathname === window.location.pathname || /\.[a-z0-9]+$/i.test(url.pathname)) return;
+          event.preventDefault();
+          window.history.pushState({}, "", url.pathname + url.search + url.hash);
+          setNavigation(value => value + 1);
+        }} onDragStartCapture={(event) => {
           if (event.target.closest?.("img, svg, picture, a:has(img), a:has(svg)")) {
             event.preventDefault();
           }
@@ -73,6 +87,7 @@ function App() {
           </main>
           <Footer />
           <ScrollToTop /></>}
+          <MusicPlayer />
         </div>
       </MotionConfig>
     </HelmetProvider>

@@ -28,6 +28,7 @@ jest.mock("framer-motion", () => {
 let container;
 let root;
 beforeEach(() => {
+  window.matchMedia = jest.fn(() => ({ matches: false, addEventListener: jest.fn(), removeEventListener: jest.fn() }));
   global.IS_REACT_ACT_ENVIRONMENT = true;
   global.IntersectionObserver = class {
     observe() {}
