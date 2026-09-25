@@ -9,3 +9,19 @@
 @media(max-width: 420px) { .nav-inner { gap: 8px; } .nav-end { padding-left: 5px; gap: 3px; } .nav-inner .brand { gap: 6px; font-size: 14px; letter-spacing: 1px; } .nav-inner .brand-sub { font-size: 8px; letter-spacing: 4px; } .nav-inner .brand img { width: 32px; height: 32px; } .language-switcher { gap: 0; } }
 .site-header .nav-end .language-switcher .turkish-flag,
 .site-header .nav-end .language-switcher .british-flag { width: 36px; height: 24px; flex-shrink: 0; filter: none; }
+.language-switcher .german-flag,
+.site-header .nav-end .language-switcher .german-flag { width: 36px; height: 24px; flex-shrink: 0; border-radius: 3px; overflow: hidden; }
+@media(max-width: 420px) {
+  .site-header .nav-inner { gap: 5px; }
+  .site-header .nav-inner .brand { gap: 5px; font-size: 12px; letter-spacing: .5px; }
+  .site-header .nav-inner .brand img { width: 28px; height: 28px; }
+  .site-header .nav-inner .brand-sub { font-size: 7px; letter-spacing: 3px; }
+  .site-header .nav-end { padding-left: 3px; gap: 1px; }
+  .language-switcher button { width: 40px; padding: 2px; }
+}
+@media(max-width: 350px) {
+  .site-header .nav-inner .brand > span { display: none; }
+}
+.footer-photo-credit summary { width: fit-content; cursor: pointer; color: #91a7bc; }
+.footer-photo-credit summary:focus-visible { outline: 2px solid #a6dfff; outline-offset: 4px; }
+.footer-photo-credit p { margin-top: 8px; }

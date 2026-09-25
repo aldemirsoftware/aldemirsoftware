@@ -259,3 +259,21 @@
   .hero-slide-selector { width: 26px; }
   .hero-slide-count { display: none; }
 }
+
+/* Let complete sentences wrap naturally across a wider copy column. */
+.hero-refined .hero-description { width: 100%; max-width: 720px; min-height: 3.4em; text-wrap: pretty; }
+.hero-refined .hero-faq-link { white-space: nowrap; }
+@media(min-width: 1001px) {
+  .hero-refined .orbital-copy { width: 65%; max-width: 790px; }
+}
+@media(max-width: 700px) {
+  .hero-refined .hero-actions { display: grid; align-items: stretch; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto; }
+  .hero-refined .hero-actions .button { padding: 10px 8px; gap: 5px; justify-content: center; }
+  .hero-refined .hero-actions .button svg { display: none; }
+  .hero-refined .hero-description { min-height: 6.8em; }
+}
+@media(max-width: 360px) {
+  .hero-refined .hero-actions { grid-template-columns: 1fr 1fr; }
+  .hero-refined .hero-actions .hero-faq-link { grid-column: 2; }
+}
+html[lang="de"] .hero-refined h1 { overflow-wrap: anywhere; hyphens: auto; }

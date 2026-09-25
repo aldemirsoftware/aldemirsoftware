@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import {
   FiArrowUpRight, FiArrowDown, FiGlobe, FiCode,
-  FiSmartphone, FiLayers, FiPause, FiPlay,
+  FiSmartphone, FiLayers, FiPause, FiPlay, FiHelpCircle,
 } from "react-icons/fi";
 import { TurkishFlag } from "./Brand";
 import OrbitalScene from "./OrbitalScene";
@@ -111,11 +111,12 @@ export default function Hero() {
                 <span className={lineIndex === 2 ? "hero-line hero-line-accent" : "hero-line"} key={line}>{t(line)}</span>
               ))}
             </h1>
-            <p className="hero-description">{(slide.descriptionParts || [slide.description]).map((part, idx, arr) => (<React.Fragment key={idx}>{t(part)}{idx < arr.length - 1 && <br />}</React.Fragment>))}</p>
+            <p className="hero-description">{(slide.descriptionParts || [slide.description]).map((part, idx, arr) => (<React.Fragment key={idx}>{t(part)}{idx < arr.length - 1 && " "}</React.Fragment>))}</p>
           </div>
           <div className="hero-actions">
             <a href="#contact" className="button button-primary">{t("Projenizi konuşalım ")}<FiArrowUpRight aria-hidden="true" /></a>
             <a href="#services" className="button button-glass">{t("Çözümlerimizi inceleyin ")}<FiArrowDown aria-hidden="true" /></a>
+            <a href="/sss" className="button button-glass hero-faq-link">{t("S.S.S")} <FiHelpCircle aria-hidden="true" /></a>
           </div>
           <div className="hero-slide-controls" role="group" aria-label={t("Tanıtım mesajları")}>
             <div className="hero-slide-selectors">

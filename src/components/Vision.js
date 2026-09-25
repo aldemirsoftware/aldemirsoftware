@@ -1,7 +1,7 @@
 import { useTranslation } from "../i18n/Language";
 import React from "react";
 import { FiSliders, FiTarget, FiSend } from "react-icons/fi";
-import EnglishArtwork from "./EnglishArtwork";
+import LocalizedArtwork from "./LocalizedArtwork";
 import Reveal from "./Reveal";
 const principles = [
   {
@@ -53,7 +53,7 @@ export default function Vision() {
               className={`vision-card glass-card vision-${principle.image}`}
             >
               <div className="vision-art" aria-hidden="true">
-                {language === "en" ? <EnglishArtwork title={principle.title} description={principle.caption} Icon={principle.icon} /> : <img
+                {language !== "tr" ? <LocalizedArtwork title={principle.title} description={principle.caption} Icon={principle.icon} /> : <img
                   src={`/images/${principle.image}.jpg`}
                   alt=""
                   loading="lazy"

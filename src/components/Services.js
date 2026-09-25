@@ -2,7 +2,7 @@ import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { FiGlobe, FiCode, FiSmartphone, FiCloud, FiBarChart2, FiSettings, FiArrowUpRight, FiMaximize2, FiX, FiPlus, FiMinus, FiCheck } from "react-icons/fi";
-import EnglishArtwork from "./EnglishArtwork";
+import LocalizedArtwork from "./LocalizedArtwork";
 import Reveal from "./Reveal";
 
 const services = [
@@ -71,7 +71,7 @@ function SolutionArtwork({ service, onOpen }) {
       <div className="solution-orbit solution-orbit-two" aria-hidden="true" />
       <div className="solution-poster-frame" ref={frameRef}>
         <button type="button" className="solution-poster-button" onClick={() => onOpen(service)} aria-label={t(service.label + " görselini büyüt")}>
-          {language === "en" ? <EnglishArtwork title={service.label} description={service.outcome} items={service.items} Icon={service.icon} /> : <img src={service.image || "/images/" + service.id + ".jpg"} alt={t(service.label + ": " + service.outcome)} width="1122" height="1402" loading="lazy" decoding="async" />}
+          {language !== "tr" ? <LocalizedArtwork title={service.label} description={service.outcome} items={service.items} Icon={service.icon} /> : <img src={service.image || "/images/" + service.id + ".jpg"} alt={t(service.label + ": " + service.outcome)} width="1122" height="1402" loading="lazy" decoding="async" />}
         </button>
       </div>
       <button type="button" className="solution-expand" onClick={() => onOpen(service)} aria-label={t(service.label + " görselini incele")}><FiMaximize2 aria-hidden="true" />{t(" Görseli incele")}</button>
@@ -139,7 +139,7 @@ export default function Services() {
             <button type="button" aria-label={t("Görseli kapat")} onClick={() => setPreview(null)}><FiX aria-hidden="true" /></button>
           </div>
           <div className={"solution-preview-scroll" + (zoomed ? " is-zoomed" : "")} tabIndex={0} aria-label={t("Görsel alanı; yakınlaştırdıktan sonra kaydırabilirsiniz")}>
-            {language === "en" ? <EnglishArtwork title={preview.label} description={preview.outcome} items={preview.items} Icon={preview.icon} /> : <img src={preview.image || "/images/" + preview.id + ".jpg"} alt={t(preview.label + " hizmet afişi")} width="1122" height="1402" />}
+            {language !== "tr" ? <LocalizedArtwork title={preview.label} description={preview.outcome} items={preview.items} Icon={preview.icon} /> : <img src={preview.image || "/images/" + preview.id + ".jpg"} alt={t(preview.label + " hizmet afişi")} width="1122" height="1402" />}
           </div>
         </dialog>
       )}

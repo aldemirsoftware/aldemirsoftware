@@ -232,3 +232,29 @@ it("switches the entire site without replacing music or clearing the form, and k
   expect(container.querySelector('h1').textContent).toContain('Sıkça sorulan');
   window.history.replaceState({}, '', '/');
 });
+it('supports German throughout home, FAQ and 404 while retaining the audio element', () => {
+  window.matchMedia.mockReturnValue({ matches: true, addEventListener: jest.fn(), removeEventListener: jest.fn() });
+  render(<App />);
+  const audio = container.querySelector('audio');
+  try {
+    act(() => container.querySelector('[aria-label="Deutsch"]').click());
+    expect(localStorage.getItem('aldemir-language')).toBe('de');
+    expect(document.documentElement.lang).toBe('de');
+    expect(container.querySelector('.nav-contact').textContent).toContain('Zusammenarbeiten');
+    expect(container.querySelector('#tech').textContent).toContain('Unsere sichtbaren Leistungen');
+    expect(container.querySelector('#contact').textContent).toContain('Nachricht senden');
+    expect(container.querySelector('.hero-description br')).toBeNull();
+    expect(container.querySelector('.footer-photo-credit').open).toBe(false);
+    act(() => container.querySelector('.hero-faq-link').click());
+    expect(container.querySelector('.site-faq').textContent).toContain('Welche Softwareleistungen bieten Sie an?');
+    const missingLink = document.createElement('a');
+    missingLink.href = '/missing-german-page';
+    container.querySelector('.App').appendChild(missingLink);
+    act(() => missingLink.click());
+    expect(container.querySelector('h1').textContent).toContain('vom Kurs abgekommen.');
+    expect(container.querySelector('audio')).toBe(audio);
+  } finally {
+    act(() => container.querySelector('[aria-label="Türkçe"]').click());
+    window.history.replaceState({}, '', '/');
+  }
+});

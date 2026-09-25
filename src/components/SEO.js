@@ -8,7 +8,7 @@ export default function SEO({ notFound = false, faqPage = false }) {
   return (
     <Helmet>
       <html lang={language} />
-      <meta property="og:locale" content={language === "en" ? "en_GB" : "tr_TR"} />
+      <meta property="og:locale" content={({ en: "en_GB", de: "de_DE", tr: "tr_TR" })[language]} />
       <title>{title}</title>
       <meta name="title" content={title} />
       <meta property="og:title" content={title} />

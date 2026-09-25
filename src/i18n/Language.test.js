@@ -7,3 +7,12 @@ test('translates dynamic labels and retains meaningful brand names', () => {
   expect(translate('  İletişim ', 'en')).toBe('  Contact ');
   expect(translate('İletişim', 'tr')).toBe('İletişim');
 });
+
+test('German has a complete dictionary and translates dynamic labels', () => {
+  const english = require('./en.json');
+  const german = require('./de.json');
+  expect(Object.keys(german).sort()).toEqual(Object.keys(english).sort());
+  expect(Object.values(german).every(value => typeof value === 'string' && value.trim())).toBe(true);
+  expect(translate('Web çözümleri görselini incele', 'de')).toBe('Weblösungen — Bild ansehen');
+  expect(translate('Müzik ses ayarları', 'de')).toBe('Musikeinstellungen');
+});

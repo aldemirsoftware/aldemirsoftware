@@ -48,10 +48,8 @@ export default function Footer() {
         <div className="footer-bottom">
           <p>
             © {new Date().getFullYear()}{t(" Aldemir Software. Tüm hakları saklıdır.")}</p>
-          <span>WEB · SOFTWARE · DIGITAL SYSTEMS</span>
-        </div>
-        <p className="footer-photo-credit">{t("Samanyolu fotoğrafı: ")}<a href="https://www.eso.org/public/images/eso0932a/" target="_blank" rel="noopener noreferrer">ESO/S. Brunier</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>{t(" · Kadraj ve renk uyarlaması.")}</p>
-      </div>
+          <span>{t("WEB · SOFTWARE · DIGITAL SYSTEMS")}</span>
+        </div>     </div>
     </footer>
   );
 }
