@@ -15,6 +15,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import NotFound from "./components/NotFound";
 import FAQPage from "./components/FAQPage";
 import MusicPlayer from "./components/MusicPlayer";
+import GalaxyJourney from "./components/GalaxyJourney";
 import "./App.css";
 import "./Space.css";
 import "./components/HeroRefined.css";
@@ -67,6 +68,7 @@ function App() {
           }
         }}>
           <SEO notFound={notFound} faqPage={faqPage} />
+          {!notFound && !faqPage && <GalaxyJourney />}
           <a className="skip-link" href="#main-content">
             İçeriğe geç
           </a>

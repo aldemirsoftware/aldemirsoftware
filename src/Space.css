@@ -62,9 +62,56 @@
   background: var(--ice);
 }
 .nav-links .nav-contact {
-  background: linear-gradient(125deg, #9dcfff20, #539ae50a);
-  border-color: #aad8ff40;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(125deg, #bde8ff, #7bb9e8);
+  border-color: #d6efff;
   border-radius: 8px;
+  color: #071a2c;
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 #ffffffb0, 0 0 20px #76c8ff24;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.nav-links .nav-contact::before {
+  content: "";
+  position: absolute;
+  inset: -50% -80%;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 40%, #ffffff80 50%, transparent 60%);
+  transform: translateX(-65%);
+  transition: transform .65s ease;
+}
+.nav-links .nav-contact:is(:hover, :focus-visible) {
+  color: #071a2c;
+  border-color: #effaff;
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 #fff, 0 6px 24px #67bcff45, 0 0 12px #a4dfff30;
+}
+.nav-links .nav-contact:is(:hover, :focus-visible)::before {
+  transform: translateX(65%);
+}
+.nav-links .nav-contact svg {
+  transition: transform .25s ease;
+}
+.nav-links .nav-contact:is(:hover, :focus-visible) svg {
+  transform: translate(2px, -2px);
+}
+.nav-links .nav-contact:focus-visible {
+  outline: 2px solid #e3f6ff;
+  outline-offset: 4px;
+}
+.nav-links .nav-contact:active {
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-links .nav-contact,
+  .nav-links .nav-contact::before,
+  .nav-links .nav-contact svg { transition: none; }
+  .nav-links .nav-contact::before { display: none; }
+  .nav-links .nav-contact:is(:hover, :focus-visible),
+  .nav-links .nav-contact:is(:hover, :focus-visible) svg { transform: none; }
 }
 .nav-end {
   padding-left: 18px;
