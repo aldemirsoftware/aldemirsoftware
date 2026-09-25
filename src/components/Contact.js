@@ -1,3 +1,4 @@
+import { useTranslation } from "../i18n/Language";
 import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import {
@@ -11,6 +12,7 @@ import {
 import Reveal from "./Reveal";
 const emptyForm = { name: "", email: "", phone: "", message: "" };
 export default function Contact() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState(emptyForm);
   const [status, setStatus] = useState("idle");
   const sending = useRef(false);
@@ -57,17 +59,11 @@ export default function Contact() {
       <div className="container contact-layout">
         <Reveal className="contact-copy">
           <div className="eyebrow">
-            <span className="section-index">05 /</span> BİRLİKTE BAŞLAYALIM
-          </div>
-          <h2 id="contact-title">
-            Projelerinizi birlikte
-            <br />
-            <span>yörüngeye taşıyalım.</span>
+            <span className="section-index">05 /</span>{t(" BİRLİKTE BAŞLAYALIM")}</div>
+          <h2 id="contact-title">{t("Projelerinizi birlikte")}<br />
+            <span>{t("yörüngeye taşıyalım.")}</span>
           </h2>
-          <p>
-            Web, mobil ve özel yazılım altyapılarıyla markanızı geleceğe
-            taşıyoruz. Hedeflerinizi paylaşın; ilk adımı birlikte planlayalım.
-          </p>
+          <p>{t("Web, mobil ve özel yazılım altyapılarıyla markanızı geleceğe taşıyoruz. Hedeflerinizi paylaşın; ilk adımı birlikte planlayalım.")}</p>
           <a className="contact-email" href="mailto:info@aldemirsoftware.com">
             info@aldemirsoftware.com <FiArrowUpRight aria-hidden="true" />
           </a>
@@ -76,8 +72,7 @@ export default function Contact() {
               <FiPhone aria-hidden="true" /> +90 505 078 46 35
             </a>
             <span>
-              <FiMapPin aria-hidden="true" /> Uşak, Türkiye
-            </span>
+              <FiMapPin aria-hidden="true" />{t(" Uşak, Türkiye")}</span>
           </div>
           <div className="contact-socials">
             <a href="https://x.com/aldemirsoftware" target="_blank" rel="noopener noreferrer">X <FiArrowUpRight aria-hidden="true" /></a>
@@ -99,18 +94,15 @@ export default function Contact() {
         </Reveal>
         <Reveal id="contact-form" tabIndex={-1} className="contact-form-wrapper glass-card">
           <div className="form-heading">
-            <h3>Projenizi anlatın.</h3>
+            <h3>{t("Projenizi anlatın.")}</h3>
             <FiMail aria-hidden="true" />
           </div>
-          <p className="form-intro">
-            İhtiyacınızı paylaşın, birlikte değerlendirelim.
-          </p>
+          <p className="form-intro">{t("İhtiyacınızı paylaşın, birlikte değerlendirelim.")}</p>
           <form onSubmit={handleSubmit} aria-busy={status === "sending"}>
             <fieldset disabled={status === "sending"}>
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="name">
-                    Adınız soyadınız <span>*</span>
+                  <label htmlFor="name">{t("Adınız soyadınız ")}<span>*</span>
                   </label>
                   <input
                     id="name"
@@ -120,12 +112,11 @@ export default function Contact() {
                     maxLength={120}
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Adınız ve soyadınız"
+                    placeholder={t("Adınız ve soyadınız")}
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">
-                    E-posta adresiniz <span>*</span>
+                  <label htmlFor="email">{t("E-posta adresiniz ")}<span>*</span>
                   </label>
                   <input
                     id="email"
@@ -136,13 +127,12 @@ export default function Contact() {
                     maxLength={254}
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="siz@sirketiniz.com"
+                    placeholder={t("siz@sirketiniz.com")}
                   />
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="phone">
-                  Telefon <span className="optional">(isteğe bağlı)</span>
+                <label htmlFor="phone">{t("Telefon ")}<span className="optional">{t("(isteğe bağlı)")}</span>
                 </label>
                 <input
                   id="phone"
@@ -156,8 +146,7 @@ export default function Contact() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="message">
-                  Neler yapmak istiyorsunuz? <span>*</span>
+                <label htmlFor="message">{t("Neler yapmak istiyorsunuz? ")}<span>*</span>
                 </label>
                 <textarea
                   id="message"
@@ -167,37 +156,29 @@ export default function Contact() {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Projeniz, hedefleriniz ve ihtiyaçlarınız…"
+                  placeholder={t("Projeniz, hedefleriniz ve ihtiyaçlarınız…")}
                 />
               </div>
-              <p className="form-note">
-                Lütfen yalnızca projenizi değerlendirmemiz için gerekli
-                bilgileri paylaşın.
-              </p>
+              <p className="form-note">{t("Lütfen yalnızca projenizi değerlendirmemiz için gerekli bilgileri paylaşın.")}</p>
               <button
                 className="button button-primary submit-button"
                 type="submit"
                 disabled={status === "sending"}
               >
-                {status === "sending" ? "Gönderiliyor…" : "Mesajınızı gönderin"}
+                {t(status === "sending" ? "Gönderiliyor…" : "Mesajınızı gönderin")}
                 <FiArrowUpRight aria-hidden="true" />
               </button>
             </fieldset>
             <div className="form-feedback" role="status" aria-live="polite">
               {status === "success" && (
                 <p className="feedback-success">
-                  <FiCheckCircle aria-hidden="true" /> Mesajınız iletildi.
-                  Sizinle iletişime geçeceğiz.
-                </p>
+                  <FiCheckCircle aria-hidden="true" />{t(" Mesajınız iletildi. Sizinle iletişime geçeceğiz.")}</p>
               )}
               {status === "error" && (
                 <p className="feedback-error">
                   <FiAlertCircle aria-hidden="true" />
-                  <span>
-                    Mesajınız gönderilemedi. Tekrar deneyebilir veya{" "}
-                    <a href="mailto:info@aldemirsoftware.com">
-                      e-posta ile ulaşabilirsiniz.
-                    </a>
+                  <span>{t("Mesajınız gönderilemedi. Tekrar deneyebilir veya")}{t(" ")}
+                    <a href="mailto:info@aldemirsoftware.com">{t("e-posta ile ulaşabilirsiniz.")}</a>
                   </span>
                 </p>
               )}

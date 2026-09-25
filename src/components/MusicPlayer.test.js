@@ -33,3 +33,13 @@ it("does not restart automatically after the user takes control", async () => {
   await act(async () => jest.advanceTimersByTime(15000));
   expect(play).toHaveBeenCalledTimes(1);
 });
+it("keeps volume controls open inside and dismisses outside without replacing audio", () => {
+  act(() => root.render(<MusicPlayer />));
+  const audio = container.querySelector("audio");
+  act(() => container.querySelector('[aria-label="Müzik ses ayarları"]').click());
+  act(() => container.querySelector('input[type="range"]').dispatchEvent(new Event("pointerdown", { bubbles: true })));
+  expect(container.querySelector(".music-panel")).not.toBeNull();
+  act(() => document.body.dispatchEvent(new Event("pointerdown", { bubbles: true })));
+  expect(container.querySelector(".music-panel")).toBeNull();
+  expect(container.querySelector("audio")).toBe(audio);
+});

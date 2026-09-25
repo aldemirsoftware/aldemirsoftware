@@ -1,3 +1,4 @@
+import { useTranslation } from "../i18n/Language";
 import React from "react";
 import {
   FiArrowUpRight,
@@ -62,6 +63,7 @@ const solutions = [
 ];
 
 export default function SectorSolutions() {
+  const { t } = useTranslation();
   return (
     <section className="sector-solutions" aria-labelledby="sector-solutions-title">
       <div className="sector-cosmos" aria-hidden="true">
@@ -77,38 +79,33 @@ export default function SectorSolutions() {
       </div>
       <Reveal className="sector-heading">
         <div>
-          <div className="eyebrow">SEKTÖREL ÇÖZÜMLER</div>
-          <h3 id="sector-solutions-title">
-            Sektörünüze özel<br />
-            <span>dijital çözümler.</span>
+          <div className="eyebrow">{t("SEKTÖREL ÇÖZÜMLER")}</div>
+          <h3 id="sector-solutions-title">{t("Sektörünüze özel")}<br />
+            <span>{t("dijital çözümler.")}</span>
           </h3>
         </div>
-        <p>
-          Web ve mobil çözümlerimizin yanında, sektörünüzün çalışma düzenine
-          uyarlanan yönetim ve otomasyon sistemleri de geliştiriyoruz.
-        </p>
+        <p>{t("Web ve mobil çözümlerimizin yanında, sektörünüzün çalışma düzenine uyarlanan yönetim ve otomasyon sistemleri de geliştiriyoruz.")}</p>
       </Reveal>
       <Reveal>
         <ul className="sector-grid">
           {solutions.map(({ title, description, icon: Icon }, index) => (
             <li className="sector-item" key={title}>
-              <a className="sector-card" href="#contact" aria-label={`${title} hakkında görüşelim`}>
+              <a className="sector-card" href="#contact" aria-label={t(`${title} hakkında görüşelim`)}>
               <div className="sector-item-top" aria-hidden="true">
                 <Icon />
                 <span>{String(index + 1).padStart(2, "0")}</span>
               </div>
-              <h4>{title}</h4>
-              <p>{description}</p>
-              <span className="sector-card-link">Birlikte geliştirelim <FiArrowUpRight aria-hidden="true" /></span>
+              <h4>{t(title)}</h4>
+              <p>{t(description)}</p>
+              <span className="sector-card-link">{t("Birlikte geliştirelim ")}<FiArrowUpRight aria-hidden="true" /></span>
               </a>
             </li>
           ))}
         </ul>
       </Reveal>
       <Reveal className="sector-footer">
-        <p>Hazır kalıplar yerine, işletmenizin ihtiyaçlarına göre şekillenen sistemler.</p>
-        <a className="text-link" href="#contact">
-          İhtiyacınızı konuşalım <FiArrowUpRight aria-hidden="true" />
+        <p>{t("Hazır kalıplar yerine, işletmenizin ihtiyaçlarına göre şekillenen sistemler.")}</p>
+        <a className="text-link" href="#contact">{t("İhtiyacınızı konuşalım ")}<FiArrowUpRight aria-hidden="true" />
         </a>
       </Reveal>
     </section>

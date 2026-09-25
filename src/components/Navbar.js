@@ -1,6 +1,8 @@
+import { useTranslation } from "../i18n/Language";
 import React, { useState, useEffect, useRef } from "react";
 import { FiArrowUpRight, FiMenu, FiX } from "react-icons/fi";
-import Brand, { TurkishFlag } from "./Brand";
+import Brand from "./Brand";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const links = [
   ["services", "Uzmanlıklarımız"],
@@ -10,6 +12,7 @@ const links = [
 ];
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
@@ -62,15 +65,15 @@ export default function Navbar() {
       ref={header}
       className={`site-header ${scrolled ? "is-scrolled" : ""}`}
     >
-      <nav className="container nav-inner" aria-label="Ana menü">
+      <nav className="container nav-inner" aria-label={t("Ana menü")}>
         <Brand />
         <div className="nav-end">
-          <TurkishFlag />
+          <LanguageSwitcher />
           <button
             ref={toggle}
             type="button"
             className="menu-toggle"
-            aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
+            aria-label={t(open ? "Menüyü kapat" : "Menüyü aç")}
             aria-expanded={open}
             aria-controls="main-navigation"
             onClick={() => setOpen(!open)}
@@ -97,15 +100,14 @@ export default function Navbar() {
               aria-current={active === id ? "location" : undefined}
               onClick={() => setOpen(false)}
             >
-              {label}
+              {t(label)}
             </a>
           ))}
           <a
             className="nav-contact"
             href="#contact"
             onClick={() => setOpen(false)}
-          >
-            Birlikte çalışalım <FiArrowUpRight aria-hidden="true" />
+          >{t("Birlikte çalışalım ")}<FiArrowUpRight aria-hidden="true" />
           </a>
         </div>
       </nav>

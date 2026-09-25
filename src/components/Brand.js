@@ -1,12 +1,14 @@
+import { useTranslation } from "../i18n/Language";
 import React from "react";
 
 export function TurkishFlag({ className = "" }) {
+  const { t } = useTranslation();
   return (
     <svg
       className={`turkish-flag ${className}`}
       viewBox="0 0 60 40"
       role="img"
-      aria-label="Türk bayrağı"
+      aria-label={t("Türk bayrağı")}
     >
       <rect width="60" height="40" rx="3" fill="#e30a17" />
       <circle cx="22" cy="20" r="10" fill="white" />
@@ -17,11 +19,13 @@ export function TurkishFlag({ className = "" }) {
 }
 
 export default function Brand() {
+  const { t } = useTranslation();
   return (
-    <a className="brand" href="#home" aria-label="Aldemir Software ana sayfa">
+    <a className="brand" href="#home" aria-label={t("Aldemir Software ana sayfa")}>
       <img src="/logo-nonbck.png" alt="" width="46" height="46" />
       <span>
-        ALDEMİR<span className="brand-sub">SOFTWARE</span>
+        <span className="brand-name">ALDEMİR</span>
+        <span className="brand-sub">SOFTWARE</span>
       </span>
     </a>
   );

@@ -1,3 +1,4 @@
+import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import {
@@ -66,6 +67,7 @@ const destinations = [
 ];
 
 export default function Hero() {
+  const { t } = useTranslation();
   const reduced = useReducedMotion();
   const heroRef = useRef(null);
   const [index, setIndex] = useState(0);
@@ -103,26 +105,26 @@ export default function Hero() {
       <div className="container orbital-content">
         <div className="orbital-copy" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
           <div className="hero-message" key={index} aria-live={paused ? "polite" : "off"}>
-            <div className="eyebrow"><span className="signal-line" />{slide.eyebrow}</div>
+            <div className="eyebrow"><span className="signal-line" />{t(slide.eyebrow)}</div>
             <h1 id="hero-title">
               {slide.lines.map((line, lineIndex) => (
-                <span className={lineIndex === 2 ? "hero-line hero-line-accent" : "hero-line"} key={line}>{line}</span>
+                <span className={lineIndex === 2 ? "hero-line hero-line-accent" : "hero-line"} key={line}>{t(line)}</span>
               ))}
             </h1>
-            <p className="hero-description">{(slide.descriptionParts || [slide.description]).map((part, idx, arr) => (<React.Fragment key={idx}>{part}{idx < arr.length - 1 && <br />}</React.Fragment>))}</p>
+            <p className="hero-description">{(slide.descriptionParts || [slide.description]).map((part, idx, arr) => (<React.Fragment key={idx}>{t(part)}{idx < arr.length - 1 && <br />}</React.Fragment>))}</p>
           </div>
           <div className="hero-actions">
-            <a href="#contact" className="button button-primary">Projenizi konuşalım <FiArrowUpRight aria-hidden="true" /></a>
-            <a href="#services" className="button button-glass">Çözümlerimizi inceleyin <FiArrowDown aria-hidden="true" /></a>
+            <a href="#contact" className="button button-primary">{t("Projenizi konuşalım ")}<FiArrowUpRight aria-hidden="true" /></a>
+            <a href="#services" className="button button-glass">{t("Çözümlerimizi inceleyin ")}<FiArrowDown aria-hidden="true" /></a>
           </div>
-          <div className="hero-slide-controls" role="group" aria-label="Tanıtım mesajları">
+          <div className="hero-slide-controls" role="group" aria-label={t("Tanıtım mesajları")}>
             <div className="hero-slide-selectors">
               {heroSlides.map((item, itemIndex) => (
                 <button
                   type="button"
                   key={item.label}
                   className="hero-slide-selector"
-                  aria-label={item.label}
+                  aria-label={t(item.label)}
                   aria-pressed={index === itemIndex}
                   onClick={() => { setIndex(itemIndex); setPaused(true); }}
                   onFocus={() => setPaused(true)}
@@ -131,24 +133,24 @@ export default function Hero() {
             </div>
             <span className="hero-slide-count" aria-hidden="true">0{index + 1} / 0{heroSlides.length}</span>
             {!reduced && (
-              <button type="button" className="hero-slide-toggle" aria-label={paused ? "Otomatik geçişi başlat" : "Otomatik geçişi durdur"} onClick={() => setPaused((value) => !value)}>
+              <button type="button" className="hero-slide-toggle" aria-label={t(paused ? "Otomatik geçişi başlat" : "Otomatik geçişi durdur")} onClick={() => setPaused((value) => !value)}>
                 {paused ? <FiPlay aria-hidden="true" /> : <FiPause aria-hidden="true" />}
               </button>
             )}
           </div>
           <div className="hero-origin">
             <TurkishFlag />
-            <span>Uşak’tan Türkiye’ye.<small>İşiniz için güvenilir teknoloji ortaklığı.</small></span>
+            <span>{t("Uşak’tan Türkiye’ye.")}<small>{t("İşiniz için güvenilir teknoloji ortaklığı.")}</small></span>
           </div>
         </div>
-        <div className="hero-scene-caption" aria-hidden="true">İhtiyacınıza özel yazılım.<br /><span>Uzun vadeli iş ortaklığı.</span></div>
+        <div className="hero-scene-caption" aria-hidden="true">{t("İhtiyacınıza özel yazılım.")}<br /><span>{t("Uzun vadeli iş ortaklığı.")}</span></div>
       </div>
       <div className="container orbital-footer">
-        <div className="mission-dock" aria-label="Çözüm alanlarımız">
+        <div className="mission-dock" aria-label={t("Çözüm alanlarımız")}>
           {destinations.map(([name, description, href, Icon]) => (
             <a href={href} key={name}>
               <Icon aria-hidden="true" />
-              <div><strong>{name}</strong><span>{description}</span></div>
+              <div><strong>{t(name)}</strong><span>{t(description)}</span></div>
               <FiArrowUpRight className="dock-arrow" aria-hidden="true" />
             </a>
           ))}

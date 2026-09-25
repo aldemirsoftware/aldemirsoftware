@@ -1,3 +1,4 @@
+import { useTranslation } from "../i18n/Language";
 import React, { useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { FiArrowUpRight, FiUsers, FiLink, FiTrendingUp, FiMapPin } from "react-icons/fi";
@@ -21,6 +22,7 @@ const principles = [
   ],
 ];
 export default function About() {
+  const { t } = useTranslation();
   const reduced = useReducedMotion();
   const panelRef = useRef(null);
   const reset = () => {
@@ -48,20 +50,20 @@ export default function About() {
           <div className="about-emblem-topline"><span>ALDEMİR SOFTWARE</span><span className="about-emblem-point" aria-hidden="true" /></div>
           <div className="about-logo-focus"><img
             src="/logo-nonbck.png"
-            alt="Aldemir Software logosu"
+            alt={t("Aldemir Software logosu")}
             loading="lazy"
             width="300"
             height="300"
           /></div>
           <div className="about-emblem-wordmark"><strong>ALDEMİR</strong><span>SOFTWARE</span></div>
-          <p className="about-emblem-promise">Güçlü mühendislik.<br /><span>Geleceğe yön veren çözümler.</span></p>
+          <p className="about-emblem-promise">{t("Güçlü mühendislik.")}<br /><span>{t("Geleceğe yön veren çözümler.")}</span></p>
           <div className="about-emblem-footer">
             <div className="about-emblem-origin">
               <TurkishFlag />
-              <span>Türkiye'den<br /><strong>Dünyaya.</strong></span>
+              <span>{t("Türkiye'den")}<br /><strong>{t("Dünyaya.")}</strong></span>
             </div>
             <div className="about-emblem-location">
-              <span>UŞAK, TÜRKİYE</span>
+              <span>{t("UŞAK, TÜRKİYE")}</span>
               <FiMapPin aria-hidden="true" />
             </div>
           </div>
@@ -70,31 +72,27 @@ export default function About() {
         </Reveal>
         <Reveal className="about-copy">
           <div className="eyebrow">
-            <span className="section-index">03 /</span> BİZ ALDEMİR SOFTWARE'İZ
-          </div>
-          <h2 id="about-title">
-            Teknolojiyi işiniz için
-            <br />
-            <span>kalıcı değere dönüştürüyoruz.</span>
+            <span className="section-index">03 /</span>{t(" BİZ ALDEMİR SOFTWARE'İZ")}</div>
+          <h2 id="about-title">{t("Teknolojiyi işiniz için")}<br />
+            <span>{t("kalıcı değere dönüştürüyoruz.")}</span>
           </h2>
           <div className="about-narrative">
-            <p><strong>Uşak merkezli Aldemir Software olarak</strong>, şirketlerin, kurumların ve girişimcilerin dijital dönüşümüne eşlik ediyoruz. Stratejik teknoloji danışmanlığından özel yazılım geliştirmeye kadar, iş hedeflerinizi merkeze alan bir yaklaşımla çalışıyoruz.</p>
-            <p>Güncel teknolojileri mühendislik disiplinimizle birleştirerek operasyonlarınızı güçlendiren, rekabet gücünüzü artırmayı hedefleyen sürdürülebilir çözümler sunuyoruz. Web, mobil ve kurumsal sistemleri işletmenizin çalışma biçimine göre tasarlıyoruz.</p>
-            <p className="about-vision-statement">Vizyonumuz, teknoloji partneri olduğumuz her işletmenin geleceğe güvenle ilerlemesini sağlamak; bugünün ihtiyaçlarını karşılarken yarının fırsatlarına hazır olmaktır.</p>
+            <p><strong>{t("Uşak merkezli Aldemir Software olarak")}</strong>{t(", şirketlerin, kurumların ve girişimcilerin dijital dönüşümüne eşlik ediyoruz. Stratejik teknoloji danışmanlığından özel yazılım geliştirmeye kadar, iş hedeflerinizi merkeze alan bir yaklaşımla çalışıyoruz.")}</p>
+            <p>{t("Güncel teknolojileri mühendislik disiplinimizle birleştirerek operasyonlarınızı güçlendiren, rekabet gücünüzü artırmayı hedefleyen sürdürülebilir çözümler sunuyoruz. Web, mobil ve kurumsal sistemleri işletmenizin çalışma biçimine göre tasarlıyoruz.")}</p>
+            <p className="about-vision-statement">{t("Vizyonumuz, teknoloji partneri olduğumuz her işletmenin geleceğe güvenle ilerlemesini sağlamak; bugünün ihtiyaçlarını karşılarken yarının fırsatlarına hazır olmaktır.")}</p>
           </div>
           <div className="principles">
             {principles.map(([title, description, Icon]) => (
               <div className="principle" key={title}>
                 <Icon aria-hidden="true" />
                 <div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
+                  <h3>{t(title)}</h3>
+                  <p>{t(description)}</p>
                 </div>
               </div>
             ))}
           </div>
-          <a href="#contact" className="text-link">
-            İşinizi ve hedeflerinizi konuşalım <FiArrowUpRight aria-hidden="true" />
+          <a href="#contact" className="text-link">{t("İşinizi ve hedeflerinizi konuşalım ")}<FiArrowUpRight aria-hidden="true" />
           </a>
         </Reveal>
       </div>

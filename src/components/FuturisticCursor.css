@@ -7,6 +7,11 @@
     cursor: url('../assets/cursors/orbit-hand.svg') 10 2, pointer;
   }
   input, textarea, [contenteditable="true"] { cursor: text; }
+  input[type="range"] { cursor: url('../assets/cursors/orbit-hand.svg') 10 2, pointer; }
+  input[type="range"]::-webkit-slider-thumb { cursor: inherit; }
+  input[type="range"]::-webkit-slider-runnable-track { cursor: inherit; }
+  input[type="range"]::-moz-range-thumb { cursor: inherit; }
+  input[type="range"]::-moz-range-track { cursor: inherit; }
   button:disabled, input:disabled, select:disabled { cursor: not-allowed; }
   [aria-busy="true"] { cursor: progress; }
 }

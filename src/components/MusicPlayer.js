@@ -1,3 +1,4 @@
+import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useRef, useState } from "react";
 import { FiMusic, FiPause, FiPlay, FiVolume2, FiVolumeX, FiX } from "react-icons/fi";
 import "./MusicPlayer.css";
@@ -14,13 +15,23 @@ export default function MusicPlayer() {
 }
 
 function DesktopMusicPlayer() {
+  const { t } = useTranslation();
   const audio = useRef(null);
+  const player = useRef(null);
   const [open, setOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [error, setError] = useState("");
   const [volume, setVolume] = useState(.15);
   const userControlled = useRef(false);
+  useEffect(() => {
+    if (!open) return;
+    const closeOutside = event => {
+      if (!player.current?.contains(event.target)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    return () => document.removeEventListener("pointerdown", closeOutside);
+  }, [open]);
   useEffect(() => {
     audio.current.volume = volume;
   }, [volume]);
@@ -54,23 +65,23 @@ function DesktopMusicPlayer() {
     if (muted || volume === 0) { setMuted(false); if (volume === 0) setVolume(.15); }
     else setMuted(true);
   };
-  return <aside className="music-player" aria-label="Arka plan müziği" onKeyDown={event => { if (event.key === "Escape") setOpen(false); }}>
+  return <aside ref={player} className="music-player" aria-label={t("Arka plan müziği")} onKeyDown={event => { if (event.key === "Escape") setOpen(false); }}>
     <audio ref={audio} src="/audio/attuned-space-music.mp3" preload="none" loop muted={muted}
       onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
       onError={() => { setPlaying(false); setError("Müzik yüklenemedi. Lütfen tekrar deneyin."); }} />
     {open && <div className="music-panel" id="music-settings">
-      <div className="music-heading"><span>UZAYIN RİTMİ</span><button type="button" onClick={() => setOpen(false)} aria-label="Müzik panelini kapat"><FiX /></button></div>
+      <div className="music-heading"><span>{t("UZAYIN RİTMİ")}</span><button type="button" onClick={() => setOpen(false)} aria-label={t("Müzik panelini kapat")}><FiX /></button></div>
       <p>Attuned <span>· The Intangible</span></p>
-      <div className="music-volume"><button type="button" onClick={toggleMute} aria-label={muted || volume === 0 ? "Sesi aç" : "Sessize al"} aria-pressed={muted || volume === 0}>{muted || volume === 0 ? <FiVolumeX /> : <FiVolume2 />}</button>
-        <label htmlFor="music-volume">Ses seviyesi</label>
+      <div className="music-volume"><button type="button" onClick={toggleMute} aria-label={t(muted || volume === 0 ? "Sesi aç" : "Sessize al")} aria-pressed={muted || volume === 0}>{muted || volume === 0 ? <FiVolumeX /> : <FiVolume2 />}</button>
+        <label htmlFor="music-volume">{t("Ses seviyesi")}</label>
         <input id="music-volume" type="range" min="0" max="100" value={Math.round(volume * 100)} onChange={event => { setVolume(Number(event.target.value) / 100); setMuted(false); }} />
         <output htmlFor="music-volume">{Math.round(volume * 100)}%</output>
       </div>
     </div>}
-    {error && <p className="music-error" role="status">{error}</p>}
+    {error && <p className="music-error" role="status">{t(error)}</p>}
     <div className="music-dock">
-      <button type="button" className="music-play" onClick={togglePlayback} aria-label={playing ? "Müziği duraklat" : "Müziği aç"}>{playing ? <FiPause /> : <FiPlay />}<span>{playing ? "Müzik açık" : "Müziği aç"}</span></button>
-      <button type="button" onClick={() => setOpen(!open)} aria-label="Müzik ses ayarları" aria-expanded={open} aria-controls="music-settings"><FiMusic /></button>
+      <button type="button" className="music-play" onClick={togglePlayback} aria-label={t(playing ? "Müziği duraklat" : "Müziği aç")}>{playing ? <FiPause /> : <FiPlay />}<span>{t(playing ? "Müzik açık" : "Müziği aç")}</span></button>
+      <button type="button" onClick={() => setOpen(!open)} aria-label={t("Müzik ses ayarları")} aria-expanded={open} aria-controls="music-settings"><FiMusic /></button>
     </div>
   </aside>;
 }

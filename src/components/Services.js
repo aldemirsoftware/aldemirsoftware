@@ -1,6 +1,8 @@
+import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { FiGlobe, FiCode, FiSmartphone, FiCloud, FiBarChart2, FiSettings, FiArrowUpRight, FiMaximize2, FiX, FiPlus, FiMinus, FiCheck } from "react-icons/fi";
+import EnglishArtwork from "./EnglishArtwork";
 import Reveal from "./Reveal";
 
 const services = [
@@ -50,6 +52,7 @@ const services = [
 ];
 
 function SolutionArtwork({ service, onOpen }) {
+  const { t, language } = useTranslation();
   const reduced = useReducedMotion();
   const frameRef = useRef(null);
   const reset = () => {
@@ -67,16 +70,17 @@ function SolutionArtwork({ service, onOpen }) {
       <div className="solution-orbit solution-orbit-one" aria-hidden="true" />
       <div className="solution-orbit solution-orbit-two" aria-hidden="true" />
       <div className="solution-poster-frame" ref={frameRef}>
-        <button type="button" className="solution-poster-button" onClick={() => onOpen(service)} aria-label={service.label + " görselini büyüt"}>
-          <img src={service.image || "/images/" + service.id + ".jpg"} alt={service.label + ": " + service.outcome} width="1122" height="1402" loading="lazy" decoding="async" />
+        <button type="button" className="solution-poster-button" onClick={() => onOpen(service)} aria-label={t(service.label + " görselini büyüt")}>
+          {language === "en" ? <EnglishArtwork title={service.label} description={service.outcome} items={service.items} Icon={service.icon} /> : <img src={service.image || "/images/" + service.id + ".jpg"} alt={t(service.label + ": " + service.outcome)} width="1122" height="1402" loading="lazy" decoding="async" />}
         </button>
       </div>
-      <button type="button" className="solution-expand" onClick={() => onOpen(service)} aria-label={service.label + " görselini incele"}><FiMaximize2 aria-hidden="true" /> Görseli incele</button>
+      <button type="button" className="solution-expand" onClick={() => onOpen(service)} aria-label={t(service.label + " görselini incele")}><FiMaximize2 aria-hidden="true" />{t(" Görseli incele")}</button>
     </div>
   );
 }
 
 export default function Services() {
+  const { t, language } = useTranslation();
   const [preview, setPreview] = useState(null);
   const [zoomed, setZoomed] = useState(false);
   const dialogRef = useRef(null);
@@ -103,25 +107,25 @@ export default function Services() {
       <div className="container">
         <Reveal className="section-heading">
           <div>
-            <div className="eyebrow"><span className="section-index">01 /</span> ÇÖZÜM EVRENİMİZ</div>
-            <h2 id="services-title">İşinizin her boyutuna,<br /><span>doğru dijital çözüm.</span></h2>
+            <div className="eyebrow"><span className="section-index">01 /</span>{t(" ÇÖZÜM EVRENİMİZ")}</div>
+            <h2 id="services-title">{t("İşinizin her boyutuna,")}<br /><span>{t("doğru dijital çözüm.")}</span></h2>
           </div>
-          <p>İlk temas noktanızdan arka plandaki operasyonlarınıza kadar, birbiriyle uyumlu dijital çözümler geliştiriyoruz. İhtiyacınız olan alanı keşfedin.</p>
+          <p>{t("İlk temas noktanızdan arka plandaki operasyonlarınıza kadar, birbiriyle uyumlu dijital çözümler geliştiriyoruz. İhtiyacınız olan alanı keşfedin.")}</p>
         </Reveal>
-        <nav className="solution-navigation" aria-label="Çözüm alanlarına hızlı erişim">
-          {services.map((service, i) => <a key={service.id} href={"#solution-" + service.id}><span>0{i + 1}</span><service.icon aria-hidden="true" />{service.label}</a>)}
+        <nav className="solution-navigation" aria-label={t("Çözüm alanlarına hızlı erişim")}>
+          {services.map((service, i) => <a key={service.id} href={"#solution-" + service.id}><span>0{i + 1}</span><service.icon aria-hidden="true" />{t(service.label)}</a>)}
         </nav>
         <div className="solution-gallery">
           {services.map((service, i) => (
             <article key={service.id} className={"solution-feature solution-feature-" + service.id} id={"solution-" + service.id} aria-labelledby={"solution-title-" + service.id}>
               <Reveal className="solution-visual-reveal"><SolutionArtwork service={service} onOpen={openPreview} /></Reveal>
               <Reveal className="solution-details" delay={0.12}>
-                <div className="solution-heading-line"><span className="solution-icon"><service.icon aria-hidden="true" /></span><span>{service.label}</span><span className="solution-number" aria-hidden="true">0{i + 1} / 06</span></div>
-                <h3 id={"solution-title-" + service.id}>{(service.titleParts || [service.title]).map((part, idx, arr) => (<React.Fragment key={idx}>{part}{idx < arr.length - 1 && <br />}</React.Fragment>))}</h3>
-                <p className="solution-description">{service.description}</p>
-                <ul className="solution-capabilities">{service.items.map(item => <li key={item}><FiCheck aria-hidden="true" />{item}</li>)}</ul>
-                <p className="solution-outcome"><span aria-hidden="true" />{service.outcome}</p>
-                <a href="#contact" className="solution-cta" aria-label={service.label + " projenizi konuşalım"}>Projenizi konuşalım <FiArrowUpRight aria-hidden="true" /></a>
+                <div className="solution-heading-line"><span className="solution-icon"><service.icon aria-hidden="true" /></span><span>{t(service.label)}</span><span className="solution-number" aria-hidden="true">0{i + 1} / 06</span></div>
+                <h3 id={"solution-title-" + service.id}>{(service.titleParts || [service.title]).map((part, idx, arr) => (<React.Fragment key={idx}>{t(part)}{idx < arr.length - 1 && <br />}</React.Fragment>))}</h3>
+                <p className="solution-description">{t(service.description)}</p>
+                <ul className="solution-capabilities">{service.items.map(item => <li key={item}><FiCheck aria-hidden="true" />{t(item)}</li>)}</ul>
+                <p className="solution-outcome"><span aria-hidden="true" />{t(service.outcome)}</p>
+                <a href="#contact" className="solution-cta" aria-label={t(service.label + " projenizi konuşalım")}>{t("Projenizi konuşalım ")}<FiArrowUpRight aria-hidden="true" /></a>
               </Reveal>
             </article>
           ))}
@@ -130,12 +134,12 @@ export default function Services() {
       {preview && (
         <dialog ref={dialogRef} className="solution-dialog" aria-labelledby="solution-preview-title" onCancel={(event) => { event.preventDefault(); setPreview(null); }} onClick={(event) => { if (event.target === event.currentTarget) setPreview(null); }}>
           <div className="solution-preview-toolbar">
-            <h2 id="solution-preview-title">{preview.label}</h2>
-            <button type="button" aria-label={zoomed ? "Görseli ekrana sığdır" : "Görsele yakınlaş"} aria-pressed={zoomed} onClick={() => setZoomed(value => !value)}>{zoomed ? <FiMinus aria-hidden="true" /> : <FiPlus aria-hidden="true" />}<span>{zoomed ? "Ekrana sığdır" : "Yakınlaştır"}</span></button>
-            <button type="button" aria-label="Görseli kapat" onClick={() => setPreview(null)}><FiX aria-hidden="true" /></button>
+            <h2 id="solution-preview-title">{t(preview.label)}</h2>
+            <button type="button" aria-label={t(zoomed ? "Görseli ekrana sığdır" : "Görsele yakınlaş")} aria-pressed={zoomed} onClick={() => setZoomed(value => !value)}>{zoomed ? <FiMinus aria-hidden="true" /> : <FiPlus aria-hidden="true" />}<span>{t(zoomed ? "Ekrana sığdır" : "Yakınlaştır")}</span></button>
+            <button type="button" aria-label={t("Görseli kapat")} onClick={() => setPreview(null)}><FiX aria-hidden="true" /></button>
           </div>
-          <div className={"solution-preview-scroll" + (zoomed ? " is-zoomed" : "")} tabIndex={0} aria-label="Görsel alanı; yakınlaştırdıktan sonra kaydırabilirsiniz">
-            <img src={preview.image || "/images/" + preview.id + ".jpg"} alt={preview.label + " hizmet afişi"} width="1122" height="1402" />
+          <div className={"solution-preview-scroll" + (zoomed ? " is-zoomed" : "")} tabIndex={0} aria-label={t("Görsel alanı; yakınlaştırdıktan sonra kaydırabilirsiniz")}>
+            {language === "en" ? <EnglishArtwork title={preview.label} description={preview.outcome} items={preview.items} Icon={preview.icon} /> : <img src={preview.image || "/images/" + preview.id + ".jpg"} alt={t(preview.label + " hizmet afişi")} width="1122" height="1402" />}
           </div>
         </dialog>
       )}

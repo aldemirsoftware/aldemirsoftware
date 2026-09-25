@@ -129,7 +129,7 @@ it("connects every internal navigation link to an existing section", () => {
 
 it("closes the mobile menu on Escape and restores trigger focus", () => {
   render(<Navbar />);
-  const trigger = container.querySelector("button");
+  const trigger = container.querySelector(".menu-toggle");
   click(trigger);
   expect(trigger.getAttribute("aria-expanded")).toBe("true");
   key(document, "Escape");
@@ -208,4 +208,27 @@ it("preserves the message after failure and offers an email alternative", async 
     "Test proje açıklaması",
   );
   expect(container.querySelector('button[type="submit"]').disabled).toBe(false);
+});
+it("switches the entire site without replacing music or clearing the form, and keeps the language on FAQ", () => {
+  window.matchMedia.mockReturnValue({ matches: true, addEventListener: jest.fn(), removeEventListener: jest.fn() });
+  render(<App />);
+  const audio = container.querySelector("audio");
+  const name = container.querySelector('#name');
+  const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
+  act(() => { setter.call(name, 'Language test'); name.dispatchEvent(new Event('input', { bubbles: true })); });
+  act(() => container.querySelector('[aria-label="English"]').click());
+  expect(localStorage.getItem('aldemir-language')).toBe('en');
+  expect(container.querySelector('.nav-contact').textContent).toContain("Let's work together");
+  expect(container.querySelector('#name').value).toBe('Language test');
+  expect(container.querySelector('audio')).toBe(audio);
+  expect(container.querySelector('#services').textContent).toContain('Custom software');
+  expect(container.querySelector('#tech').textContent).toContain('Our Visible Services');
+  expect(container.querySelector('#contact').textContent).toContain('Send your message');
+  act(() => container.querySelector('footer a[href="/sss"]').click());
+  expect(container.querySelector('h1').textContent).toContain('Frequently asked');
+  expect(container.querySelector('.site-faq').textContent).toContain('What software services do you offer?');
+  expect(container.querySelector('audio')).toBe(audio);
+  act(() => container.querySelector('[aria-label="Türkçe"]').click());
+  expect(container.querySelector('h1').textContent).toContain('Sıkça sorulan');
+  window.history.replaceState({}, '', '/');
 });

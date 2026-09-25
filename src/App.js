@@ -1,3 +1,4 @@
+import { useTranslation } from "./i18n/Language";
 import React, { useEffect, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig, motion, useScroll } from "framer-motion";
@@ -24,6 +25,7 @@ import "./components/AboutCorporate.css";
 import "./components/EngineeringInteractive.css";
 import "./components/FuturisticCursor.css";
 function App() {
+  const { t } = useTranslation();
   const { scrollYProgress } = useScroll();
   const [navigation, setNavigation] = useState(0);
   useEffect(() => {
@@ -69,9 +71,7 @@ function App() {
         }}>
           <SEO notFound={notFound} faqPage={faqPage} />
           {!notFound && !faqPage && <GalaxyJourney />}
-          <a className="skip-link" href="#main-content">
-            İçeriğe geç
-          </a>
+          <a className="skip-link" href="#main-content">{t("İçeriğe geç")}</a>
           <motion.div
             className="reading-progress"
             style={{ scaleX: scrollYProgress }}

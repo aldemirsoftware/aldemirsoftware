@@ -1,0 +1,11 @@
+.language-switcher { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+.language-switcher button { display: grid; place-items: center; width: 44px; height: 44px; padding: 4px; border: 1px solid transparent; border-radius: 7px; background: transparent; transition: background .2s, border-color .2s; }
+.language-switcher button:hover { background: #8ccfff20; border-color: #a1d5ff55; }
+.language-switcher button[aria-pressed="true"] { border-bottom-color: #b7e3ff; }
+.language-switcher button:focus-visible { outline: 2px solid #c2eaff; outline-offset: 2px; }
+.language-switcher .turkish-flag, .language-switcher .british-flag { width: 36px; height: 24px; border-radius: 3px; overflow: hidden; filter: none; }
+.not-found > .language-switcher { position: absolute; right: max(20px, 5vw); top: 26px; z-index: 10; }
+@media(max-width: 1100px) { .nav-inner { gap: 18px; } .nav-links { gap: 16px; } .nav-end { padding-left: 10px; gap: 8px; } }
+@media(max-width: 420px) { .nav-inner { gap: 8px; } .nav-end { padding-left: 5px; gap: 3px; } .nav-inner .brand { gap: 6px; font-size: 14px; letter-spacing: 1px; } .nav-inner .brand-sub { font-size: 8px; letter-spacing: 4px; } .nav-inner .brand img { width: 32px; height: 32px; } .language-switcher { gap: 0; } }
+.site-header .nav-end .language-switcher .turkish-flag,
+.site-header .nav-end .language-switcher .british-flag { width: 36px; height: 24px; flex-shrink: 0; filter: none; }

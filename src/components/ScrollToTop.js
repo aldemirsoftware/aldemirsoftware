@@ -1,7 +1,9 @@
+import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { FiArrowUp } from "react-icons/fi";
 export default function ScrollToTop() {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const reduced = useReducedMotion();
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function ScrollToTop() {
       <button
         className="scroll-to-top"
         type="button"
-        aria-label="Sayfanın başına dön"
+        aria-label={t("Sayfanın başına dön")}
         onClick={() =>
           window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" })
         }

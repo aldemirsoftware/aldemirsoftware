@@ -55,6 +55,28 @@
 .brand-sub {
   color: #a7bbd3;
 }
+.brand .brand-name,
+.brand .brand-sub {
+  display: block;
+  color: #dce0e3;
+  background-image:
+    repeating-linear-gradient(0deg, #ffffff12 0, #ffffff12 .5px, transparent .5px, transparent 2px),
+    linear-gradient(165deg, #fafbfc 4%, #c8cdd1 27%, #f4f5f6 43%, #858e96 52%, #d9dde0 68%, #a1a9af 87%, #edf0f2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 #5e6872) drop-shadow(0 2px 2px #0009);
+}
+.brand .brand-name { font-weight: 800; }
+.brand .brand-sub { font-weight: 650; }
+@media (forced-colors: active) {
+  .brand .brand-name,
+  .brand .brand-sub {
+    background: none;
+    -webkit-text-fill-color: LinkText;
+    filter: none;
+  }
+}
 .nav-links {
   gap: 25px;
 }

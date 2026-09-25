@@ -1,3 +1,4 @@
+import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useRef, useState } from "react";
 import {
   FiMonitor,
@@ -20,6 +21,7 @@ import {
 } from "react-icons/fi";
 import Reveal from "./Reveal";
 export default function Engineering() {
+  const { t } = useTranslation();
   const [active, setActive] = useState(null);
   const [paths, setPaths] = useState({});
   const storyRef = useRef(null);
@@ -69,7 +71,7 @@ export default function Engineering() {
       <Reveal className="engineering-visual">
         <img
           src="/images/engineering-depth.jpg"
-          alt="Suyun üzerinde küçük bir bölümü, suyun altında çok daha büyük gövdesi görünen buzdağı; yazılımın görünmeyen mühendislik altyapısını temsil ediyor."
+          alt={t("Suyun üzerinde küçük bir bölümü, suyun altında çok daha büyük gövdesi görünen buzdağı; yazılımın görünmeyen mühendislik altyapısını temsil ediyor.")}
           width="1448"
           height="1086"
           loading="lazy"
@@ -79,7 +81,7 @@ export default function Engineering() {
         <div className="iceberg-caustics" aria-hidden="true" />
         {[ ["surface", "Görünen hizmetlerimizi keşfedin"], ["depth", "Görünmeyen gücümüzü keşfedin"] ].map(([key, label]) => (
           <button key={key} type="button" className={`iceberg-zone iceberg-zone-${key}`} data-zone={key}
-            aria-label={label} aria-controls={`engineering-${key}`} aria-pressed={active === key}
+            aria-label={t(label)} aria-controls={`engineering-${key}`} aria-pressed={active === key}
             onPointerEnter={() => setActive(key)} onPointerLeave={(event) => { if (event.pointerType !== "touch" && document.activeElement !== event.currentTarget) setActive(null); }}
             onFocus={() => setActive(key)} onBlur={() => setActive(null)} onClick={() => {
               setActive(key);
@@ -88,43 +90,35 @@ export default function Engineering() {
               }
             }}>
             <span className="iceberg-beacon" aria-hidden="true" />
-            <span className="iceberg-zone-label">{key === "surface" ? "01 / Görünen" : "02 / Görünmeyen"}</span>
+            <span className="iceberg-zone-label">{t(key === "surface" ? "01 / Görünen" : "02 / Görünmeyen")}</span>
           </button>
         ))}
         <div className="iceberg-caption">
-          <span>GÖRÜNEN HİZMETLERİMİZ</span>
-          <span>GÖRÜNMEYEN GÜCÜMÜZ</span>
+          <span>{t("GÖRÜNEN HİZMETLERİMİZ")}</span>
+          <span>{t("GÖRÜNMEYEN GÜCÜMÜZ")}</span>
         </div>
       </Reveal>
       <div className="engineering-layers">
         <Reveal id="engineering-surface" className="engineering-layer glass-card" {...cardInteraction("surface")}>
-          <span className="layer-label">01 / GÖRÜNEN</span>
-          <h3>Görünen Hizmetlerimiz</h3>
+          <span className="layer-label">{t("01 / GÖRÜNEN")}</span>
+          <h3>{t("Görünen Hizmetlerimiz")}</h3>
           <ul>
             <li>
-              <FiMonitor aria-hidden="true" /> Web Tasarım & Geliştirme
-            </li>
+              <FiMonitor aria-hidden="true" />{t(" Web Tasarım & Geliştirme")}</li>
             <li>
-              <FiCode aria-hidden="true" /> Özel Yazılım Çözümleri
-            </li>
+              <FiCode aria-hidden="true" />{t(" Özel Yazılım Çözümleri")}</li>
             <li>
-              <FiSmartphone aria-hidden="true" /> Mobil Uygulama Geliştirme
-            </li>
+              <FiSmartphone aria-hidden="true" />{t(" Mobil Uygulama Geliştirme")}</li>
             <li>
-              <FiPieChart aria-hidden="true" /> Yönetim Paneli Sistemleri
-            </li>
+              <FiPieChart aria-hidden="true" />{t(" Yönetim Paneli Sistemleri")}</li>
             <li>
-              <FiShoppingCart aria-hidden="true" /> E-Ticaret Çözümleri
-            </li>
+              <FiShoppingCart aria-hidden="true" />{t(" E-Ticaret Çözümleri")}</li>
             <li>
-              <FiUser aria-hidden="true" /> Dijital Danışmanlık
-            </li>
+              <FiUser aria-hidden="true" />{t(" Dijital Danışmanlık")}</li>
             <li>
-              <FiTrendingUp aria-hidden="true" /> SEO & Performans Optimizasyonu
-            </li>
+              <FiTrendingUp aria-hidden="true" />{t(" SEO & Performans Optimizasyonu")}</li>
             <li>
-              <FiHeadphones aria-hidden="true" /> Bakım & Destek Hizmetleri
-            </li>
+              <FiHeadphones aria-hidden="true" />{t(" Bakım & Destek Hizmetleri")}</li>
           </ul>
         </Reveal>
         <Reveal
@@ -133,47 +127,34 @@ export default function Engineering() {
           className="engineering-layer engineering-layer-deep glass-card"
           delay={0.1}
         >
-          <span className="layer-label">02 / GÖRÜNMEYEN</span>
-          <h3>Görünmeyen Gücümüz</h3>
+          <span className="layer-label">{t("02 / GÖRÜNMEYEN")}</span>
+          <h3>{t("Görünmeyen Gücümüz")}</h3>
           <ul>
             <li>
-              <FiZap aria-hidden="true" /> Modern & Güncel Teknolojiler
-            </li>
+              <FiZap aria-hidden="true" />{t(" Modern & Güncel Teknolojiler")}</li>
             <li>
-              <FiShield aria-hidden="true" /> Güvenli & Ölçeklenebilir Altyapı
-            </li>
+              <FiShield aria-hidden="true" />{t(" Güvenli & Ölçeklenebilir Altyapı")}</li>
             <li>
-              <FiActivity aria-hidden="true" /> Performans & Hız Optimizasyonu
-            </li>
+              <FiActivity aria-hidden="true" />{t(" Performans & Hız Optimizasyonu")}</li>
             <li>
-              <FiCode aria-hidden="true" /> Temiz, Sürdürülebilir Kod
-            </li>
+              <FiCode aria-hidden="true" />{t(" Temiz, Sürdürülebilir Kod")}</li>
             <li>
-              <FiLock aria-hidden="true" /> Veri Güvenliği & Gizlilik
-            </li>
+              <FiLock aria-hidden="true" />{t(" Veri Güvenliği & Gizlilik")}</li>
             <li>
-              <FiRefreshCw aria-hidden="true" /> Sürekli Güncelleme & İyileştirme
-            </li>
+              <FiRefreshCw aria-hidden="true" />{t(" Sürekli Güncelleme & İyileştirme")}</li>
             <li>
-              <FiGrid aria-hidden="true" /> Entegrasyon & Otomasyon
-            </li>
+              <FiGrid aria-hidden="true" />{t(" Entegrasyon & Otomasyon")}</li>
             <li>
-              <FiCloud aria-hidden="true" /> Yedekleme & Felaket Kurtarma
-            </li>
+              <FiCloud aria-hidden="true" />{t(" Yedekleme & Felaket Kurtarma")}</li>
             <li>
-              <FiBarChart2 aria-hidden="true" /> Analiz & Raporlama
-            </li>
+              <FiBarChart2 aria-hidden="true" />{t(" Analiz & Raporlama")}</li>
             <li>
-              <FiCheckCircle aria-hidden="true" /> Test & Kalite Güvencesi
-            </li>
+              <FiCheckCircle aria-hidden="true" />{t(" Test & Kalite Güvencesi")}</li>
           </ul>
         </Reveal>
       </div>
       <Reveal className="engineering-quote">
-        <p>
-          Güncel teknolojiler, sağlam altyapı,
-          <br />
-          sürekli iyileştirme ile <strong>kalıcı çözümler.</strong>
+        <p>{t("Güncel teknolojiler, sağlam altyapı,")}<br />{t("sürekli iyileştirme ile ")}<strong>{t("kalıcı çözümler.")}</strong>
         </p>
       </Reveal>
     </div>
