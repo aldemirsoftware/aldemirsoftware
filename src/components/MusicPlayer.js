@@ -2,12 +2,13 @@ import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useRef, useState } from "react";
 import { FiMusic, FiPause, FiPlay, FiVolume2, FiVolumeX, FiX } from "react-icons/fi";
 import "./MusicPlayer.css";
+import isMobileDevice from "../hooks/isMobileDevice";
 
 export default function MusicPlayer() {
-  const [desktop, setDesktop] = useState(() => window.matchMedia("(min-width: 1024px) and (hover: hover) and (pointer: fine)").matches);
+  const [desktop, setDesktop] = useState(() => !isMobileDevice() && window.matchMedia("(min-width: 1024px) and (hover: hover) and (pointer: fine)").matches);
   useEffect(() => {
     const media = window.matchMedia("(min-width: 1024px) and (hover: hover) and (pointer: fine)");
-    const update = () => setDesktop(media.matches);
+    const update = () => setDesktop(!isMobileDevice() && media.matches);
     media.addEventListener?.("change", update);
     return () => media.removeEventListener?.("change", update);
   }, []);

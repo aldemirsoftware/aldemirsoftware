@@ -244,7 +244,6 @@ it('supports German throughout home, FAQ and 404 while retaining the audio eleme
     expect(container.querySelector('#tech').textContent).toContain('Unsere sichtbaren Leistungen');
     expect(container.querySelector('#contact').textContent).toContain('Nachricht senden');
     expect(container.querySelector('.hero-description br')).toBeNull();
-    expect(container.querySelector('.footer-photo-credit').open).toBe(false);
     act(() => container.querySelector('.hero-faq-link').click());
     expect(container.querySelector('.site-faq').textContent).toContain('Welche Softwareleistungen bieten Sie an?');
     const missingLink = document.createElement('a');
@@ -255,6 +254,29 @@ it('supports German throughout home, FAQ and 404 while retaining the audio eleme
     expect(container.querySelector('audio')).toBe(audio);
   } finally {
     act(() => container.querySelector('[aria-label="Türkçe"]').click());
+    window.history.replaceState({}, '', '/');
+  }
+});
+it('does not repeat initial anchor scrolling when loading finishes late', () => {
+  window.history.replaceState({}, '', '/#home');
+  const originalScroll = HTMLElement.prototype.scrollIntoView;
+  const scroll = jest.fn();
+  HTMLElement.prototype.scrollIntoView = scroll;
+  const frame = jest.spyOn(window, 'requestAnimationFrame').mockImplementation(() => 1);
+  try {
+    render(<App />);
+    const initialFrame = frame.mock.calls.map(([callback]) => callback).find(callback => callback.name === 'navigateInitially');
+    expect(initialFrame).toBeDefined();
+    act(() => initialFrame());
+    expect(scroll).toHaveBeenCalledTimes(1);
+    act(() => window.dispatchEvent(new Event('load')));
+    expect(scroll).toHaveBeenCalledTimes(1);
+    window.history.replaceState({}, '', '/#contact-form');
+    act(() => window.dispatchEvent(new Event('hashchange')));
+    expect(scroll).toHaveBeenCalledTimes(2);
+  } finally {
+    frame.mockRestore();
+    HTMLElement.prototype.scrollIntoView = originalScroll;
     window.history.replaceState({}, '', '/');
   }
 });

@@ -1,3 +1,4 @@
+import useLightweightScene from "../hooks/useLightweightScene";
 import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
@@ -52,6 +53,7 @@ const services = [
 ];
 
 function SolutionArtwork({ service, onOpen }) {
+  const lightweight = useLightweightScene();
   const { t, language } = useTranslation();
   const reduced = useReducedMotion();
   const frameRef = useRef(null);
@@ -71,7 +73,7 @@ function SolutionArtwork({ service, onOpen }) {
       <div className="solution-orbit solution-orbit-two" aria-hidden="true" />
       <div className="solution-poster-frame" ref={frameRef}>
         <button type="button" className="solution-poster-button" onClick={() => onOpen(service)} aria-label={t(service.label + " görselini büyüt")}>
-          {language !== "tr" ? <LocalizedArtwork title={service.label} description={service.outcome} items={service.items} Icon={service.icon} /> : <img src={service.image || "/images/" + service.id + ".jpg"} alt={t(service.label + ": " + service.outcome)} width="1122" height="1402" loading="lazy" decoding="async" />}
+          {language !== "tr" ? <LocalizedArtwork title={service.label} description={service.outcome} items={service.items} Icon={service.icon} /> : <img src={lightweight ? `/images/mobile/${service.id === "strategy" ? "smart-systems" : service.id}.jpg` : service.image || "/images/" + service.id + ".jpg"} alt={t(service.label + ": " + service.outcome)} width="1122" height="1402" loading="lazy" decoding="async" />}
         </button>
       </div>
       <button type="button" className="solution-expand" onClick={() => onOpen(service)} aria-label={t(service.label + " görselini incele")}><FiMaximize2 aria-hidden="true" />{t(" Görseli incele")}</button>

@@ -17,6 +17,7 @@ import NotFound from "./components/NotFound";
 import FAQPage from "./components/FAQPage";
 import MusicPlayer from "./components/MusicPlayer";
 import GalaxyJourney from "./components/GalaxyJourney";
+import useOffscreenAnimations from "./hooks/useOffscreenAnimations";
 import "./App.css";
 import "./Space.css";
 import "./components/HeroRefined.css";
@@ -24,6 +25,7 @@ import "./components/SolutionsShowcase.css";
 import "./components/AboutCorporate.css";
 import "./components/EngineeringInteractive.css";
 import "./components/FuturisticCursor.css";
+import "./MobilePerformance.css";
 function App() {
   const { t } = useTranslation();
   const { scrollYProgress } = useScroll();
@@ -34,6 +36,7 @@ function App() {
     return () => window.removeEventListener("popstate", update);
   }, []);
   const faqPage = ["/sss", "/sss/", "/sss.html"].includes(window.location.pathname);
+  useOffscreenAnimations(window.location.pathname);
   const notFound = !faqPage && !["/", "/index.html"].includes(window.location.pathname);
   useEffect(() => {
     const navigateToHash = () => {
@@ -44,12 +47,19 @@ function App() {
       target.scrollIntoView({ block: "start", behavior: "instant" });
       if (id === "contact-form") target.focus({ preventScroll: true });
     };
-    const frame = requestAnimationFrame(navigateToHash);
-    window.addEventListener("load", navigateToHash, { once: true });
+    // A late image/audio load must not pull a visitor back to the original hash.
+    let initialNavigationDone = false;
+    const navigateInitially = () => {
+      if (initialNavigationDone) return;
+      initialNavigationDone = true;
+      navigateToHash();
+    };
+    const frame = requestAnimationFrame(navigateInitially);
+    window.addEventListener("load", navigateInitially, { once: true });
     window.addEventListener("hashchange", navigateToHash);
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("load", navigateToHash);
+      window.removeEventListener("load", navigateInitially);
       window.removeEventListener("hashchange", navigateToHash);
     };
   }, [notFound, faqPage, navigation]);

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import "./GalaxyJourney.css";
+import useLightweightScene from "../hooks/useLightweightScene";
 
 const stars = Array.from({ length: 90 }, (_, i) => ({
   x: ((i * 73.137 + 19) % 100).toFixed(2),
@@ -9,6 +10,7 @@ const stars = Array.from({ length: 90 }, (_, i) => ({
 }));
 
 export default function GalaxyJourney() {
+  const lightweight = useLightweightScene();
   const scene = useRef(null);
   const reduced = useReducedMotion();
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function GalaxyJourney() {
       const start = hero?.offsetHeight || window.innerHeight;
       const distance = Math.max(0, window.scrollY - start * .45);
       const progress = Math.min(1, distance / Math.max(1, document.documentElement.scrollHeight - window.innerHeight - start * .45));
-      const mobile = window.innerWidth < 701;
+      const mobile = lightweight;
       const services = document.getElementById("services");
       const rect = services?.getBoundingClientRect();
       const stage = rect ? Math.max(0, Math.min(1, (window.innerHeight * .5 - rect.top) / rect.height)) : progress;
@@ -46,11 +48,11 @@ export default function GalaxyJourney() {
     window.addEventListener("resize", schedule);
     document.addEventListener("visibilitychange", visibility);
     return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); document.removeEventListener("visibilitychange", visibility); };
-  }, [reduced]);
+  }, [reduced, lightweight]);
   return <div ref={scene} className="galaxy-journey" aria-hidden="true">
-    <div className="journey-milkyway" style={{ backgroundImage: "url(/images/space/milky-way-eso.jpg)" }} />
+    <div className="journey-milkyway" style={{ backgroundImage: `url(/images/space/${lightweight ? "milky-way-mobile.jpg" : "milky-way-eso.jpg"})` }} />
     <div className="journey-nebula" />
-    <div className="journey-stars">{stars.map((star, i) => <i key={i} style={{ left: `${star.x}%`, top: `${star.y}%`, width: star.size, height: star.size, animationDelay: `${-(i % 9)}s`, animationDuration: `${5 + i % 7}s` }} />)}</div>
+    <div className="journey-stars">{(lightweight ? stars.slice(0, 24) : stars).map((star, i) => <i key={i} style={{ left: `${star.x}%`, top: `${star.y}%`, width: star.size, height: star.size, animationDelay: `${-(i % 9)}s`, animationDuration: `${5 + i % 7}s` }} />)}</div>
     <div className="journey-dust" />
     <div className="journey-solar"><div className="journey-sun" /><div className="journey-mars" /></div>
     <div className="journey-saturn"><div className="journey-rings" /><div className="journey-gas-planet" /></div>

@@ -43,3 +43,10 @@ it("keeps volume controls open inside and dismisses outside without replacing au
   expect(container.querySelector(".music-panel")).toBeNull();
   expect(container.querySelector("audio")).toBe(audio);
 });
+it('blocks audio on phones even when desktop pointer and viewport conditions match', () => {
+  jest.spyOn(navigator, 'userAgent', 'get').mockReturnValue('Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)');
+  act(() => root.render(<MusicPlayer />));
+  act(() => jest.advanceTimersByTime(20000));
+  expect(container.querySelector('audio')).toBeNull();
+  expect(play).not.toHaveBeenCalled();
+});

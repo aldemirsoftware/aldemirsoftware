@@ -1,0 +1,26 @@
+/* Keep Safari's overscroll surface dark and avoid pull-to-refresh scroll chains. */
+html, body { background-color: #030810; overscroll-behavior-y: none; }
+#root { min-height: 100vh; min-height: 100svh; background-color: #030810; }
+[data-scene-visible="false"] *,
+[data-scene-visible="false"] *::before,
+[data-scene-visible="false"] *::after { animation-play-state: paused !important; }
+
+@media (max-width: 767px), (pointer: coarse) {
+  /* Retain the space/ocean transitions without large continuously repainted layers. */
+  .galaxy-journey { contain: strict; }
+  .journey-stars, .journey-milkyway { will-change: auto; }
+  .journey-stars i, .journey-earth, .journey-nebula,
+  .journey-water-rays, .journey-water-surface { animation: none; }
+  .journey-stars i { opacity: .5; box-shadow: none; }
+  .journey-water-rays, .journey-water-surface, .engineering-ocean { filter: none; }
+  .journey-sun { box-shadow: 0 0 35px #ffb74a30; }
+  .journey-earth { box-shadow: inset -55px -20px 50px #010611, inset 4px 2px 12px #9edcff70; }
+  .site-header .nav-inner, .nav-links, .glass-card, .mission-dock,
+  .contact-form-wrapper, .music-panel { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .site-header .nav-inner { background: #081421f5; }
+  .contact-form-wrapper { background: #081421f5; }
+  .about-emblem-panel { transform: none; transform-style: flat; }
+  .about-emblem-panel > * { transform: none; }
+  .about-logo-focus img { filter: none; }
+  .sector-nebula, .sector-orbits { animation: none; }
+}

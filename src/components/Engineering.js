@@ -1,3 +1,4 @@
+import useLightweightScene from "../hooks/useLightweightScene";
 import { useTranslation } from "../i18n/Language";
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -21,6 +22,7 @@ import {
 } from "react-icons/fi";
 import Reveal from "./Reveal";
 export default function Engineering() {
+  const lightweight = useLightweightScene();
   const { t } = useTranslation();
   const [active, setActive] = useState(null);
   const [paths, setPaths] = useState({});
@@ -70,7 +72,7 @@ export default function Engineering() {
       </svg>
       <Reveal className="engineering-visual">
         <img
-          src="/images/engineering-depth.jpg"
+          src={lightweight ? "/images/mobile/engineering-depth.jpg" : "/images/engineering-depth.jpg"}
           alt={t("Suyun üzerinde küçük bir bölümü, suyun altında çok daha büyük gövdesi görünen buzdağı; yazılımın görünmeyen mühendislik altyapısını temsil ediyor.")}
           width="1448"
           height="1086"

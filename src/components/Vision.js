@@ -1,3 +1,4 @@
+import useLightweightScene from "../hooks/useLightweightScene";
 import { useTranslation } from "../i18n/Language";
 import React from "react";
 import { FiSliders, FiTarget, FiSend } from "react-icons/fi";
@@ -30,6 +31,7 @@ const principles = [
   },
 ];
 export default function Vision() {
+  const lightweight = useLightweightScene();
   const { t, language } = useTranslation();
   return (
     <section
@@ -54,7 +56,7 @@ export default function Vision() {
             >
               <div className="vision-art" aria-hidden="true">
                 {language !== "tr" ? <LocalizedArtwork title={principle.title} description={principle.caption} Icon={principle.icon} /> : <img
-                  src={`/images/${principle.image}.jpg`}
+                  src={`/images/${lightweight ? "mobile/" : ""}${principle.image}.jpg`}
                   alt=""
                   loading="lazy"
                   decoding="async"

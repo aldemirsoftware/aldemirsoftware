@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import useLightweightScene from "../hooks/useLightweightScene";
 
 export default function Reveal({
   children,
@@ -8,6 +9,11 @@ export default function Reveal({
   ...props
 }) {
   const reduced = useReducedMotion();
+  const lightweight = useLightweightScene();
+  // Touch devices must never depend on an observer/animation to reveal content.
+  if (reduced || lightweight) {
+    return <div className={className} {...props}>{children}</div>;
+  }
   return (
     <motion.div
       className={className}

@@ -1,5 +1,7 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 
+import useLightweightScene from "../hooks/useLightweightScene";
+
 const vertexSource = `
 attribute vec2 a_position;
 void main() { gl_Position = vec4(a_position, 0.0, 1.0); }
@@ -72,6 +74,7 @@ function createShader(gl, type, source) {
 }
 
 export default function OrbitalScene({ reduced, active }) {
+  const lightweight = useLightweightScene();
   const shipMaskId = useId().replace(/:/g, "") + "-engine-fade";
   const canvasRef = useRef(null);
   const controlsRef = useRef(null);
@@ -84,7 +87,7 @@ export default function OrbitalScene({ reduced, active }) {
   }, [active]);
 
   useEffect(() => {
-    if (reduced) return undefined;
+    if (reduced || lightweight) { setReady(false); return undefined; }
     const canvas = canvasRef.current;
     const gl = canvas.getContext("webgl", { alpha: true, antialias: false, powerPreference: "low-power", premultipliedAlpha: false });
     if (!gl) return undefined;
@@ -112,6 +115,7 @@ export default function OrbitalScene({ reduced, active }) {
       if (buffer) gl.deleteBuffer(buffer);
       if (program) gl.deleteProgram(program);
       controlsRef.current = null;
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
 
     try {
@@ -153,8 +157,11 @@ export default function OrbitalScene({ reduced, active }) {
       const resize = () => {
         const rect = canvas.getBoundingClientRect();
         const ratio = Math.min(window.devicePixelRatio || 1, 1.5, 1800 / Math.max(rect.width, 1));
-        canvas.width = Math.max(1, Math.round(rect.width * ratio));
-        canvas.height = Math.max(1, Math.round(rect.height * ratio));
+        const width = Math.max(1, Math.round(rect.width * ratio));
+        const height = Math.max(1, Math.round(rect.height * ratio));
+        if (canvas.width === width && canvas.height === height) return;
+        canvas.width = width;
+        canvas.height = height;
         gl.viewport(0, 0, canvas.width, canvas.height);
         paint();
       };
@@ -203,7 +210,7 @@ export default function OrbitalScene({ reduced, active }) {
       canvas.removeEventListener("webglcontextlost", onContextLost);
       cleanup();
     };
-  }, [reduced]);
+  }, [reduced, lightweight]);
 
   return (
     <div className="hero-space-scene" aria-hidden="true" data-running={active && !reduced} data-earth-ready={ready && !reduced}>
