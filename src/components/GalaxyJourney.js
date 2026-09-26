@@ -14,6 +14,7 @@ export default function GalaxyJourney() {
   const scene = useRef(null);
   const reduced = useReducedMotion();
   useEffect(() => {
+    if (lightweight) return undefined;
     let frame;
     const update = () => {
       frame = null;
@@ -47,6 +48,7 @@ export default function GalaxyJourney() {
     document.addEventListener("visibilitychange", visibility);
     return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); document.removeEventListener("visibilitychange", visibility); };
   }, [reduced, lightweight]);
+  if (lightweight) return null;
   return <div ref={scene} className="galaxy-journey" aria-hidden="true">
     <div className="journey-milkyway" style={{ backgroundImage: `url(/images/space/${lightweight ? "milky-way-mobile.jpg" : "milky-way-eso.jpg"})` }} />
     <div className="journey-nebula" />

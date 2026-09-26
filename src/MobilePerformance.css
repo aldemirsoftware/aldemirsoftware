@@ -24,3 +24,51 @@ html, body { background-color: #030810; overscroll-behavior-y: none; }
   .about-logo-focus img { filter: none; }
   .sector-nebula, .sector-orbits { animation: none; }
 }
+
+/* Touch hardware stays lightweight even in iPad desktop mode or after zooming.
+   Paint the galaxy in normal document flow instead of a viewport-sized GPU layer. */
+.App[data-lightweight="true"] { isolation: auto; }
+.App[data-lightweight="true"] .section,
+.App[data-lightweight="true"] .vision {
+  background-color: #030810;
+  background-image: linear-gradient(#030810b8, #030810a8), var(--mobile-galaxy);
+  background-size: auto, 100% auto;
+  background-repeat: repeat;
+  background-attachment: scroll;
+}
+.App[data-lightweight="true"] .tech-section {
+  background: linear-gradient(#030810, #062131 35%, #04131f 75%, #030810);
+}
+.App[data-lightweight="true"] *,
+.App[data-lightweight="true"] *::before,
+.App[data-lightweight="true"] *::after {
+  will-change: auto !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transform-style: flat !important;
+}
+.App[data-lightweight="true"] .solution-stage,
+.App[data-lightweight="true"] .about-emblem-stage { perspective: none; }
+.App[data-lightweight="true"] .solution-poster-frame,
+.App[data-lightweight="true"] .about-emblem-panel,
+.App[data-lightweight="true"] .about-emblem-panel > *,
+.App[data-lightweight="true"] .hero-spacecraft {
+  transform: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+.App[data-lightweight="true"] .hero-space-scene *,
+.App[data-lightweight="true"] .engineering-story *,
+.App[data-lightweight="true"] .about-emblem-space,
+.App[data-lightweight="true"] .about-emblem-orbit,
+.App[data-lightweight="true"] .sector-orbits,
+.App[data-lightweight="true"] .sector-nebula {
+  animation: none !important;
+  filter: none !important;
+}
+.App[data-lightweight="true"] .hero-earth-canvas,
+.App[data-lightweight="true"] .hero-sunrise,
+.App[data-lightweight="true"] .hero-meteors,
+.App[data-lightweight="true"] .reading-progress { display: none; }
+.App[data-lightweight="true"] .form-group input,
+.App[data-lightweight="true"] .form-group textarea { font-size: 16px; }

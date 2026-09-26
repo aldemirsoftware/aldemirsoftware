@@ -17,6 +17,7 @@ import NotFound from "./components/NotFound";
 import FAQPage from "./components/FAQPage";
 import MusicPlayer from "./components/MusicPlayer";
 import GalaxyJourney from "./components/GalaxyJourney";
+import useLightweightScene from "./hooks/useLightweightScene";
 import useOffscreenAnimations from "./hooks/useOffscreenAnimations";
 import "./App.css";
 import "./Space.css";
@@ -28,6 +29,7 @@ import "./components/FuturisticCursor.css";
 import "./MobilePerformance.css";
 function App() {
   const { t } = useTranslation();
+  const lightweight = useLightweightScene();
   const { scrollYProgress } = useScroll();
   const [navigation, setNavigation] = useState(0);
   useEffect(() => {
@@ -66,7 +68,7 @@ function App() {
   return (
     <HelmetProvider>
       <MotionConfig reducedMotion="user">
-        <div className="App" onClickCapture={(event) => {
+        <div className="App" data-lightweight={lightweight} style={lightweight ? { "--mobile-galaxy": "url(/images/space/milky-way-mobile.jpg)" } : undefined} onClickCapture={(event) => {
           const link = event.target.closest?.("a[href]");
           if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target || link.hasAttribute("download")) return;
           const url = new URL(link.href, window.location.href);
