@@ -80,6 +80,7 @@ export default function OrbitalScene({ reduced, active }) {
   const controlsRef = useRef(null);
   const activeRef = useRef(active);
   const [ready, setReady] = useState(false);
+  const [unavailable, setUnavailable] = useState(false);
 
   useEffect(() => {
     activeRef.current = active;
@@ -88,9 +89,10 @@ export default function OrbitalScene({ reduced, active }) {
 
   useEffect(() => {
     if (reduced || lightweight) { setReady(false); return undefined; }
+    setUnavailable(false);
     const canvas = canvasRef.current;
     const gl = canvas.getContext("webgl", { alpha: true, antialias: false, powerPreference: "low-power", premultipliedAlpha: false });
-    if (!gl) return undefined;
+    if (!gl) { setUnavailable(true); return undefined; }
     let disposed = false;
     let frame = 0;
     let lastFrame = 0;
@@ -115,7 +117,8 @@ export default function OrbitalScene({ reduced, active }) {
       if (buffer) gl.deleteBuffer(buffer);
       if (program) gl.deleteProgram(program);
       controlsRef.current = null;
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      // React StrictMode reuses this canvas when replaying effects. Release our
+      // resources above, but do not invalidate the context needed by the next setup.
     };
 
     try {
@@ -192,16 +195,18 @@ export default function OrbitalScene({ reduced, active }) {
             start();
           }
         };
-        image.onerror = () => { failed = true; stop(); setReady(false); };
+        image.onerror = () => { failed = true; stop(); setReady(false); setUnavailable(true); };
         image.src = src;
       });
     } catch {
+      setUnavailable(true);
       cleanup();
       return undefined;
     }
     const onContextLost = (event) => {
       event.preventDefault();
       failed = true;
+      setUnavailable(true);
       stop();
       setReady(false);
     };
@@ -215,7 +220,7 @@ export default function OrbitalScene({ reduced, active }) {
   return (
     <div className="hero-space-scene" aria-hidden="true" data-running={active && !reduced} data-earth-ready={ready && !reduced}>
       <div className="hero-starfield" style={{ backgroundImage: "url('/images/orbital-background.jpg')" }} />
-      <div className="hero-earth-fallback" style={{ backgroundImage: "url('/images/orbital-background.jpg')" }} />
+      {(lightweight || reduced || unavailable) && <div className="hero-earth-fallback" style={{ backgroundImage: "url('/images/orbital-background.jpg')" }} />}
       <canvas ref={canvasRef} className="hero-earth-canvas" />
       <div className="hero-sunrise" />
       <div className="hero-meteors"><i /><i /><i /></div>
