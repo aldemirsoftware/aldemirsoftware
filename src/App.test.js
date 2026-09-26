@@ -38,6 +38,7 @@ beforeEach(() => {
   document.body.appendChild(container);
   root = createRoot(container);
   emailjs.send.mockReset();
+  localStorage.removeItem("aldemir-contact-next-send");
 });
 afterEach(() => {
   act(() => root.unmount());
@@ -279,4 +280,36 @@ it('does not repeat initial anchor scrolling when loading finishes late', () => 
     HTMLElement.prototype.scrollIntoView = originalScroll;
     window.history.replaceState({}, '', '/');
   }
+});
+
+it("persists the 15 minute wait through remounts and permits sending at expiry", async () => {
+  jest.useFakeTimers();
+  emailjs.send.mockResolvedValue({ status: 200 });
+  try {
+    render(<Contact />);
+    fillForm();
+    await act(async () => submit());
+    expect(container.querySelector('button[type="submit"]').disabled).toBe(true);
+    expect(container.querySelector('#contact-cooldown').textContent).toContain('15:00');
+    render(<div />);
+    render(<Contact />);
+    fillForm();
+    await act(async () => submit());
+    expect(emailjs.send).toHaveBeenCalledTimes(1);
+    act(() => jest.advanceTimersByTime(15 * 60 * 1000));
+    expect(container.querySelector('button[type="submit"]').disabled).toBe(false);
+    await act(async () => submit());
+    expect(emailjs.send).toHaveBeenCalledTimes(2);
+  } finally { jest.useRealTimers(); }
+});
+it("syncs a cooldown written by another tab and blocks direct form submits", async () => {
+  render(<Contact />);
+  fillForm();
+  act(() => {
+    localStorage.setItem('aldemir-contact-next-send', String(Date.now() + 900000));
+    window.dispatchEvent(new Event('storage'));
+  });
+  await act(async () => submit());
+  expect(emailjs.send).not.toHaveBeenCalled();
+  expect(container.querySelector('button[type="submit"]').disabled).toBe(true);
 });

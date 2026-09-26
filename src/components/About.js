@@ -72,13 +72,13 @@ export default function About() {
         </Reveal>
         <Reveal className="about-copy">
           <div className="eyebrow">
-            <span className="section-index">03 /</span>{t(" BİZ ALDEMİR SOFTWARE'İZ")}</div>
+            <span className="section-index">01 /</span>{t(" BİZ ALDEMİR SOFTWARE'İZ")}</div>
           <h2 id="about-title">{t("Teknolojiyi işiniz için")}<br />
             <span>{t("kalıcı değere dönüştürüyoruz.")}</span>
           </h2>
           <div className="about-narrative">
             <p><strong>{t("Uşak merkezli Aldemir Software olarak")}</strong>{t(", şirketlerin, kurumların ve girişimcilerin dijital dönüşümüne eşlik ediyoruz. Stratejik teknoloji danışmanlığından özel yazılım geliştirmeye kadar, iş hedeflerinizi merkeze alan bir yaklaşımla çalışıyoruz.")}</p>
-            <p>{t("Güncel teknolojileri mühendislik disiplinimizle birleştirerek operasyonlarınızı güçlendiren, rekabet gücünüzü artırmayı hedefleyen sürdürülebilir çözümler sunuyoruz. Web, mobil ve kurumsal sistemleri işletmenizin çalışma biçimine göre tasarlıyoruz.")}</p>
+            <p>{t("Uşak’ta web tasarım, özel yazılım ve mobil uygulama geliştirme hizmetleri sunuyoruz. Web tabanlı iş programları, e-ticaret ve kurumsal yönetim sistemlerini işletmenizin çalışma biçimine göre tasarlıyor; bilişim ve teknoloji danışmanlığıyla dijital süreçlerinizi güçlendiriyoruz.")}</p>
             <p className="about-vision-statement">{t("Vizyonumuz, teknoloji partneri olduğumuz her işletmenin geleceğe güvenle ilerlemesini sağlamak; bugünün ihtiyaçlarını karşılarken yarının fırsatlarına hazır olmaktır.")}</p>
           </div>
           <div className="principles">

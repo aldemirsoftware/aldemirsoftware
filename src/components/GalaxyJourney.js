@@ -23,9 +23,7 @@ export default function GalaxyJourney() {
       const distance = Math.max(0, window.scrollY - start * .45);
       const progress = Math.min(1, distance / Math.max(1, document.documentElement.scrollHeight - window.innerHeight - start * .45));
       const mobile = lightweight;
-      const services = document.getElementById("services");
-      const rect = services?.getBoundingClientRect();
-      const stage = rect ? Math.max(0, Math.min(1, (window.innerHeight * .5 - rect.top) / rect.height)) : progress;
+      const stage = progress;
       const oceanRect = document.querySelector(".engineering-story")?.getBoundingClientRect();
       const ocean = oceanRect ? Math.max(0, Math.min(1, (window.innerHeight - oceanRect.top) / (window.innerHeight * .65), oceanRect.bottom / (window.innerHeight * .65))) : 0;
       const weight = (center, spread) => Math.max(0, 1 - Math.abs(stage - center) / spread);

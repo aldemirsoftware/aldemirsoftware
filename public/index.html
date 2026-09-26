@@ -35,17 +35,13 @@
       data-rh="true" name="description"
       content="Uşak merkezli Aldemir Software; özel yazılım, web ve mobil uygulama, kurumsal yönetim sistemleri ve teknoloji danışmanlığıyla işletmenizi geleceğe taşır."
     />
-    <meta
-      name="keywords"
-      content="Aldemir Software, Aldemir, web tasarım, mobil uygulama, yazılım geliştirme, SEO, dijital pazarlama, React, Node.js, Python, tam yığın geliştirme, Türkiye yazılım geliştirme"
-    />
     <meta name="author" content="Aldemir Software" />
     <meta data-rh="true" name="robots" content="index, follow, max-image-preview:large" />
     <link data-rh="true" rel="canonical" href="https://www.aldemirsoftware.com/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.aldemirsoftware.com/" />
+    <meta data-rh="true" property="og:url" content="https://www.aldemirsoftware.com/" />
     <meta
       data-rh="true" property="og:title"
       content="Aldemir Software | Uşak Özel Yazılım ve Web Çözümleri"
@@ -62,54 +58,68 @@
     <meta property="og:site_name" content="Aldemir Software" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.aldemirsoftware.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta data-rh="true" name="twitter:url" content="https://www.aldemirsoftware.com/" />
     <meta
-      data-rh="true" property="twitter:title"
+      data-rh="true" name="twitter:title"
       content="Aldemir Software | Uşak Özel Yazılım ve Web Çözümleri"
     />
     <meta
-      data-rh="true" property="twitter:description"
+      data-rh="true" name="twitter:description"
       content="Dijitalde sınırları aşan çözümler. Web, mobil ve özel yazılım altyapılarıyla markanızı geleceğe taşıyoruz."
     />
     <meta
-      property="twitter:image"
+      name="twitter:image"
       content="https://www.aldemirsoftware.com/images/orbital-background.jpg"
     />
 
     <!-- Google için Schema.org işaretlemesi -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Aldemir Software",
-        "url": "https://www.aldemirsoftware.com/",
-        "logo": "https://www.aldemirsoftware.com/logo-nonbck.png",
-        "description": "İşletmelere özel web ve mobil yazılım geliştirme, teknoloji danışmanlığı, bulut çözümleri ve dijital büyüme",
-        "image": {
-          "@type": "ImageObject",
-          "url": "https://www.aldemirsoftware.com/logo-nonbck.png",
-          "width": 1440,
-          "height": 1440
-        },
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Aldemir Software",
+      "url": "https://www.aldemirsoftware.com/",
+      "logo": "https://www.aldemirsoftware.com/logo-nonbck.png",
+      "description": "Uşak merkezli özel yazılım, web tasarım, mobil uygulama geliştirme ve bilişim danışmanlığı.",
+      "email": "info@aldemirsoftware.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "TR",
+        "addressLocality": "Uşak",
+        "addressRegion": "Uşak"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/aldemi%CC%87rsoftware/",
+        "https://instagram.com/aldemirsoftware",
+        "https://x.com/aldemirsoftware"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Müşteri Hizmetleri",
         "email": "info@aldemirsoftware.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "TR",
-          "addressLocality": "Uşak"
-        },
-        "sameAs": [
-          "https://www.linkedin.com/company/aldemi%CC%87rsoftware/",
-          "https://github.com/ademaldemir",
-          "https://instagram.com/aldemirsoftware"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "Müşteri Hizmetleri",
-          "email": "info@aldemirsoftware.com",
-          "availableLanguage": ["tr", "en"]
-        }
+        "availableLanguage": [
+          "tr",
+          "en"
+        ]
+      },
+      "@id": "https://www.aldemirsoftware.com/#organization",
+      "telephone": "+905050784635"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.aldemirsoftware.com/#website",
+      "url": "https://www.aldemirsoftware.com/",
+      "name": "Aldemir Software",
+      "alternateName": "ALDEMİR SOFTWARE",
+      "publisher": {
+        "@id": "https://www.aldemirsoftware.com/#organization"
       }
+    }
+  ]
+}
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />

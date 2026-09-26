@@ -5,10 +5,10 @@ import Brand from "./Brand";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const links = [
-  ["services", "Uzmanlıklarımız"],
-  ["projects", "İş Ortaklarımız"],
   ["about", "Hakkımızda"],
+  ["projects", "İş Ortaklarımız"],
   ["tech", "Teknolojiler"],
+  ["services", "Uzmanlıklarımız"],
 ];
 
 export default function Navbar() {

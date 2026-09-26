@@ -109,7 +109,7 @@ export default function Services() {
       <div className="container">
         <Reveal className="section-heading">
           <div>
-            <div className="eyebrow"><span className="section-index">01 /</span>{t(" ÇÖZÜM EVRENİMİZ")}</div>
+            <div className="eyebrow"><span className="section-index">04 /</span>{t(" ÇÖZÜM EVRENİMİZ")}</div>
             <h2 id="services-title">{t("İşinizin her boyutuna,")}<br /><span>{t("doğru dijital çözüm.")}</span></h2>
           </div>
           <p>{t("İlk temas noktanızdan arka plandaki operasyonlarınıza kadar, birbiriyle uyumlu dijital çözümler geliştiriyoruz. İhtiyacınız olan alanı keşfedin.")}</p>

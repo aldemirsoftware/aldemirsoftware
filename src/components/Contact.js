@@ -1,5 +1,5 @@
 import { useTranslation } from "../i18n/Language";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import {
   FiArrowUpRight,
@@ -10,12 +10,28 @@ import {
   FiAlertCircle,
 } from "react-icons/fi";
 import Reveal from "./Reveal";
+import { remainingContactSeconds, startContactCooldown, withContactLock } from "../utils/contactCooldown";
 const emptyForm = { name: "", email: "", phone: "", message: "" };
 export default function Contact() {
   const { t } = useTranslation();
   const [formData, setFormData] = useState(emptyForm);
   const [status, setStatus] = useState("idle");
   const sending = useRef(false);
+  const [remaining, setRemaining] = useState(remainingContactSeconds);
+  useEffect(() => {
+    const sync = () => setRemaining(remainingContactSeconds());
+    const timer = window.setInterval(sync, 1000);
+    window.addEventListener("storage", sync);
+    window.addEventListener("contact-cooldown", sync);
+    window.addEventListener("focus", sync);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("storage", sync);
+      window.removeEventListener("contact-cooldown", sync);
+      window.removeEventListener("focus", sync);
+    };
+  }, []);
+  const waitTime = `${String(Math.floor(remaining / 60)).padStart(2, "0")}:${String(remaining % 60).padStart(2, "0")}`;
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     if (status !== "sending") setStatus("idle");
@@ -23,17 +39,29 @@ export default function Contact() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (sending.current) return;
+    if (remainingContactSeconds() > 0) {
+      setRemaining(remainingContactSeconds());
+      return;
+    }
     sending.current = true;
     setStatus("sending");
     try {
+      await withContactLock(async () => {
+      if (remainingContactSeconds() > 0) {
+        setRemaining(remainingContactSeconds());
+        setStatus("idle");
+        return;
+      }
       await emailjs.send(
         process.env.REACT_APP_EMAILJS_SERVICE_ID || "service_fflabgt",
         process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "template_66bwfls",
         formData,
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "Mb4U2Biz9r-h_aTMO",
       );
+      startContactCooldown();
       setStatus("success");
       setFormData(emptyForm);
+      });
     } catch {
       setStatus("error");
     } finally {
@@ -163,12 +191,16 @@ export default function Contact() {
               <button
                 className="button button-primary submit-button"
                 type="submit"
-                disabled={status === "sending"}
+                disabled={status === "sending" || remaining > 0}
+                aria-describedby={remaining > 0 ? "contact-cooldown" : undefined}
               >
-                {t(status === "sending" ? "Gönderiliyor…" : "Mesajınızı gönderin")}
+                {t(status === "sending" ? "Gönderiliyor…" : remaining > 0 ? "Lütfen bekleyin" : "Mesajınızı gönderin")}
                 <FiArrowUpRight aria-hidden="true" />
               </button>
             </fieldset>
+            {remaining > 0 && <p id="contact-cooldown" className="form-note">
+              {t("Yeni bir mesaj göndermek için 15 dakika beklemelisiniz. Kalan süre:")} <strong aria-live="off">{waitTime}</strong>
+            </p>}
             <div className="form-feedback" role="status" aria-live="polite">
               {status === "success" && (
                 <p className="feedback-success">

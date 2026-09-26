@@ -16,7 +16,7 @@ export default function TechStack() {
         <Reveal className="section-heading">
           <div>
             <div className="eyebrow">
-              <span className="section-index">04 /</span>{t(" TEKNOLOJİLER")}</div>
+              <span className="section-index">03 /</span>{t(" TEKNOLOJİLER")}</div>
             <h2 id="tech-title">{t("Görünenden ")}<span>{t("daha fazlasını")}</span>
               <br />{t("inşa ediyoruz.")}</h2>
           </div>

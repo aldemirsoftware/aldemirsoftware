@@ -11,6 +11,8 @@ export default function SEO({ notFound = false, faqPage = false }) {
       <meta property="og:locale" content={({ en: "en_GB", de: "de_DE", tr: "tr_TR" })[language]} />
       <title>{title}</title>
       <meta name="title" content={title} />
+      {!notFound && <meta property="og:url" content={faqPage ? "https://www.aldemirsoftware.com/sss" : "https://www.aldemirsoftware.com/"} />}
+      {!notFound && <meta name="twitter:url" content={faqPage ? "https://www.aldemirsoftware.com/sss" : "https://www.aldemirsoftware.com/"} />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta name="twitter:title" content={title} />

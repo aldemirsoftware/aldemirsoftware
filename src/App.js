@@ -90,11 +90,11 @@ function App() {
           {notFound ? <NotFound /> : faqPage ? <FAQPage /> : <><Navbar />
           <main id="main-content" tabIndex={-1}>
             <Hero />
+            <About />
+            <Projects />
+            <TechStack />
             <Services />
             <Vision />
-            <Projects />
-            <About />
-            <TechStack />
             <Contact />
           </main>
           <Footer />

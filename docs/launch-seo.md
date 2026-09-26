@@ -1,17 +1,26 @@
-# Yayın öncesi SEO ve performans
+# Yayın ve SEO kontrolü — 26 Eylül 2026
 
-- Ana sayfa: benzersiz Türkçe başlık ve açıklama; canonical, Organization verisi ve sosyal paylaşım görseli.
-- Bulunmayan yollar: aynı OrbitalScene bileşeni, ayrı başlık/açıklama ve noindex. `npm run build` sonrasında `scripts/build-404.cjs` gerçek Firebase hata belgesini üretir. Genel SPA rewrite kaldırıldı; bölüm bağlantıları hash kullandığından çalışmaya devam eder. Yeni bağımsız sayfa eklendiğinde hosting yapılandırması ayrıca güncellenmelidir.
-- robots.txt: bütün botlar için JS/CSS dahil tarama açık; sitemap mevcut. Dosyanın doğru adı robots.txt'dir.
-- Hız: kullanılmayan hero preload kaldırıldı, gerçek arka plan ön yükleniyor. Font CSS import zinciri kaldırıldı. Hash içeren statik dosyalara bir yıllık immutable cache, görsellere bir günlük cache eklendi. Akıllı sistemler görseli yaklaşık 2,6 MB yerine 368 KB JPEG olarak kullanılıyor. Mevcut görsel lazy-loading ve ekran dışında animasyon durdurma korunuyor.
-- Beş soruluk erişilebilir SSS eklendi. Formda başarılı gönderim mesajı zaten var.
+## Hazırlananlar
 
-## Kontrol
+- Ana sayfa, SSS ve 404 için ayrı başlık ve açıklamalar; canonical ve paylaşım metadataları.
+- Uşak web tasarım, özel yazılım, mobil uygulama ve bilişim danışmanlığı hizmetlerini açıklayan görünür içerik; İngilizce ve Almanca çevirileri.
+- Organization ve WebSite yapılandırılmış verileri: marka, Uşak konumu, telefon, e-posta ve kurumsal sosyal hesaplar. Gerçek açık adres, çalışma saatleri veya müşteri puanları uydurulmadı.
+- robots.txt taramaya açık; sitemap.xml yalnızca ana sayfa ve SSS içeriyor. Google doğrulama etiketi korundu.
+- 404 belgesinde noindex; canonical kaldırıldı. SSS paylaşım URL’si kendi sayfasını gösteriyor.
+- Bölüm sırası: Hero, Hakkımızda, İş Ortaklarımız, Teknolojiler, Uzmanlıklarımız; ardından mevcut vizyon ve iletişim bölümleri.
+- Önceki mobil performans önlemleri korunuyor: hafif görseller, mobilde WebGL/müzik kısıtlaması ve ekran dışı animasyonların durdurulması.
 
-Üretim derlemesi ve 11 test başarılı. Yerel Firebase Hosting: ana sayfa HTTP 200, bulunmayan yol HTTP 404. 404 masaüstü/mobil görsel kontrolü yapıldı. Canlı siteye deploy yapılmadı; canlı Core Web Vitals veya Lighthouse puanı ölçülmedi.
+## Yayında yapılması gerekenler
 
-## Dış bilgi gerektiren maddeler
+1. Güncel build klasörünü gerçek hosting ortamına yükleyin. Bu çalışma canlıya yayımlanmadı; depoda şu anda hosting yapılandırması yok.
+2. `/sss` adresini `sss.html` belgesine HTTP 200 ile eşleyin. Bulunmayan yollar `404.html` belgesini gerçek HTTP 404 durumuyla sunmalı; bütün yolları 200 ile ana sayfaya yönlendirmeyin.
+3. HTTPS ve www kanonik alan adına kalıcı yönlendirmeleri kontrol edin. Hash içeren JS/CSS için uzun önbellek; HTML için yeniden doğrulama kullanın.
+4. Search Console’da doğrulamayı kontrol edip `https://www.aldemirsoftware.com/sitemap.xml` gönderin. Ana sayfa ve `/sss` için URL Denetimi → Canlı URL’yi Test Et → Dizine Eklenmesini İste adımlarını uygulayın. Hesaba erişim olmadan gönderim yapılmadı.
+5. Mobil gerçek cihazda uzun kaydırma testi ve PageSpeed Insights ölçümü yapın; Search Console sayfa indeksleme ve Core Web Vitals raporlarını izleyin.
 
-Search Console etiketi mevcut; hesap doğrulaması ve sitemap gönderimi hesap üzerinden kontrol edilmeli. Gerçek müşteri yorumları, takım fotoğrafları, vaka sonuçları ve açık ofis adresi sağlanmadan eklenmedi. Gizlilik metni için gerçek veri işleme/saklama süreçleri belirlenmeli; uydurma politika yayınlanmadı.
+Dil seçimi aynı URL üzerinde çalışıyor; ayrı dil URL’leri olmadığı için yanıltıcı hreflang etiketleri eklenmedi. Google indeksleme ve sıralama garantisi verilemez. Yerel görünürlük için gerçek işletme bilgileriyle Google İşletme Profili ayrıca tamamlanabilir.
 
-Kaynaklar: https://firebase.google.com/docs/hosting/full-config ve https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
+Kaynaklar:
+- https://developers.google.com/search/docs/appearance/title-link
+- https://developers.google.com/search/docs/appearance/site-names
+- https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
